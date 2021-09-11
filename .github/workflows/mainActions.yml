@@ -145,4 +145,8 @@ jobs:
       - name: Step 12 - Eseguire test maven
         run:  |
             cd WebAppHooks/catalogoProdottiBoot
-            mvn -Dtest=testSuiteHooks test   
+            mvn -Dtest=testSuiteHooks,testSuiteNOhooks test site
+            cd target/surefire-reports
+            echo "Visualizziamo adesso tutti i report ottenuti dalle nostre test suite"
+            cat *.txt
+            echo "Fine visualizzazione report!!!"
