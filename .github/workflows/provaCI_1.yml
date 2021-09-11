@@ -87,9 +87,9 @@ jobs:
             cd WebAppHooks/catalogoProdottiBoot/src/main/resources/templates
             ls -a
             echo "Il path completo del file ftl da modificare è: "
-            readlink -f indexProdottiNoHook.ftl
+            readlink -f indexProdottiOriginaleNoHooks.ftl
             echo "Vediamo il contenuto del file ftl prima della modifica"
-            cat /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/main/resources/templates/indexProdottiNoHook.ftl
+            cat indexProdottiOriginaleNoHooks.ftl
               
         
       - name: Step 8 - Instrumenta l'applicazione iniettando gli Hooks
@@ -98,7 +98,7 @@ jobs:
             cd test-guard
             ls -a
             echo "Visualizzazione file ftl prima dell injection! "
-            cat /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/main/resources/templates/indexProdottiNoHook.ftl
+            cat /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/main/resources/templates/indexProdottiOriginaleNoHooks.ftl
             echo "Visualizza versione di node"
             node -v
             echo "... Cancellazione e successivo aggiornamento di node_modules ..."
@@ -107,9 +107,9 @@ jobs:
             echo "INJECTION adesso..."
             echo "Visualizza versione di node"
             node -v
-            node main.js inject-hooks /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/main/resources/templates/indexProdottiNoHook.ftl --grammar freemarker
+            node main.js inject-hooks /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/main/resources/templates/indexProdottiOriginaleNoHooks.ftl --grammar freemarker
             echo "Visualizzazione file ftl dopo l'injection!!! "
-            cat /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/main/resources/templates/indexProdottiNoHook.ftl
+            cat /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/main/resources/templates/indexProdottiOriginaleNoHooks.ftl
           
 
           
