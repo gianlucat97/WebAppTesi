@@ -133,9 +133,16 @@ jobs:
           google-chrome-stable --headless --disable-gpu 
           
           
-      
-            
-      - name: Step 11 - Eseguire test maven
+      - name: Step 11 - Install Chrome Driver test maven
+        run:  |
+            wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip
+            unzip chromedriver_linux64.zip
+            sudo mv chromedriver /home/runner/work/WebAppTesi/WebAppTesi/chromedriver_v94_linux64/chromedriver
+            sudo chown root:root /home/runner/work/WebAppTesi/WebAppTesi/chromedriver_v94_linux64/chromedriver
+            sudo chmod +x /home/runner/work/WebAppTesi/WebAppTesi/chromedriver_v94_linux64/chromedriver
+
+
+      - name: Step 12 - Eseguire test maven
         run:  |
             cd WebAppHooks/catalogoProdottiBoot
             mvn -Dtest=testSuiteHooks test   
