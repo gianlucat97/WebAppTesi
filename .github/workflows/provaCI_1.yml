@@ -110,8 +110,26 @@ jobs:
             node main.js inject-hooks /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/main/resources/templates/indexProdottiOriginaleNoHooks.ftl --grammar freemarker
             echo "Visualizzazione file ftl dopo l'injection!!! "
             cat /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/main/resources/templates/indexProdottiOriginaleNoHooks.ftl
+     
+      - name: Step 9 - Esegui Applicazione Spring Boot tramite jar
+        run:  |
+            cd WebAppHooks/catalogoProdottiBoot/target
+            java -jar catalogoProdottiBoot-0.0.1-SNAPSHOT.jar &
+            
+            
+      - name: Step 10 - Install Chrome Headless
+        run: |
+          sudo apt-get update
+          sudo apt-get upgrade
+          sudo apt-get -u dist-upgrade
+          sudo apt-get install -y libappindicator1 fonts-liberation
+          sudo apt-get -y install dbus-x11 xfonts-base xfonts-100dpi xfonts-75dpi xfonts-scalable
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo apt-get -f install
+          google-chrome-stable --headless --disable-gpu 
           
-
-          
-          
-          
+      
+            
+      - name: Step 11 - Eseguire test maven
+        run:  |
+            mvn -Dtest=testSuiteHooks test   
