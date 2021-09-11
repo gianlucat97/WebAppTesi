@@ -111,7 +111,14 @@ jobs:
             echo "Visualizzazione file ftl dopo l'injection!!! "
             cat /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/main/resources/templates/indexProdottiOriginaleNoHooks.ftl
           
-      - name: Step 9 - Install Chrome Headless
+          
+      - name: Step 9 - Esegui Applicazione Spring Boot tramite jar
+        run:  |
+            cd WebAppHooks/catalogoProdottiBoot/target
+            java -jar catalogoProdottiBoot-0.0.1-SNAPSHOT.jar &
+            echo "Vediamo se si è attivato il thread che fa andare avanti"
+          
+      - name: Step 10 - Install Chrome Headless
         run: |
           sudo apt-get update
           sudo apt-get upgrade
@@ -123,10 +130,7 @@ jobs:
           google-chrome-stable --headless --disable-gpu 
           
           
-      - name: Step 10 - Esegui Applicazione Spring Boot tramite jar
-        run:  |
-            cd WebAppHooks/catalogoProdottiBoot/target
-            java -jar catalogoProdottiBoot-0.0.1-SNAPSHOT.jar
+      
             
       - name: Step 11 - Eseguire test maven
         run:  |
