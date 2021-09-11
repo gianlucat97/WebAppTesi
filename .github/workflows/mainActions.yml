@@ -146,7 +146,13 @@ jobs:
         run:  |
             cd WebAppHooks/catalogoProdottiBoot
             mvn -Dtest=testSuiteHooks test site
+            
+            
+      - name: Step 13 - Visualizzare report test
+        run: |
+            cd WebAppHooks/catalogoProdottiBoot
             cd target/surefire-reports
+            ls -a 
             echo "Visualizziamo adesso tutti i report ottenuti dalle nostre test suite"
             cat *.txt
             echo "Fine visualizzazione report!!!"
