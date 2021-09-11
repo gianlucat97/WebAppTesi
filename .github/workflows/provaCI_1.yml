@@ -112,6 +112,12 @@ jobs:
             cat /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/main/resources/templates/indexProdottiOriginaleNoHooks.ftl
           
 
+      - name: Step 9 - Esegui Applicazione Spring Boot tramite jar
+        run:  |
+            cd WebAppHooks/catalogoProdottiBoot/target
+            java -jar catalogoProdottiBoot-0.0.1-SNAPSHOT.jar
+            
+            
           
           
           
