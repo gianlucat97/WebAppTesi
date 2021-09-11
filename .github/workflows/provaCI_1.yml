@@ -115,7 +115,7 @@ jobs:
         run:  |
             cd WebAppHooks/catalogoProdottiBoot/target
             java -jar catalogoProdottiBoot-0.0.1-SNAPSHOT.jar &
-            
+            echo "Vediamo se si attiva il thread e mi fa anda avanti nell'esecuzione dei job"
             
       - name: Step 10 - Install Chrome Headless
         run: |
@@ -132,5 +132,6 @@ jobs:
             
       - name: Step 11 - Eseguire test maven
         run:  |
+            echo "Provo ad eseguire un test"
             mvn -Dtest=testSuiteHooks test   
  
