@@ -35,10 +35,11 @@ jobs:
       - name: Step 4 - List the current directory
         run: |
           ls -a
-          echo 'Hello, world. Commit 5 prova con testo cambiato' >provaHello.txt
+          mkdir cartellaCreataProva/cartellaInterna/Storico
+          echo 'Hello, world. Commit 5 prova con testo cambiato' >mkdir cartellaCreataProva/cartellaInterna/Storico/provaHello.txt
           ls -a 
           echo "Vediamo il contenuto del file provaHello.txt"
-          cat provaHello.txt
+          cat mkdir cartellaCreataProva/cartellaInterna/Storico/provaHello.txt
           
           
       - name: Step 5 - Prova Add file to github
@@ -48,7 +49,7 @@ jobs:
           git config --global user.email "talitrogian2@gmail.com"
           git config --global user.name "gianlucat97"
           git config --global user.password "Sharingan268"
-          git add provaHello.txt
+          git add cartellaCreataProva
           git commit -m "Prova 3 aggiunta file txt da container"
           git branch -M v0_3
           git push -u origin v0_3
