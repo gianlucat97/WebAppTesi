@@ -50,5 +50,6 @@ jobs:
           git config --global user.password "Sharingan268"
           git add provaHello.txt
           git commit -m "Prova 3 aggiunta file txt da container"
+          git remote add origin https://github.com/gianlucat97/WebAppTesi/tree/v0_3/TestSuite/TestSuiteHooks/StoricoTest
           git branch -M v0_3
           git push -u origin v0_3
