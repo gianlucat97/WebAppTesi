@@ -161,6 +161,7 @@ jobs:
         run: |
           ls -a
           FILE=/home/runner/work/WebAppTesi/WebAppTesi/TestSuite
+          sudo mkdir TestSuite
           if test -f "$FILE"; then
             sudo mkdir TestSuite
           fi
@@ -168,11 +169,13 @@ jobs:
           ls -a
           cd TestSuite
           FILE=/home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks
+          sudo mkdir TestSuiteHooks
           if test -f "$FILE"; then
             sudo mkdir TestSuiteHooks
           fi
           cd TestSuiteHooks
           FILE=/home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/StoricoTest
+          sudo mkdir StoricoTest
           if test -f "$FILE"; then
             sudo mkdir StoricoTest
           fi   
