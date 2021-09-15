@@ -184,7 +184,7 @@ jobs:
           cd target
           echo "Visualizziamo se c'è la cartella surefire-reports"
           ls -a 
-          cp -r /surefire-reports /home/runner/work/WebAppTesi/WebAppTesi/cartellaCreataProva/cartellaInterna/Storico
+          sudo cp -r surefire-reports /home/runner/work/WebAppTesi/WebAppTesi/cartellaCreataProva/cartellaInterna/Storico
          
           
       - name: Step 15 - Push dei report
