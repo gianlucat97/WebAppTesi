@@ -44,12 +44,12 @@ jobs:
           sudo mkdir Storico
           cd Storico
           echo "stampa a video /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/main/resources/templates/indexProdottiOriginaleNoHooks.ftl"
-          sudo sh -c "echo 'Hello, world. Commit 5 prova con testo cambiato' >> provaHelloWorld.txt"
+          sudo sh -c "echo 'Hello, world. Commit 5 prova con testo cambiato' >> provaHelloWorld2.txt"
           ls -a 
-          echo "Vediamo il contenuto del file provaHello.txt"
-          cat provaHelloWorld.txt
-          echo "Vediamo il path completo di provaHello.txt"
-          readlink -f provaHelloWorld.txt
+          echo "Vediamo il contenuto del file provaHello2.txt"
+          cat provaHelloWorld2.txt
+          echo "Vediamo il path completo di provaHello2.txt"
+          readlink -f provaHelloWorld2.txt
           
           
       - name: Step 5 - Prova Add file to github
