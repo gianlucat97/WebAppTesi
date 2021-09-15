@@ -35,7 +35,7 @@ jobs:
       - name: Step 4 - List the current directory
         run: |
           ls -a
-          mkdir /cartellaCreataProva
+          sudo mkdir /cartellaCreataProva/cartellaInterna
           echo "/home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/main/resources/templates/indexProdottiOriginaleNoHooks.ftl"
           echo 'Hello, world. Commit 5 prova con testo cambiato' >mkdir cartellaCreataProva/cartellaInterna/Storico/provaHello.txt
           ls -a 
