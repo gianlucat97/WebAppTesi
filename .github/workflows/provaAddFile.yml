@@ -47,9 +47,9 @@ jobs:
           sudo sh -c "echo 'Hello, world. Commit 5 prova con testo cambiato' >> provaHelloWorld.txt"
           ls -a 
           echo "Vediamo il contenuto del file provaHello.txt"
-          cat provaHello.txt
+          cat provaHelloWorld.txt
           echo "Vediamo il path completo di provaHello.txt"
-          readlink -f provaHello.txt
+          readlink -f provaHelloWorld.txt
           
           
       - name: Step 5 - Prova Add file to github
