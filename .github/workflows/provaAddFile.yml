@@ -35,12 +35,15 @@ jobs:
       - name: Step 4 - List the current directory
         run: |
           ls -a
-          sudo mkdir cartellaCreataProva
+          if [ -d cartellaCreataProva]
+            sudo mkdir cartellaCreataProva
           echo "Vediamo se ha creato la cartella"
           ls -a
           cd cartellaCreataProva
+          if [ -d cartellaInterna]
           sudo mkdir cartellaInterna
           cd cartellaInterna
+          if [ -d Storico]
           sudo mkdir Storico
           cd Storico
           echo "stampa a video /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/main/resources/templates/indexProdottiOriginaleNoHooks.ftl"
