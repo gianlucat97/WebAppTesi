@@ -45,6 +45,9 @@ jobs:
         run: |
           ls -a
           git status
+          git config --global user.email "talitrogian2@gmail.com"
+          git config --global user.name "gianlucat97"
+          git config --global user.password "Sharingan268"
           git add provaHello.txt
           git commit -m "Prova 1 aggiunta file txt da container"
           git branch -M v0_3
