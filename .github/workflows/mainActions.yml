@@ -156,3 +156,51 @@ jobs:
             echo "Visualizziamo adesso tutti i report ottenuti dalle nostre test suite"
             cat *.txt
             echo "Fine visualizzazione report!!!"
+            
+      - name: Step 14 - Creazione directories per report testing
+        run: |
+          ls -a
+          FILE=/home/runner/work/WebAppTesi/WebAppTesi/cartellaCreataProva
+          if test -f "$FILE"; then
+            sudo mkdir cartellaCreataProva
+          fi
+          echo "Vediamo se ha creato la cartella"
+          ls -a
+          cd cartellaCreataProva
+          FILE=/home/runner/work/WebAppTesi/WebAppTesi/cartellaCreataProva/cartellaInterna
+          if test -f "$FILE"; then
+            sudo mkdir cartellaInterna
+          fi
+          cd cartellaInterna
+          FILE=/home/runner/work/WebAppTesi/WebAppTesi/cartellaCreataProva/cartellaInterna/Storico
+          if test -f "$FILE"; then
+            sudo mkdir Storico
+          fi   
+       
+       
+      - name: Step 15 - Spostamento report in directory corretta
+        run: |  
+          cd WebAppHooks/catalogoProdottiBoot
+          cd target
+          echo "Visualizziamo se c'è la cartella surefire-reports"
+          ls -a 
+          cp -r /surefire-reports /home/runner/work/WebAppTesi/WebAppTesi/cartellaCreataProva/cartellaInterna/Storico
+         
+          
+      - name: Step 15 - Push dei report
+        run: |
+          echo "Vediamo quali cartelle ci sono nella directory di partenza"
+          ls -a
+          git status
+          git config --global user.email "talitrogian2@gmail.com"
+          git config --global user.name "gianlucat97"
+          git config --global user.password "Sharingan268"
+          echo "Andiamo ad aggiungere la cartella dei report"
+          git add cartellaCreataProva
+          echo "Cartella aggiunta!"
+          git commit -m "Test Suite Hooks v1_0"
+          git branch -M v0_3
+          git push -u origin v0_3
+          
+          
+      
