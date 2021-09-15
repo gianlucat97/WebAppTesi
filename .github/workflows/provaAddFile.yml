@@ -51,4 +51,4 @@ jobs:
           git add provaHello.txt
           git commit -m "Prova 2 aggiunta file txt da container"
           git branch -M v0_3
-          git push -u origin v0_3
+          git push -u origin v0_3 
