@@ -35,7 +35,7 @@ jobs:
       - name: Step 4 - List the current directory
         run: |
           ls -a
-          mkdir cartellaCreataProva/cartellaInterna/Storico
+          mkdir /cartellaCreataProva/cartellaInterna/Storico
           echo 'Hello, world. Commit 5 prova con testo cambiato' >mkdir cartellaCreataProva/cartellaInterna/Storico/provaHello.txt
           ls -a 
           echo "Vediamo il contenuto del file provaHello.txt"
