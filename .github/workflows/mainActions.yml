@@ -184,10 +184,15 @@ jobs:
           cd target
           echo "Visualizziamo se c'è la cartella surefire-reports"
           ls -a 
-          sudo cp -r surefire-reports /home/runner/work/WebAppTesi/WebAppTesi/cartellaCreataProva/cartellaInterna/Storico
+          echo "Rinominare la cartella surefire-reports in report_test_vx_x, dove al posto delle x va il numero della versione"
+          sudo mv surefire-reports report_test_v1_0
+          echo "Vediamo se la ha rinominata:"
+          ls -a
+          sudo cp -r report_test_v1_0 /home/runner/work/WebAppTesi/WebAppTesi/cartellaCreataProva/cartellaInterna/Storico
+          
          
           
-      - name: Step 15 - Push dei report
+      - name: Step 16 - Push dei report
         run: |
           echo "Vediamo quali cartelle ci sono nella directory di partenza"
           ls -a
