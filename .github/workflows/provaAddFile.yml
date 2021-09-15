@@ -35,12 +35,19 @@ jobs:
       - name: Step 4 - List the current directory
         run: |
           ls -a
-          sudo mkdir /cartellaCreataProva/cartellaInterna
+          sudo mkdir /cartellaCreataProva
+          cd cartellaCreataProva
+          sudo mkdir /cartellaInterna
+          cd cartellaInterna
+          sudo mkdir /Storico
+          cd Storico
           echo "/home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/main/resources/templates/indexProdottiOriginaleNoHooks.ftl"
-          echo 'Hello, world. Commit 5 prova con testo cambiato' >mkdir cartellaCreataProva/cartellaInterna/Storico/provaHello.txt
+          echo 'Hello, world. Commit 5 prova con testo cambiato' >provaHello.txt
           ls -a 
           echo "Vediamo il contenuto del file provaHello.txt"
-          cat mkdir cartellaCreataProva/cartellaInterna/Storico/provaHello.txt
+          cat provaHello.txt
+          echo "Vediamo il path completo di provaHello.txt"
+          readlink -f provaHello.txt
           
           
       - name: Step 5 - Prova Add file to github
