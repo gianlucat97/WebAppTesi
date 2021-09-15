@@ -35,16 +35,22 @@ jobs:
       - name: Step 4 - List the current directory
         run: |
           ls -a
-          if [ -d cartellaCreataProva]
+          FILE=/home/runner/work/WebAppTesi/WebAppTesi/cartellaCreataProva
+          if test -f "$FILE"; then
             sudo mkdir cartellaCreataProva
+          fi
           echo "Vediamo se ha creato la cartella"
           ls -a
           cd cartellaCreataProva
-          if [ -d cartellaInterna]
-          sudo mkdir cartellaInterna
+          FILE=/home/runner/work/WebAppTesi/WebAppTesi/cartellaCreataProva/cartellaInterna
+          if test -f "$FILE"; then
+            sudo mkdir cartellaInterna
+          fi
           cd cartellaInterna
-          if [ -d Storico]
-          sudo mkdir Storico
+          FILE=/home/runner/work/WebAppTesi/WebAppTesi/cartellaCreataProva/cartellaInterna/Storico
+          if test -f "$FILE"; then
+            sudo mkdir Storico
+          fi
           cd Storico
           echo "stampa a video /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/main/resources/templates/indexProdottiOriginaleNoHooks.ftl"
           sudo sh -c "echo 'Hello, world. Commit 5 prova con testo cambiato' >> provaHelloWorld2.txt"
