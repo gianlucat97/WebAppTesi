@@ -166,12 +166,12 @@ jobs:
           fi
           echo "Vediamo se ha creato la cartella"
           ls -a
-          cd cartellaCreataProva
+          cd TestSuite
           FILE=/home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks
           if test -f "$FILE"; then
             sudo mkdir TestSuiteHooks
           fi
-          cd cartellaInterna
+          cd TestSuiteHooks
           FILE=/home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/StoricoTest
           if test -f "$FILE"; then
             sudo mkdir StoricoTest
