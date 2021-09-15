@@ -160,21 +160,21 @@ jobs:
       - name: Step 14 - Creazione directories per report testing
         run: |
           ls -a
-          FILE=/home/runner/work/WebAppTesi/WebAppTesi/cartellaCreataProva
+          FILE=/home/runner/work/WebAppTesi/WebAppTesi/TestSuite
           if test -f "$FILE"; then
-            sudo mkdir cartellaCreataProva
+            sudo mkdir TestSuite
           fi
           echo "Vediamo se ha creato la cartella"
           ls -a
           cd cartellaCreataProva
-          FILE=/home/runner/work/WebAppTesi/WebAppTesi/cartellaCreataProva/cartellaInterna
+          FILE=/home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks
           if test -f "$FILE"; then
-            sudo mkdir cartellaInterna
+            sudo mkdir TestSuiteHooks
           fi
           cd cartellaInterna
-          FILE=/home/runner/work/WebAppTesi/WebAppTesi/cartellaCreataProva/cartellaInterna/Storico
+          FILE=/home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/StoricoTest
           if test -f "$FILE"; then
-            sudo mkdir Storico
+            sudo mkdir StoricoTest
           fi   
        
        
@@ -188,7 +188,7 @@ jobs:
           sudo mv surefire-reports report_test_v1_0
           echo "Vediamo se la ha rinominata:"
           ls -a
-          sudo cp -r report_test_v1_0 /home/runner/work/WebAppTesi/WebAppTesi/cartellaCreataProva/cartellaInterna/Storico
+          sudo cp -r report_test_v1_0 /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/StoricoTest
           
          
           
@@ -201,7 +201,7 @@ jobs:
           git config --global user.name "gianlucat97"
           git config --global user.password "Sharingan268"
           echo "Andiamo ad aggiungere la cartella dei report"
-          git add cartellaCreataProva
+          git add TestSuite
           echo "Cartella aggiunta!"
           git commit -m "Test Suite Hooks v1_0"
           git branch -M v0_3
