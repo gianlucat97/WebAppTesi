@@ -39,3 +39,9 @@ jobs:
           ls -a 
           echo "Vediamo il contenuto del file provaHello.txt"
           cat provaHello.txt
+          
+          
+      - name: Step 5 - Prova Add file to github
+        run: |
+          ls -a
+          git status
