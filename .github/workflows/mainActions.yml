@@ -161,8 +161,7 @@ jobs:
         run: |
           ls -a
           FILE=/home/runner/work/WebAppTesi/WebAppTesi/TestSuite
-          if [![ -d "$FILE" ]]
-          then
+          if [ ! -d "$FILE" ]; then
             echo "Vedi se sono dentro l'if numero 1"
             sudo mkdir TestSuite
           fi
@@ -170,15 +169,13 @@ jobs:
           ls -a
           cd TestSuite
           FILE=/home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks
-          if [![ -d "$FILE" ]]
-          then
+          if [ ! -d "$FILE" ]; then
             echo "Vedi se sono dentro l'if numero 2"
             sudo mkdir TestSuiteHooks
           fi
           cd TestSuiteHooks
           FILE=/home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/StoricoTest
-          if [![ -d "$FILE" ]]
-          then
+          if [ ! -d "$FILE" ]; then
             echo "Vedi se sono dentro l'if numero 3"
             sudo mkdir StoricoTest
           fi   
