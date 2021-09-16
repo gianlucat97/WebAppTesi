@@ -35,7 +35,7 @@ jobs:
         run: |
           ls -a
           FILE=/home/runner/work/WebAppTesi/WebAppTesi/TestSuite
-          if [[ -d "$FILE" ]]
+          if [![ -d "$FILE" ]]
           then
             echo "Vedi se sono dentro l'if numero 1"
             sudo mkdir TestSuite
