@@ -30,6 +30,32 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+          
+      - name: Step 14 - Creazione directories per report testing
+        run: |
+          ls -a
+          FILE=/home/runner/work/WebAppTesi/WebAppTesi/TestSuite
+          if [[ -d "$FILE" ]]
+          then
+            echo "Vedi se sono dentro l'if numero 1"
+            sudo mkdir TestSuite
+          fi
+          echo "Vediamo se ha creato la cartella"
+          ls -a
+          cd TestSuite
+          FILE=/home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks
+          if [[ -d "$FILE" ]]
+          then
+            echo "Vedi se sono dentro l'if numero 2"
+            sudo mkdir TestSuiteHooks
+          fi
+          cd TestSuiteHooks
+          FILE=/home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/StoricoTest
+          if [[ -d "$FILE" ]]
+          then
+            echo "Vedi se sono dentro l'if numero 3"
+            sudo mkdir StoricoTest
+          fi   
 
       - name: Step 3 - Have GitHub Actions Build Maven Project
         run: mvn -B package --file WebAppHooks/catalogoProdottiBoot/pom.xml
@@ -161,22 +187,22 @@ jobs:
         run: |
           ls -a
           FILE=/home/runner/work/WebAppTesi/WebAppTesi/TestSuite
-          sudo mkdir TestSuite
-          if test -f "$FILE"; then
+          if [[ -d "$FILE" ]]
+          then
             sudo mkdir TestSuite
           fi
           echo "Vediamo se ha creato la cartella"
           ls -a
           cd TestSuite
           FILE=/home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks
-          sudo mkdir TestSuiteHooks
-          if test -f "$FILE"; then
+          if [[ -d "$FILE" ]]
+          then
             sudo mkdir TestSuiteHooks
           fi
           cd TestSuiteHooks
           FILE=/home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/StoricoTest
-          sudo mkdir StoricoTest
-          if test -f "$FILE"; then
+          if [[ -d "$FILE" ]]
+          then
             sudo mkdir StoricoTest
           fi   
        
