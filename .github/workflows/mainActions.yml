@@ -162,9 +162,12 @@ jobs:
         run:  |
             cd test-hooks
             cd test-guard
+            echo "Vengono rimossi gli hooks non utilizzati da alcun test"
+            node main.js remove-hooks /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/main/resources/templates/indexProdottiOriginaleNoHooks.ftl --grammar freemarker --suites /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/test/java/it/catalogo
             echo "Prima del verify-hooks"
             node main.js verify-hooks /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/main/resources/templates/indexProdottiOriginaleNoHooks.ftl --grammar freemarker --suites /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/test/java/it/catalogo
             echo "Dopo il verify-hooks!!! "
+            
                
             
       - name: Step 14 - Creazione directories per report testing
