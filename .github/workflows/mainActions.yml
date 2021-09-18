@@ -157,6 +157,16 @@ jobs:
             cat *.txt
             echo "Fine visualizzazione report!!!"
             
+            
+      - name: Step 13.2 - Verifica Hooks su storico test
+        run:  |
+            cd test-hooks
+            cd test-guard
+            echo "Prima del verify-hooks"
+            node main.js verify-hooks /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/main/resources/templates/indexProdottiOriginaleNoHooks.ftl --grammar freemarker --suites /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/test/java/it/catalogo
+            echo "Dopo il verify-hooks!!! "
+               
+            
       - name: Step 14 - Creazione directories per report testing
         run: |
           ls -a
