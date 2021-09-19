@@ -145,8 +145,7 @@ jobs:
       - name: Step 12 - Eseguire test maven
         run:  |
             cd WebAppHooks/catalogoProdottiBoot
-            mvn -Dtest=testSuiteHooks test site
-            mvn -Dtest=testSuiteErrorHooksProva test site
+            mvn test site
             
       - name: Step 13 - Visualizzare report test
         run: |
