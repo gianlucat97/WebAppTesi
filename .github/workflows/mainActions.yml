@@ -157,7 +157,7 @@ jobs:
             cat *.txt
             echo "Fine visualizzazione report!!!"
             
-            
+             
       - name: Step 13.2 - Verifica Hooks su storico test
         run:  |
             cd test-hooks
