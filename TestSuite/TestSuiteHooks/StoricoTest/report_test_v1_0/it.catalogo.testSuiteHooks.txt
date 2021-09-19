@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: it.catalogo.testSuiteHooks
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 19.764 s - in it.catalogo.testSuiteHooks
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 22.616 s - in it.catalogo.testSuiteHooks
