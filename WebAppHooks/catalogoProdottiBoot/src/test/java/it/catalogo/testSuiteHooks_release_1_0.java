@@ -1,4 +1,4 @@
-package it.catalogo;
+package it.catalogo.test;
 
 import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,7 +16,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-class testSuiteHooksB {
+class testSuiteHooks_release_1_0 {
 
 	  private static WebDriver driver;
 	  private boolean acceptNextAlert = true;
