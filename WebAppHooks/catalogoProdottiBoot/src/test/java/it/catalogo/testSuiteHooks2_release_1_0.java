@@ -1,4 +1,4 @@
-package it.catalogo;
+package it.catalogo.test;
 
 import static org.junit.Assert.fail;
 
@@ -18,7 +18,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 
-class testSuiteNOhooks {
+class testSuiteHooks2_release_1_0 {
 
 	  private static WebDriver driver;
 	  private boolean acceptNextAlert = true;
