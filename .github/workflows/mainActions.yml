@@ -223,5 +223,47 @@ jobs:
           git branch -M v0_3
           git push -u origin v0_3
           
+        
+        
+      - name: Step 17 - Unzip progetto "Miglioramento report test"
+        run: |
+          ls 
+          echo "Unzip del progetto"
+          unzip miglioramentoReportTest.zip
+          echo "Progetto zippato"
+          ls 
           
-      
+          
+          
+      - name: Step 18 - Esecuzione progetto "Miglioramento report test"
+        run: |    
+          echo "Andiamo nella directory dove si trova il file jar eseguibile"
+          cd miglioramentoReportTest/target
+          ls -a
+          echo "Proviamo ad eseguire il file jar, passandogli come args[0] la directory dei report .txt da analizzare
+          java -jar miglioramentoReportTest-0.0.1-jarReportTest.jar /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/StoricoTest/report_test_v1_0
+          echo "File jar eseguito!!!"
+          echo "Vediamo il file xlsx di report unificato se c'è"
+          ls -a 
+          echo "Vediamo il contenuto del file xlsx di report unificato!!!"
+          cat tabellaReportTest_v1_0.xlsx
+          
+      - name: Step 19 - Spostamento report xlsx in cartella dei report txt
+        run: | 
+          cd miglioramentoReportTest/target
+          sudo cp tabellaReportTest_v1_0.xlsx /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/StoricoTest/report_test_v1_0
+          
+      - name: Step 20 - Commit del report xlsx
+        run: | 
+          echo "Vediamo quali cartelle ci sono nella directory di partenza"
+          ls -a
+          git status
+          git config --global user.email "talitrogian2@gmail.com"
+          git config --global user.name "gianlucat97"
+          git config --global user.password "Sharingan268"
+          echo "Andiamo ad aggiungere la cartella dei report"
+          git add TestSuite
+          echo "Cartella aggiunta!"
+          git commit -m "Test Suite Hooks v1_0"
+          git branch -M v0_3
+          git push -u origin v0_3
