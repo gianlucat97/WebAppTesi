@@ -244,7 +244,7 @@ jobs:
           echo "Vediamo il file xlsx di report unificato se c'è"
           ls -a 
           echo "Vediamo il contenuto del file xlsx di report unificato!!!"
-          cat tabellaReportTest_v1_0.xlsx
+          cat tabellaReportTest.xlsx
           
       - name: Step 19 - Spostamento report xlsx in cartella dei report txt
         run: | 
