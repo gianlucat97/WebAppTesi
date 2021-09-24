@@ -37,23 +37,15 @@ jobs:
         with:
           java-version: 1.8
           
-      - name: Step 2.2 - View Environment Variable
+      - name: Step 2.2 - Create Environment Variable File
         run: |
-          echo "valore di DIR_FILE_FTL: "
-          echo " $DIR_FILE_FTL !"
+          cat << EOF >> .env
+          API_ENDPOINT="https://xxx.execute-api.us-west-2.amazonaws.com"
+          API_KEY=${{ secrets.API_KEY }}
+          EOF
           
-          echo "Vediamo stringa quanto vale"
-          echo "$DIR_TEST_SUITE_HOOKS_STORICO/$REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION $NOME_REPORT_FINALE"
-          
-      - name: Step 3 - Creazione cartelle
-        run: |
-          echo "Provo a creare 1"
-          sudo mkdir $DIR_TEST_SUITE_HOOKS_STORICO
-          echo "Creata 1"
-          
-          echo "Provo a creare 2"
-          sudo mkdir $DIR_TEST_SUITE_HOOKS_STORICO/$REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION
-          echo "Creata 2"
+          echo "Fine creazione file .env"
+          ls -a
           
           
  
