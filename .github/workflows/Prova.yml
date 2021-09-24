@@ -18,6 +18,9 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    environment:
+      name: envForGithubActions
+      
     
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -40,7 +43,7 @@ jobs:
           cat .env
           echo "Visto!"
           
-          echo "Vediamo valore $DIR_FILE_FTL !"
+          echo "Vediamo valore ${{ secrets.DIR_FILE_FTL }} !"
         
           
           
