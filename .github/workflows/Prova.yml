@@ -40,7 +40,7 @@ jobs:
       - name: Step 3 - Vediamo Environment Variable File
         run: |
           echo "Vediamo"
-          cat .env
+          cat readmeInfoEnv.txt
           echo "Visto!"
           
           echo "Vediamo $TEST_TO_EXECUTE i test da eseguire"
