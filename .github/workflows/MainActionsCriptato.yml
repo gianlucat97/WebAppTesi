@@ -20,16 +20,9 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: envForGithubActions
-    env:
-      GITHUB_EMAIL: talitrogian2@gmail.com
-      GITHUB_NAME: gianlucat97
-      GITHUB_PASSWORD: Sharingan268
+    
       
-      
-      NOME_REPORT_FINALE: tabellaReportTest
-      
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+   # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Step 1 - Checkout main branch from GitHub
