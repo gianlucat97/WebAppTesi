@@ -41,6 +41,14 @@ jobs:
           
           echo "Fine creazione file .env"
           ls -a
+     
+      - name: Step 3 - Vediamo Environment Variable File
+        run: |
+          echo "Vediamo"
+          cat .env
+          echo "Visto!"
+        
+          
           
           
  
