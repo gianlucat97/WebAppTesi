@@ -45,6 +45,9 @@ jobs:
           
           echo "Vediamo $TEST_TO_EXECUTE i test da eseguire"
           echo "Vediamo valore ${{ secrets.DIR_FILE_FTL }} !"
+          
+          echo "Vediamo il valore del file ftl"
+          cat ${{ secrets.DIR_FILE_FTL }}
         
           
           
