@@ -28,9 +28,9 @@ jobs:
       
       DIR_TEST_SUITE: /home/runner/work/WebAppTesi/WebAppTesi/TestSuite
       DIR_TEST_SUITE_HOOKS: /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks
-      DIR_TEST_SUITE_HOOKS_STORICO: /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/StoricoTest
+      DIR_TEST_SUITE_HOOKS_STORICO: /home/runner/work/WebAppTesi/WebAppTesi/TestSuite22/TestSuiteHooks22/StoricoTest22
       
-      REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION: report_test_v1_0
+      REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION: report_test_v1_022
       
       NOME_REPORT_FINALE: tabellaReportTest
       
