@@ -1,0 +1,57 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Github Actions Maven Build Example
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ v0_3 ]
+
+ 
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    env:
+      DIR_FILE_FTL: /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/main/resources/templates/indexProdottiOriginaleNoHooks.ftl
+      FILE_POM_MAIN_PROJECT: /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/pom.xml
+      DIR_POM_MAIN_PROJECT: /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot
+      DIR_JAR_MAIN_PROJECT: /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/target
+      TEST_TO_EXECUTE: testSuiteHooks_release_1_0,testSuiteHooks2_release_1_0,testSuiteHooks3_release_1_0
+      DIR_SUREFIRE_REPORTS: /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/target/surefire-reports
+      
+      DIR_TEST_SUITE: /home/runner/work/WebAppTesi/WebAppTesi/TestSuite
+      DIR_TEST_SUITE_HOOKS: /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks
+      DIR_TEST_SUITE_HOOKS_STORICO: /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/StoricoTest
+      
+      REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION: report_test_v1_0
+      
+      NOME_REPORT_FINALE: tabellaReportTest
+      
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Step 1 - Checkout main branch from GitHub
+        uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Step 2 - Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+          
+      - name: Step 2.2 - View Environment Variable
+        run: |
+          echo "valore di DIR_FILE_FTL: "
+          echo " $DIR_FILE_FTL !"
+          
+          echo "Vediamo stringa quanto vale"
+          echo "$DIR_TEST_SUITE_HOOKS_STORICO/$REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION $NOME_REPORT_FINALE"
+ 
