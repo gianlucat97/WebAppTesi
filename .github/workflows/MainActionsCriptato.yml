@@ -213,7 +213,7 @@ jobs:
           sudo mv surefire-reports ${{ secrets.REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION }}
           echo "Vediamo se la ha rinominata:"
           ls -a
-          sudo cp -r ${{ secrets.REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION $DIR_TEST_SUITE_HOOKS_STORICO }}
+          sudo cp -r ${{ secrets.REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION }} ${{ secrets.DIR_TEST_SUITE_HOOKS_STORICO }}
           
          
           
