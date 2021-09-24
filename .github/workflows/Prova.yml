@@ -43,6 +43,7 @@ jobs:
           cat .env
           echo "Visto!"
           
+          echo "Vediamo $TEST_TO_EXECUTE i test da eseguire"
           echo "Vediamo valore ${{ secrets.DIR_FILE_FTL }} !"
         
           
