@@ -27,8 +27,13 @@ jobs:
       DIR_SUREFIRE_REPORTS: /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/target/surefire-reports
       
       DIR_TEST_SUITE: /home/runner/work/WebAppTesi/WebAppTesi/TestSuite
+      NOME_TEST_SUITE: TestSuite
       DIR_TEST_SUITE_HOOKS: /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks
+      NOME_TEST_SUITE_HOOKS: TestSuiteHooks
       DIR_TEST_SUITE_HOOKS_STORICO: /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/StoricoTest
+      NOME_TEST_SUITE_HOOKS_STORICO: StoricoTest
+      
+      INFO_COMMIT_TEST_SUITE: Test Suite Hooks Prova1 con Environment Variable
       
       REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION: report_test_v1_0
       
@@ -195,19 +200,19 @@ jobs:
           ls -a
           if [ ! -d "$DIR_TEST_SUITE" ]; then
             echo "Vedi se sono dentro l'if numero 1"
-            sudo mkdir TestSuite
+            sudo mkdir $NOME_TEST_SUITE
           fi
           echo "Vediamo se ha creato la cartella"
           ls -a
           cd $DIR_TEST_SUITE
           if [ ! -d "$DIR_TEST_SUITE_HOOKS" ]; then
             echo "Vedi se sono dentro l'if numero 2"
-            sudo mkdir TestSuiteHooks
+            sudo mkdir $NOME_TEST_SUITE_HOOKS
           fi
           cd $DIR_TEST_SUITE_HOOKS
           if [ ! -d "$DIR_TEST_SUITE_HOOKS_STORICO" ]; then
             echo "Vedi se sono dentro l'if numero 3"
-            sudo mkdir StoricoTest
+            sudo mkdir $NOME_TEST_SUITE_HOOKS_STORICO
           fi   
        
        
@@ -235,7 +240,7 @@ jobs:
           echo "Andiamo ad aggiungere la cartella dei report"
           git add $DIR_TEST_SUITE
           echo "Cartella aggiunta!"
-          git commit -m "Test Suite Hooks v1_0"
+          git commit -m "$INFO_COMMIT_TEST_SUITE"
           git branch -M v0_3
           git push -u origin v0_3
           
@@ -260,7 +265,7 @@ jobs:
           echo "Vediamo il file xls di report unificato se c'è"
           ls -a 
           echo "Vediamo il contenuto del file xls di report unificato!!!"
-          cat tabellaReportTest.xls
+          cat $NOME_REPORT_FINALE.xls
           
       - name: Step 19 - Spostamento report xlsx in cartella dei report txt
         run: | 
