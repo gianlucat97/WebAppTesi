@@ -58,11 +58,11 @@ jobs:
       - name: Step 3 - Creazione cartelle
         run: |
           echo "Provo a creare 1"
-          mkdir $DIR_TEST_SUITE_HOOKS_STORICO
+          sudo mkdir $DIR_TEST_SUITE_HOOKS_STORICO
           echo "Creata 1"
           
           echo "Provo a creare 2"
-          mkdir $DIR_TEST_SUITE_HOOKS_STORICO/$REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION
+          sudo mkdir $DIR_TEST_SUITE_HOOKS_STORICO/$REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION
           echo "Creata 2"
           
           
