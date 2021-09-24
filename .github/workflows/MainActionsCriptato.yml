@@ -258,7 +258,7 @@ jobs:
       - name: Step 19 - Spostamento report xlsx in cartella dei report txt
         run: | 
           cd miglioramentoReportTest/target
-          sudo cp ${{ secrets.NOME_REPORT_FINALE.xls }} ${{ secrets.DIR_TEST_SUITE_HOOKS_STORICO }}/${{ secrets.REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION }}
+          sudo cp ${{ secrets.NOME_REPORT_FINALE }}.xls ${{ secrets.DIR_TEST_SUITE_HOOKS_STORICO }}/${{ secrets.REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION }}
           
       - name: Step 20 - Commit del report xlsx
         run: | 
