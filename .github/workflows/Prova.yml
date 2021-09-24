@@ -54,4 +54,15 @@ jobs:
           
           echo "Vediamo stringa quanto vale"
           echo "$DIR_TEST_SUITE_HOOKS_STORICO/$REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION $NOME_REPORT_FINALE"
+          
+      - name: Step 3 - Creazione cartelle
+          echo "Provo a creare 1"
+          mkdir $DIR_TEST_SUITE_HOOKS_STORICO
+          echo "Creata 1"
+          
+          echo "Provo a creare 2"
+          mkdir $DIR_TEST_SUITE_HOOKS_STORICO/$REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION
+          echo "Creata 2"
+          
+          
  
