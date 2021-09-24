@@ -18,12 +18,7 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    env:
-      ESEMPIO_1: provaEsempio
-      
-    environment: 
-      name: envForGithubActions
-      
+    
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
