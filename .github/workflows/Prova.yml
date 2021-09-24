@@ -32,21 +32,15 @@ jobs:
         with:
           java-version: 1.8
           
-      - name: Step 2.2 - Create Environment Variable File
-        run: |
-          cat << EOF >> .env
-          API_ENDPOINT="https://xxx.execute-api.us-west-2.amazonaws.com"
-          API_KEY=${{ secrets.API_KEY }}
-          EOF
-          
-          echo "Fine creazione file .env"
-          ls -a
+    
      
       - name: Step 3 - Vediamo Environment Variable File
         run: |
           echo "Vediamo"
           cat .env
           echo "Visto!"
+          
+          echo "Vediamo valore $DIR_FILE_FTL !"
         
           
           
