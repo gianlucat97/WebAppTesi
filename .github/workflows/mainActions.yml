@@ -19,6 +19,7 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     env:
+      BRANCH_NAME: v0_3
       DIR_FILE_FTL: /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/main/resources/templates/indexProdottiOriginaleNoHooks.ftl
       FILE_POM_MAIN_PROJECT: /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/pom.xml
       DIR_POM_MAIN_PROJECT: /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot
@@ -33,9 +34,14 @@ jobs:
       DIR_TEST_SUITE_HOOKS_STORICO: /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/StoricoTest
       NOME_TEST_SUITE_HOOKS_STORICO: StoricoTest
       
-      INFO_COMMIT_TEST_SUITE: Test Suite Hooks Prova1 con Environment Variable
+      INFO_COMMIT_TEST_SUITE: Test Suite Hooks Prova2 con Environment Variable
       
       REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION: report_test_v1_0
+      
+      GITHUB_EMAIL: talitrogian2@gmail.com
+      GITHUB_NAME: gianlucat97
+      GITHUB_PASSWORD: Sharingan268
+      
       
       NOME_REPORT_FINALE: tabellaReportTest
       
@@ -270,21 +276,21 @@ jobs:
       - name: Step 19 - Spostamento report xlsx in cartella dei report txt
         run: | 
           cd miglioramentoReportTest/target
-          sudo cp tabellaReportTest.xls /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/StoricoTest/report_test_v1_0
+          sudo cp $NOME_REPORT_FINALE.xls $DIR_TEST_SUITE_HOOKS_STORICO/$REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION
           
       - name: Step 20 - Commit del report xlsx
         run: | 
           echo "Vediamo quali cartelle ci sono nella directory di partenza"
           ls -a
           git status
-          git config --global user.email "talitrogian2@gmail.com"
-          git config --global user.name "gianlucat97"
-          git config --global user.password "Sharingan268"
+          git config --global user.email "$GITHUB_EMAIL"
+          git config --global user.name "$GITHUB_NAME"
+          git config --global user.password "$GITHUB_PASSWORD"
           echo "Andiamo ad aggiungere la cartella dei report"
-          git add TestSuite
+          git add $NOME_TEST_SUITE
           echo "Cartella aggiunta!"
-          git commit -m "Test Suite Hooks v1_0"
-          git branch -M v0_3
-          git push -u origin v0_3  
+          git commit -m "$INFO_COMMIT_TEST_SUITE"
+          git branch -M $BRANCH_NAME
+          git push -u origin $BRANCH_NAME  
         
       
