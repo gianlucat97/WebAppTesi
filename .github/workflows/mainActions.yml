@@ -193,22 +193,19 @@ jobs:
       - name: Step 14 - Creazione directories per report testing
         run: |
           ls -a
-          FILE= $DIR_TEST_SUITE
-          if [ ! -d "$FILE" ]; then
+          if [ ! -d "$DIR_TEST_SUITE" ]; then
             echo "Vedi se sono dentro l'if numero 1"
             sudo mkdir TestSuite
           fi
           echo "Vediamo se ha creato la cartella"
           ls -a
-          cd TestSuite
-          FILE= $DIR_TEST_SUITE_HOOKS
-          if [ ! -d "$FILE" ]; then
+          cd $DIR_TEST_SUITE
+          if [ ! -d "$DIR_TEST_SUITE_HOOKS" ]; then
             echo "Vedi se sono dentro l'if numero 2"
             sudo mkdir TestSuiteHooks
           fi
-          cd TestSuiteHooks
-          FILE= $DIR_TEST_SUITE_HOOKS_STORICO
-          if [ ! -d "$FILE" ]; then
+          cd $DIR_TEST_SUITE_HOOKS
+          if [ ! -d "$DIR_TEST_SUITE_HOOKS_STORICO" ]; then
             echo "Vedi se sono dentro l'if numero 3"
             sudo mkdir StoricoTest
           fi   
