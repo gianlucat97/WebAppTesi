@@ -249,7 +249,7 @@ jobs:
       - name: Step 19 - Spostamento report xlsx in cartella dei report txt
         run: | 
           cd miglioramentoReportTest/target
-          sudo cp tabellaReportTest.xlsx /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/StoricoTest/report_test_v1_0
+          sudo cp tabellaReportTest.xls /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/StoricoTest/report_test_v1_0
           
       - name: Step 20 - Commit del report xlsx
         run: | 
