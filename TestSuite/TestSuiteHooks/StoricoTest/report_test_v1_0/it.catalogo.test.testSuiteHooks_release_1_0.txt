@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: it.catalogo.test.testSuiteHooks_release_1_0
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 34.119 s <<< FAILURE! - in it.catalogo.test.testSuiteHooks_release_1_0
-testtestSuiteHooksChromeHeadless  Time elapsed: 31.751 s  <<< ERROR!
+Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 35.284 s <<< FAILURE! - in it.catalogo.test.testSuiteHooks_release_1_0
+testtestSuiteHooksChromeHeadless  Time elapsed: 32.308 s  <<< ERROR!
 org.openqa.selenium.NoSuchElementException: 
 no such element: Unable to locate element: {"method":"xpath","selector":"//*[@x-test-tpl-35450]//*[@x-test-hook-34524]"}
   (Session info: headless chrome=93.0.4577.82)
@@ -10,10 +10,10 @@ no such element: Unable to locate element: {"method":"xpath","selector":"//*[@x-
 Command duration or timeout: 0 milliseconds
 For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
 Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'fv-az72-250', ip: '10.1.0.105', os.name: 'Linux', os.arch: 'amd64', os.version: '5.8.0-1041-azure', java.version: '1.8.0_302'
+System info: host: 'fv-az121-666', ip: '10.1.0.42', os.name: 'Linux', os.arch: 'amd64', os.version: '5.8.0-1041-azure', java.version: '1.8.0_302'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.41.578700 (2f1ed5f9343c13..., userDataDir: /tmp/.org.chromium.Chromium...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:46487}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: , unhandledPromptBehavior: , version: 93.0.4577.82, webStorageEnabled: true}
-Session ID: ef770facf0441900c18c2655e3818fa2
+Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.41.578700 (2f1ed5f9343c13..., userDataDir: /tmp/.org.chromium.Chromium...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:42205}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: , unhandledPromptBehavior: , version: 93.0.4577.82, webStorageEnabled: true}
+Session ID: 3dd88141e5ddfd5cb5dbfa13b331ac30
 *** Element info: {Using=xpath, value=//*[@x-test-tpl-35450]//*[@x-test-hook-34524]}
 	at it.catalogo.test.testSuiteHooks_release_1_0.testtestSuiteHooksChromeHeadless(testSuiteHooks_release_1_0.java:74)
 
