@@ -18,6 +18,8 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    env:
+      DIR_FILE_FTL: /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/main/resources/templates/indexProdottiOriginaleNoHooks.ftl
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -33,9 +35,8 @@ jobs:
           
       - name: Step 2.2 - Set Environment Variable
         run: |
-          DIR_FILE_FTL = /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/main/resources/templates/indexProdottiOriginaleNoHooks.ftl
           echo "valore di DIR_FILE_FTL: "
-          echo DIR_FILE_FTL
+          echo " $DIR_FILE_FTL !"
           
       - name: Step 3 - Have GitHub Actions Build Maven Project
         run: mvn -B package --file WebAppHooks/catalogoProdottiBoot/pom.xml
