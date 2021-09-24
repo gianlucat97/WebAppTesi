@@ -213,8 +213,7 @@ jobs:
        
       - name: Step 15 - Spostamento report in directory corretta
         run: |  
-          cd DIR_POM_MAIN_PROJECT
-          cd target
+          cd $DIR_JAR_MAIN_PROJECT
           echo "Visualizziamo se c'è la cartella surefire-reports"
           ls -a 
           echo "Rinominare la cartella surefire-reports in report_test_vx_x, dove al posto delle x va il numero della versione"
