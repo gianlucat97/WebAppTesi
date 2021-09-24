@@ -19,20 +19,10 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     env:
-      DIR_FILE_FTL: /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/main/resources/templates/indexProdottiOriginaleNoHooks.ftl
-      FILE_POM_MAIN_PROJECT: /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/pom.xml
-      DIR_POM_MAIN_PROJECT: /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot
-      DIR_JAR_MAIN_PROJECT: /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/target
-      TEST_TO_EXECUTE: testSuiteHooks_release_1_0,testSuiteHooks2_release_1_0,testSuiteHooks3_release_1_0
-      DIR_SUREFIRE_REPORTS: /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/target/surefire-reports
+      ESEMPIO_1: provaEsempio
       
-      DIR_TEST_SUITE: /home/runner/work/WebAppTesi/WebAppTesi/TestSuite
-      DIR_TEST_SUITE_HOOKS: /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks
-      DIR_TEST_SUITE_HOOKS_STORICO: /home/runner/work/WebAppTesi/WebAppTesi/TestSuite22/TestSuiteHooks22/StoricoTest22
-      
-      REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION: report_test_v1_022
-      
-      NOME_REPORT_FINALE: tabellaReportTest
+    environment: 
+      name: envForGithubActions
       
 
     # Steps represent a sequence of tasks that will be executed as part of the job
