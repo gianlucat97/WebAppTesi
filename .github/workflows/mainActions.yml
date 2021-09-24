@@ -239,12 +239,12 @@ jobs:
           cd miglioramentoReportTest/target
           ls -a
           echo "Proviamo ad eseguire il file jar, passandogli come args[0] la directory dei report .txt da analizzare"
-          java -jar miglioramentoReportTest-0.0.1-jarReportTest.jar /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/StoricoTest/report_test_v1_0
+          java -jar miglioramentoReportTest-0.0.1-jarReportTest.jar /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/StoricoTest/report_test_v1_0 tabellaReportTest
           echo "File jar eseguito!!!"
-          echo "Vediamo il file xlsx di report unificato se c'è"
+          echo "Vediamo il file xls di report unificato se c'è"
           ls -a 
           echo "Vediamo il contenuto del file xlsx di report unificato!!!"
-          cat tabellaReportTest.xlsx
+          cat tabellaReportTest.xls
           
       - name: Step 19 - Spostamento report xlsx in cartella dei report txt
         run: | 
