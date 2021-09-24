@@ -36,7 +36,7 @@ jobs:
       
       INFO_COMMIT_TEST_SUITE: Test Suite Hooks Prova2 con Environment Variable
       
-      REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION: report_test_v1_0
+      REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION: report_test_v1_1
       
       GITHUB_EMAIL: talitrogian2@gmail.com
       GITHUB_NAME: gianlucat97
