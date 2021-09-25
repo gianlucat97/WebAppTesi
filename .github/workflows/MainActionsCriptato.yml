@@ -91,7 +91,7 @@ jobs:
           echo "Provo ad INSTALLARE bcrypt"
           npm install bcrypt
           npm fund
-          echo "vedi se ha fatto bene o no"
+          echo "vedi se ha fatto bene o no" 
           
         
       - name: Step 7 - Instrumenta l'applicazione iniettando gli Hooks
