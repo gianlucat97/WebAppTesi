@@ -13,7 +13,10 @@ DIR_TEST_SUITE_HOOKS_STORICO: /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/
 NOME_TEST_SUITE_HOOKS_STORICO: StoricoTest
 INFO_COMMIT_TEST_SUITE: Test Suite Hooks Prova2 con Environment Variable
 REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION: report_test_v1_1
-GITHUB_EMAIL: talitrogian2@gmail.com
-GITHUB_NAME: gianlucat97
-GITHUB_PASSWORD: Sharingan268
+EMAIL_ACCOUNT_GITHUB: talitrogian2@gmail.com
+NOME_ACCOUNT_GITHUB: gianlucat97
+PASSWORD_ACCOUNT_GITHUB: Sharingan268
 NOME_REPORT_FINALE: tabellaReportTest
+GRAMMAR_TYPE: freemarker
+NOME_JAR_WEBAPP: catalogoProdottiBoot-0.0.1-SNAPSHOT
+FILE_POM_TEST_MAIN_PROJECT: /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/pomConTest.txt
