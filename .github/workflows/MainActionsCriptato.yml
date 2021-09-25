@@ -114,11 +114,7 @@ jobs:
             cat ${{ secrets.DIR_FILE_FTL }}
           
           
-      - name: Step 8 - Esegui Applicazione Spring Boot tramite jar
-        run:  |
-            cd ${{ secrets.DIR_JAR_MAIN_PROJECT }}
-            java -jar ${{ secrets.NOME_JAR_WEBAPP }}.jar &
-            echo "Vediamo se si è attivato il thread che fa andare avanti"
+    
           
       - name: Step 9 - Install Chrome Headless
         run: |
@@ -142,13 +138,23 @@ jobs:
       
       - name: Step 11 - Eseguire packaging maven
         run:  |
-            echo "mvn -B package --file ${{ secrets.FILE_POM_MAIN_PROJECT }}"
+            mvn -B package --file ${{ secrets.FILE_POM_MAIN_PROJECT }}
             
-      - name: Step 11.2 - Eseguire test maven
+      - name: Step 11.2 - Esegui Applicazione Spring Boot tramite jar
+        run:  |
+            cd ${{ secrets.DIR_JAR_MAIN_PROJECT }}
+            echo "Vediamo quali file jar si trovano in cartella target"
+            ls -a
+            echo "Proviamo ad eseguire ${{ secrets.NOME_JAR_WEBAPP }}.jar"
+            java -jar ${{ secrets.NOME_JAR_WEBAPP }}.jar &
+            echo "Vediamo se si è attivato il thread che fa andare avanti"
+            sleep 2m
+            
+      - name: Step 11.3 - Eseguire test maven
         run:  |
             cd ${{ secrets.DIR_POM_MAIN_PROJECT }}
             mvn -Dtest=${{ secrets.TEST_TO_EXECUTE }}  test site &
-            sleep 4m
+            sleep 3m
             
       - name: Step 12 - Visualizzare report test
         run: |
