@@ -40,7 +40,7 @@ jobs:
           echo " ${{ secrets.DIR_FILE_FTL }} !"
           
       - name: Step 3 - Have GitHub Actions Build Maven Project
-        run: mvn -B package --file ${{ secrets.FILE_POM_MAIN_PROJECT }}
+        run: echo "mvn -B package --file ${{ secrets.FILE_POM_MAIN_PROJECT }}"
          
       - name: Step 4 - List the current directory
         run: |
@@ -139,8 +139,12 @@ jobs:
             sudo mv chromedriver /home/runner/work/WebAppTesi/WebAppTesi/chromedriver_v94_linux64/chromedriver
             sudo chown root:root /home/runner/work/WebAppTesi/WebAppTesi/chromedriver_v94_linux64/chromedriver
             sudo chmod +x /home/runner/work/WebAppTesi/WebAppTesi/chromedriver_v94_linux64/chromedriver
+      
+      - name: Step 11 - Eseguire packaging maven
+        run:  |
+            echo "mvn -B package --file ${{ secrets.FILE_POM_MAIN_PROJECT }}"
             
-      - name: Step 11 - Eseguire test maven
+      - name: Step 11.2 - Eseguire test maven
         run:  |
             cd ${{ secrets.DIR_POM_MAIN_PROJECT }}
             mvn -Dtest=${{ secrets.TEST_TO_EXECUTE }}  test site &
