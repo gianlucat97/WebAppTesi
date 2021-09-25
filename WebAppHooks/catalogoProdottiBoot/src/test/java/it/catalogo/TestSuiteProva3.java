@@ -18,7 +18,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 
-class testSuiteHooks3_release_1_0 {
+class TestSuiteProva3 {
 
 	  private static WebDriver driver;
 	  private boolean acceptNextAlert = true;
@@ -40,7 +40,7 @@ class testSuiteHooks3_release_1_0 {
 	  }
 
 	  @Test
-		void provaSuWikipedia() {
+	  public void provaSuWikipedia_release_1_4() {
 		  
 		  //SpringApplication.run(CatalogoProdottiBootApplication.class);
 
@@ -61,11 +61,9 @@ class testSuiteHooks3_release_1_0 {
 	 
 	  
 	  @Test
-	  public void testtestSuiteNOhooksChromeHeadless() throws Exception {
+	  public void testSuLocalHostProva1_release_1_0() throws Exception {
 		  
 		
-		//String[] par = {"-cp"};
-		//CatalogoProdottiBootApplication.main(par);
 		
 		System.out.println("La suit di Test è iniziata");
 		  
