@@ -34,11 +34,6 @@ jobs:
         with:
           java-version: 1.8
           
-      - name: Step 2.2 - View Environment Variable
-        run: |
-          echo "valore di DIR_FILE_FTL: "
-          echo " ${{ secrets.DIR_FILE_FTL }} !"
-          
       - name: Step 3 - Have GitHub Actions Build Maven Project
         run: mvn -B package --file ${{ secrets.FILE_POM_MAIN_PROJECT }}
          
@@ -153,13 +148,13 @@ jobs:
             
      
      
-      - name: Step 11.2 - Eseguire test maven
+      - name: Step 12 - Eseguire test maven
         run:  |
             cd ${{ secrets.DIR_POM_MAIN_PROJECT }}
             mvn -Dtest=${{ secrets.TEST_TO_EXECUTE }}  test site &
             sleep 3m
             
-      - name: Step 12 - Visualizzare report test
+      - name: Step 13 - Visualizzare report test
         run: |
             cd ${{ secrets.DIR_SUREFIRE_REPORTS }}
             ls -a 
@@ -167,7 +162,7 @@ jobs:
             cat *.txt
             echo "Fine visualizzazione report!!!"
             
-      - name: Step 13 - Creazione directories per report testing
+      - name: Step 14 - Creazione directories per report testing
         run: |
           ls -a
           if [ ! -d "${{ secrets.DIR_TEST_SUITE }}" ]; then
@@ -188,7 +183,7 @@ jobs:
           fi   
        
        
-      - name: Step 14 - Spostamento report in directory corretta
+      - name: Step 15 - Spostamento report in directory corretta
         run: |  
           cd ${{ secrets.DIR_JAR_MAIN_PROJECT }}
           echo "Visualizziamo se c'è la cartella surefire-reports"
@@ -199,7 +194,7 @@ jobs:
           ls -a
           sudo cp -r ${{ secrets.REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION }} ${{ secrets.DIR_TEST_SUITE_HOOKS_STORICO }}
           
-      - name: Step 15 - Push dei report
+      - name: Step 16 - Push dei report
         run: |
           echo "Vediamo quali cartelle ci sono nella directory di partenza"
           ls -a
@@ -214,7 +209,7 @@ jobs:
           git branch -M ${{ secrets.BRANCH_NAME }}
           git push -u origin ${{ secrets.BRANCH_NAME }}
           
-      - name: Step 16 - Unzip progetto "Miglioramento report test"
+      - name: Step 17 - Unzip progetto "Miglioramento report test"
         run: |
           ls 
           echo "Unzip del progetto"
@@ -224,7 +219,7 @@ jobs:
           
           
           
-      - name: Step 17 - Esecuzione progetto "Miglioramento report test"
+      - name: Step 18 - Esecuzione progetto "Miglioramento report test"
         run: |    
           echo "Andiamo nella directory dove si trova il file jar eseguibile"
           cd miglioramentoReportTest/target
@@ -237,12 +232,12 @@ jobs:
           echo "Vediamo il contenuto del file xls di report unificato!!!"
           cat ${{ secrets.NOME_REPORT_FINALE.xls }}
           
-      - name: Step 18 - Spostamento report xlsx in cartella dei report txt
+      - name: Step 19 - Spostamento report xlsx in cartella dei report txt
         run: | 
           cd miglioramentoReportTest/target
           sudo cp ${{ secrets.NOME_REPORT_FINALE }}.xls ${{ secrets.DIR_TEST_SUITE_HOOKS_STORICO }}/${{ secrets.REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION }}
           
-      - name: Step 19 - Commit del report xlsx
+      - name: Step 20 - Commit del report xlsx
         run: | 
           echo "Vediamo quali cartelle ci sono nella directory di partenza"
           ls -a
