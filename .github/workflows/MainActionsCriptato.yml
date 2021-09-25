@@ -145,8 +145,15 @@ jobs:
             sudo chmod +x /home/runner/work/WebAppTesi/WebAppTesi/chromedriver_v94_linux64/chromedriver
       
      
+      - name: Step 11 - Update pom con esecuzione dei tesst
+        run:  |
+            sudo bash -c 'cat ${{ secrets.FILE_POM_TEST_MAIN_PROJECT }} >> ${{ secrets.FILE_POM_MAIN_PROJECT }}'
+            echo "Vediamo se il pom principale è stato sovrascritto"
+            cat ${{ secrets.FILE_POM_MAIN_PROJECT }}
             
-      - name: Step 11 - Eseguire test maven
+     
+     
+      - name: Step 11.2 - Eseguire test maven
         run:  |
             cd ${{ secrets.DIR_POM_MAIN_PROJECT }}
             mvn -Dtest=${{ secrets.TEST_TO_EXECUTE }}  test site &
