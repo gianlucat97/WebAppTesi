@@ -92,18 +92,9 @@ jobs:
           npm install bcrypt
           npm fund
           echo "vedi se ha fatto bene o no"
-    
-      - name: Step 7 - Ottieni path file ftl da modificare con gli Hooks
-        run: |
-            cd WebAppHooks/catalogoProdottiBoot/src/main/resources/templates
-            ls -a
-            echo "Il path completo del file ftl da modificare è: "
-            readlink -f indexProdottiOriginaleNoHooks.ftl
-            echo "Vediamo il contenuto del file ftl prima della modifica"
-            cat indexProdottiOriginaleNoHooks.ftl
-              
+          
         
-      - name: Step 8 - Instrumenta l'applicazione iniettando gli Hooks
+      - name: Step 7 - Instrumenta l'applicazione iniettando gli Hooks
         run: |
             cd test-hooks
             cd test-guard
@@ -118,18 +109,18 @@ jobs:
             echo "INJECTION adesso..."
             echo "Visualizza versione di node"
             node -v
-            node main.js inject-hooks ${{ secrets.DIR_FILE_FTL }} --grammar freemarker
+            node main.js inject-hooks ${{ secrets.DIR_FILE_FTL }} --grammar ${{ secrets.GRAMMAR_TYPE }}
             echo "Visualizzazione file ftl dopo l'injection!!! "
             cat ${{ secrets.DIR_FILE_FTL }}
           
           
-      - name: Step 9 - Esegui Applicazione Spring Boot tramite jar
+      - name: Step 8 - Esegui Applicazione Spring Boot tramite jar
         run:  |
             cd ${{ secrets.DIR_JAR_MAIN_PROJECT }}
-            java -jar catalogoProdottiBoot-0.0.1-SNAPSHOT.jar &
+            java -jar ${{ secrets.NOME_JAR_WEBAPP }}.jar &
             echo "Vediamo se si è attivato il thread che fa andare avanti"
           
-      - name: Step 10 - Install Chrome Headless
+      - name: Step 9 - Install Chrome Headless
         run: |
           sudo apt-get update
           sudo apt-get upgrade
@@ -141,7 +132,7 @@ jobs:
           google-chrome-stable --headless --disable-gpu 
           
           
-      - name: Step 11 - Install Chrome Driver test maven
+      - name: Step 10 - Install Chrome Driver test maven
         run:  |
             wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip
             unzip chromedriver_linux64.zip
@@ -149,34 +140,21 @@ jobs:
             sudo chown root:root /home/runner/work/WebAppTesi/WebAppTesi/chromedriver_v94_linux64/chromedriver
             sudo chmod +x /home/runner/work/WebAppTesi/WebAppTesi/chromedriver_v94_linux64/chromedriver
             
-      - name: Step 12 - Eseguire test maven
+      - name: Step 11 - Eseguire test maven
         run:  |
             cd ${{ secrets.DIR_POM_MAIN_PROJECT }}
             mvn -Dtest=${{ secrets.TEST_TO_EXECUTE }}  test site &
             sleep 4m
             
-      - name: Step 13 - Visualizzare report test
+      - name: Step 12 - Visualizzare report test
         run: |
             cd ${{ secrets.DIR_SUREFIRE_REPORTS }}
             ls -a 
-            echo "Visualizziamo adesso tutti i report ottenuti dalle nostre test suite"
+            echo "Visualizziamo adesso tutti i report txt ottenuti dalle nostre test suite"
             cat *.txt
             echo "Fine visualizzazione report!!!"
             
-             
-      - name: Step 13.2 - Verifica Hooks su storico test
-        run:  |
-            cd test-hooks
-            cd test-guard
-            echo "Vengono rimossi gli hooks non utilizzati da alcun test"
-            node main.js remove-hooks /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/main/resources/templates/indexProdottiOriginaleNoHooks.ftl --grammar freemarker --suites /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/test/java/it/catalogo
-            echo "Prima del verify-hooks"
-            node main.js verify-hooks /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/main/resources/templates/indexProdottiOriginaleNoHooks.ftl --grammar freemarker --suites /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/test/java/it/catalogo
-            echo "Dopo il verify-hooks!!! "
-            
-               
-            
-      - name: Step 14 - Creazione directories per report testing
+      - name: Step 13 - Creazione directories per report testing
         run: |
           ls -a
           if [ ! -d "${{ secrets.DIR_TEST_SUITE }}" ]; then
@@ -197,7 +175,7 @@ jobs:
           fi   
        
        
-      - name: Step 15 - Spostamento report in directory corretta
+      - name: Step 14 - Spostamento report in directory corretta
         run: |  
           cd ${{ secrets.DIR_JAR_MAIN_PROJECT }}
           echo "Visualizziamo se c'è la cartella surefire-reports"
@@ -208,9 +186,7 @@ jobs:
           ls -a
           sudo cp -r ${{ secrets.REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION }} ${{ secrets.DIR_TEST_SUITE_HOOKS_STORICO }}
           
-         
-          
-      - name: Step 16 - Push dei report
+      - name: Step 15 - Push dei report
         run: |
           echo "Vediamo quali cartelle ci sono nella directory di partenza"
           ls -a
@@ -222,10 +198,10 @@ jobs:
           git add ${{ secrets.DIR_TEST_SUITE }}
           echo "Cartella aggiunta!"
           git commit -m "${{ secrets.INFO_COMMIT_TEST_SUITE }}"
-          git branch -M v0_3
-          git push -u origin v0_3
+          git branch -M ${{ secrets.BRANCH_NAME }}
+          git push -u origin ${{ secrets.BRANCH_NAME }}
           
-      - name: Step 17 - Unzip progetto "Miglioramento report test"
+      - name: Step 16 - Unzip progetto "Miglioramento report test"
         run: |
           ls 
           echo "Unzip del progetto"
@@ -235,7 +211,7 @@ jobs:
           
           
           
-      - name: Step 18 - Esecuzione progetto "Miglioramento report test"
+      - name: Step 17 - Esecuzione progetto "Miglioramento report test"
         run: |    
           echo "Andiamo nella directory dove si trova il file jar eseguibile"
           cd miglioramentoReportTest/target
@@ -248,12 +224,12 @@ jobs:
           echo "Vediamo il contenuto del file xls di report unificato!!!"
           cat ${{ secrets.NOME_REPORT_FINALE.xls }}
           
-      - name: Step 19 - Spostamento report xlsx in cartella dei report txt
+      - name: Step 18 - Spostamento report xlsx in cartella dei report txt
         run: | 
           cd miglioramentoReportTest/target
           sudo cp ${{ secrets.NOME_REPORT_FINALE }}.xls ${{ secrets.DIR_TEST_SUITE_HOOKS_STORICO }}/${{ secrets.REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION }}
           
-      - name: Step 20 - Commit del report xlsx
+      - name: Step 19 - Commit del report xlsx
         run: | 
           echo "Vediamo quali cartelle ci sono nella directory di partenza"
           ls -a
