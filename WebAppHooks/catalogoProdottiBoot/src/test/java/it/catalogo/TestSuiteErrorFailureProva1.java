@@ -16,7 +16,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-class testSuiteHooks_release_1_0 {
+class TestSuiteErrorFailureProva1 {
 
 	  private static WebDriver driver;
 	  private boolean acceptNextAlert = true;
@@ -37,16 +37,17 @@ class testSuiteHooks_release_1_0 {
 	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	  }
 
-	  @Test
-		void provaSuWikipedia() {
+	 @Test
+	  public void provaSuWikipedia_release_1_0() {
 		  
 		  //SpringApplication.run(CatalogoProdottiBootApplication.class);
 
 			System.out.println("La suit di Test è iniziata");
 			  
 			driver.get("https://en.wikipedia.org/wiki/Web_container");
-		    driver.findElement(By.linkText("Jakarta Servlets")).click();
+		    driver.findElement(By.linkText("Jakarta (Parte in parentesi aggiunta per far fallire test) quServlets")).click();
 		    driver.findElement(By.linkText("PHP")).click();
+		    //driver.findElement(By.xpath("//*[@x-test-tpl-20]//*[@x-test-hook-24]")).click();
 		    driver.findElement(By.linkText("interpreter")).click();
 		    driver.findElement(By.linkText("intermediate representation")).click();
 		    driver.findElement(By.linkText("data structure")).click();
@@ -58,12 +59,11 @@ class testSuiteHooks_release_1_0 {
 		}
 	 
 	  
+	 //Causa failure dato che fallisce un assert
 	  @Test
-	  public void testtestSuiteHooksChromeHeadless() throws Exception {
+	  public void testLocalHost2_Hooks_release_1_2() throws Exception {
 		  
 		
-		//String[] par = {"-cp"};
-		//CatalogoProdottiBootApplication.main(par);
 		
 		System.out.println("La suit di Test è iniziata");
 		  
@@ -71,35 +71,36 @@ class testSuiteHooks_release_1_0 {
 		System.out.println("Connesso a localhost:8080/prodotti");
 		
 		TimeUnit.SECONDS.sleep(1);
-		driver.findElement(By.xpath("//*[@x-test-tpl-35450]//*[@x-test-hook-34524]")).click();
-	    driver.findElement(By.xpath("//*[@x-test-tpl-20]//*[@x-test-hook-3524]")).clear();
-	    driver.findElement(By.xpath("//*[@x-test-tpl-46520]//*[@x-test-hook-3524]")).sendKeys("Casse");
-	    driver.findElement(By.xpath("//*[@x-test-tpl-5420]//*[@x-test-hook-5427]")).clear();
-	    driver.findElement(By.xpath("//*[@x-test-tpl-5420]//*[@x-test-hook-6727]")).sendKeys("Articolo Musicale");
-	    driver.findElement(By.xpath("//*[@x-test-tpl-4620]//*[@x-test-hook-7630]")).clear();
-	    driver.findElement(By.xpath("//*[@x-test-tpl-65420]//*[@x-test-hook-6730]")).sendKeys("75");
-	    driver.findElement(By.xpath("//*[@x-test-tpl-4620]//*[@x-test-hook-6732]")).click();
-	    driver.findElement(By.xpath("//body")).click();
-	    driver.findElement(By.xpath("//*[@x-test-tpl-6720]//*[@x-test-hook-6774]")).click();
-	    driver.findElement(By.xpath("//*[@x-test-tpl-6720]//*[@x-test-hook-76524]")).clear();
-	    driver.findElement(By.xpath("//*[@x-test-tpl-5620]//*[@x-test-hook-5624]")).sendKeys("Chitarra");
-	    driver.findElement(By.xpath("//*[@x-test-tpl-6520]//*[@x-test-hook-6527]")).clear();
-	    driver.findElement(By.xpath("//*[@x-test-tpl-6520]//*[@x-test-hook-7827]")).sendKeys("Strumento Musicale");
+	    driver.findElement(By.xpath("//*[@x-test-tpl-20]//*[@x-test-hook-24]")).click();
+	    driver.findElement(By.xpath("//*[@x-test-tpl-20]//*[@x-test-hook-24]")).clear();
+	    driver.findElement(By.xpath("//*[@x-test-tpl-20]//*[@x-test-hook-24]")).sendKeys("Batteria");
+	    
+	    System.out.println("Vediamo il valore del getText() stampato a video:");
+	    System.out.println("Valore: "+driver.findElement(By.xpath("//*[@x-test-tpl-20]//*[@x-test-hook-24]")).getAttribute("value")+" !!!");
+	    
+	    assertEquals("Violoncello", driver.findElement(By.xpath("//*[@x-test-tpl-20]//*[@x-test-hook-24]")).getAttribute("value"));
+	    
+	    driver.findElement(By.xpath("//*[@x-test-tpl-20]//*[@x-test-hook-27]")).clear();
+	    driver.findElement(By.xpath("//*[@x-test-tpl-20]//*[@x-test-hook-27]")).sendKeys("Strumento Musicale");
+	    driver.findElement(By.xpath("//*[@x-test-tpl-20]//*[@x-test-hook-30]")).click();
 	    driver.findElement(By.xpath("//*[@x-test-tpl-20]//*[@x-test-hook-30]")).clear();
-	    driver.findElement(By.xpath("//*[@x-test-tpl-20]//*[@x-test-hook-30]")).sendKeys("100");
+	    driver.findElement(By.xpath("//*[@x-test-tpl-20]//*[@x-test-hook-30]")).sendKeys("180");
 	    driver.findElement(By.xpath("//*[@x-test-tpl-20]//*[@x-test-hook-32]")).click();
-	    driver.findElement(By.xpath("//*[@x-test-tpl-35]//*[@x-test-hook-44][9]//*[@x-test-hook-50]")).click();
-	    driver.findElement(By.xpath("//*[@x-test-tpl-5]//*[@x-test-hook-6]")).click();
-	    driver.findElement(By.xpath("//*[@x-test-tpl-5]//*[@x-test-hook-16]")).clear();
-	    driver.findElement(By.xpath("//*[@x-test-tpl-5]//*[@x-test-hook-16]")).sendKeys("60");
-	    driver.findElement(By.xpath("//*[@x-test-tpl-5]//*[@x-test-hook-18]")).click();
-	    driver.findElement(By.xpath("//*[@x-test-tpl-35]//*[@x-test-hook-44][10]//*[@x-test-hook-50]")).click();
+	    driver.findElement(By.xpath("//*[@x-test-tpl-20]//*[@x-test-hook-24]")).click();
+	    driver.findElement(By.xpath("//*[@x-test-tpl-20]//*[@x-test-hook-24]")).clear();
+	    driver.findElement(By.xpath("//*[@x-test-tpl-20]//*[@x-test-hook-24]")).sendKeys("Racchetta");
+	    driver.findElement(By.xpath("//*[@x-test-tpl-20]//*[@x-test-hook-27]")).clear();
+	    driver.findElement(By.xpath("//*[@x-test-tpl-20]//*[@x-test-hook-27]")).sendKeys("Articolo Padel");
+	    driver.findElement(By.xpath("//*[@x-test-tpl-20]//*[@x-test-hook-30]")).clear();
+	    driver.findElement(By.xpath("//*[@x-test-tpl-20]//*[@x-test-hook-30]")).sendKeys("80");
+	    driver.findElement(By.xpath("//*[@x-test-tpl-20]//*[@x-test-hook-32]")).click();
+	    driver.findElement(By.xpath("//*[@x-test-tpl-35]//*[@x-test-hook-44][11]//*[@x-test-hook-50]")).click();
 	    driver.findElement(By.xpath("//*[@x-test-tpl-5]//*[@x-test-hook-14]")).click();
 	    driver.findElement(By.xpath("//*[@x-test-tpl-5]//*[@x-test-hook-16]")).clear();
 	    driver.findElement(By.xpath("//*[@x-test-tpl-5]//*[@x-test-hook-16]")).sendKeys("120");
 	    driver.findElement(By.xpath("//*[@x-test-tpl-5]//*[@x-test-hook-18]")).click();
+	    driver.findElement(By.xpath("//*[@x-test-tpl-35]//*[@x-test-hook-44][11]//*[@x-test-hook-49]")).click();
 	    driver.findElement(By.xpath("//*[@x-test-tpl-35]//*[@x-test-hook-44][10]//*[@x-test-hook-49]")).click();
-	    driver.findElement(By.xpath("//*[@x-test-tpl-35]//*[@x-test-hook-44][9]//*[@x-test-hook-49]")).click();
 	 
 	    System.out.println("La suit di Test è terminata");
 	  }
