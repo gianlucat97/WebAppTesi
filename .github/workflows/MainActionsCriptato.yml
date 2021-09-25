@@ -138,7 +138,9 @@ jobs:
       
       - name: Step 11 - Eseguire packaging maven
         run:  |
-            mvn -B package --file ${{ secrets.FILE_POM_MAIN_PROJECT }}
+            mvn -B package --file ${{ secrets.FILE_POM_MAIN_PROJECT }} &
+            echo "Vediamo se si è attivato il thread che fa andare avanti"
+            sleep 2m
             
       - name: Step 11.2 - Esegui Applicazione Spring Boot tramite jar
         run:  |
