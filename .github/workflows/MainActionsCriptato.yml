@@ -122,7 +122,6 @@ jobs:
             echo "Proviamo ad eseguire ${{ secrets.NOME_JAR_WEBAPP }}.jar"
             java -jar ${{ secrets.NOME_JAR_WEBAPP }}.jar &
             echo "Vediamo se si è attivato il thread che fa andare avanti"
-            sleep 2m     
     
           
       - name: Step 9 - Install Chrome Headless
