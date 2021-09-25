@@ -41,7 +41,7 @@ jobs:
           
       - name: Step 3 - Have GitHub Actions Build Maven Project
         run: mvn -B package --file ${{ secrets.FILE_POM_MAIN_PROJECT }}
-        
+         
       - name: Step 4 - List the current directory
         run: |
           ls -a
