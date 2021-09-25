@@ -40,7 +40,7 @@ jobs:
           echo " ${{ secrets.DIR_FILE_FTL }} !"
           
       - name: Step 3 - Have GitHub Actions Build Maven Project
-        run: echo "mvn -B package --file ${{ secrets.FILE_POM_MAIN_PROJECT }}"
+        run: mvn -B package --file ${{ secrets.FILE_POM_MAIN_PROJECT }}
          
       - name: Step 4 - List the current directory
         run: |
@@ -114,6 +114,15 @@ jobs:
             cat ${{ secrets.DIR_FILE_FTL }}
           
           
+      - name: Step 8 - Esegui Applicazione Spring Boot tramite jar
+        run:  |
+            cd ${{ secrets.DIR_JAR_MAIN_PROJECT }}
+            echo "Vediamo quali file jar si trovano in cartella target"
+            ls -a
+            echo "Proviamo ad eseguire ${{ secrets.NOME_JAR_WEBAPP }}.jar"
+            java -jar ${{ secrets.NOME_JAR_WEBAPP }}.jar &
+            echo "Vediamo se si è attivato il thread che fa andare avanti"
+            sleep 2m     
     
           
       - name: Step 9 - Install Chrome Headless
@@ -136,17 +145,9 @@ jobs:
             sudo chown root:root /home/runner/work/WebAppTesi/WebAppTesi/chromedriver_v94_linux64/chromedriver
             sudo chmod +x /home/runner/work/WebAppTesi/WebAppTesi/chromedriver_v94_linux64/chromedriver
       
-      - name: Step 11.2 - Esegui Applicazione Spring Boot tramite jar
-        run:  |
-            cd ${{ secrets.DIR_JAR_MAIN_PROJECT }}
-            echo "Vediamo quali file jar si trovano in cartella target"
-            ls -a
-            echo "Proviamo ad eseguire ${{ secrets.NOME_JAR_WEBAPP }}.jar"
-            java -jar ${{ secrets.NOME_JAR_WEBAPP }}.jar &
-            echo "Vediamo se si è attivato il thread che fa andare avanti"
-            sleep 2m
+     
             
-      - name: Step 11.3 - Eseguire test maven
+      - name: Step 11 - Eseguire test maven
         run:  |
             cd ${{ secrets.DIR_POM_MAIN_PROJECT }}
             mvn -Dtest=${{ secrets.TEST_TO_EXECUTE }}  test site &
