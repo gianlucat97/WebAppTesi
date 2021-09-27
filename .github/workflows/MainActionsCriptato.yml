@@ -5,7 +5,8 @@ name: Github Actions Maven Build Example
 # Controls when the workflow will run
 on:
   release:
-    types: [published]
+    types: [published,edited]
+          
 
 
  
