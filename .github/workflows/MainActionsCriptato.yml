@@ -121,6 +121,13 @@ jobs:
           cd /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/TestHTML/ReportSplitter
           echo "Vediamo se ha generato le n cartelle ReportSplit"
           ls -a
+          echo "Vediamo cosa c'è dentro ReportSplit0"
+          cd ReportSplit0
+          ls -a
+          echo "Vediamo cosa c'è dentro ReportSplit1"
+          cd ..
+          cd ReportSplit1
+          ls -a
           
           
       - name: Step 9 - Push dei file di test splittati
@@ -132,7 +139,7 @@ jobs:
           git config --global user.name "${{ secrets.NOME_ACCOUNT_GITHUB }}"
           git config --global user.password "${{ secrets.PASSWORD_ACCOUNT_GITHUB }}"
           echo "Andiamo ad aggiungere la cartella dei report"
-          git add /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/TestHTML/ReportSplitter
+          git add ${{ secrets.DIR_TEST_SUITE }}
           echo "Cartella aggiunta!"
           git commit -m "${{ secrets.INFO_COMMIT_TEST_SUITE }}"
           git branch -M ${{ secrets.BRANCH_NAME }} 
