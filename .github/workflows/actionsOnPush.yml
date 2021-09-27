@@ -68,4 +68,5 @@ jobs:
           echo "Cartella aggiunta!"
           git commit -m "${{ secrets.INFO_COMMIT_TEST_SUITE }}"
           git branch -M ${{ secrets.BRANCH_NAME }} 
-          git push -u origin ${{ secrets.BRANCH_NAME }}
+          git push -u origin ${{ secrets.BRANCH_NAME }} &
+          sleep 1m
