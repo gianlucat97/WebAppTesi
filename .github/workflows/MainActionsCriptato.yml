@@ -40,6 +40,7 @@ jobs:
         run: |
           echo "Vediamo il tag corrente:"
           echo "${GITHUB_REF#refs/tags/}"
+          echo "${GITHUB_REF#refs/heads/}"
           
       - name: Step 3 - Have GitHub Actions Build Maven Project
         run: mvn -B package --file ${{ secrets.FILE_POM_MAIN_PROJECT }}
