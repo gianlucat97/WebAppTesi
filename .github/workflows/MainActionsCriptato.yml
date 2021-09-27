@@ -139,7 +139,7 @@ jobs:
           git config --global user.name "${{ secrets.NOME_ACCOUNT_GITHUB }}"
           git config --global user.password "${{ secrets.PASSWORD_ACCOUNT_GITHUB }}"
           echo "Andiamo ad aggiungere la cartella dei report"
-          git add ${{ secrets.NOME_TEST_SUITE }}
+          git add *
           echo "Cartella aggiunta!"
           git commit -m "${{ secrets.INFO_COMMIT_TEST_SUITE }}"
           git branch -M ${{ secrets.BRANCH_NAME }} 
