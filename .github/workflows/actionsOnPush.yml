@@ -43,17 +43,16 @@ jobs:
           cd correzioneFormatoTest/target
           echo "Vediamo contenuto cartella target"
           ls -a
-          java -jar correzioneFormatoTest-0.0.1-jarCorrezioneFormatoTest.jar /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/test/java/it/catalogo /home/runner/work/WebAppTesi/WebAppTesi/chromedriver_v94_linux64/chromedriver it.catalogo.test
+          java -jar correzioneFormatoTest-0.0.1-jarCorrezioneFormatoTest.jar ${{ secrets.DIR_TEST_PROGETTO_JUNIT }} ${{ secrets.DIR_CHROME_DRIVER }} ${{ secrets.TEST_PACKAGE_PROJECT }}
           
           
          
       - name: Step 4 - Verifica valori aggiornati file di test
         run: |
-          cd /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/test/java/it/catalogo
+          cd ${{ secrets.DIR_TEST_PROGETTO_JUNIT }}
           ls -a
           echo "Vediamo il valore dei file java corretti:"
           cat *.java
-          echo "mvn -B package --file ${{ secrets.FILE_POM_MAIN_PROJECT }}"
           
       - name: Step 5 - Push dei file di test corretti
         run: |
@@ -64,9 +63,10 @@ jobs:
           git config --global user.name "${{ secrets.NOME_ACCOUNT_GITHUB }}"
           git config --global user.password "${{ secrets.PASSWORD_ACCOUNT_GITHUB }}"
           echo "Andiamo ad aggiungere la cartella dei report"
-          git add /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/test/java/it/catalogo
+          git add ${{ secrets.DIR_TEST_PROGETTO_JUNIT }}
           echo "Cartella aggiunta!"
           git commit -m "${{ secrets.INFO_COMMIT_TEST_SUITE }}"
           git branch -M ${{ secrets.BRANCH_NAME }} 
-          git push -u origin ${{ secrets.BRANCH_NAME }} &
-          sleep 1m
+          git push -u origin ${{ secrets.BRANCH_NAME }}
+          
+          
