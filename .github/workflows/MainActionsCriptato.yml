@@ -107,9 +107,38 @@ jobs:
             node main.js inject-hooks ${{ secrets.DIR_FILE_FTL }} --grammar ${{ secrets.GRAMMAR_TYPE }}
             echo "Visualizzazione file ftl dopo l'injection!!! "
             cat ${{ secrets.DIR_FILE_FTL }}
+            
+      - name: Step 8 - Esecuzione script per lo split dei test html
+        run: |
+          ls -a
+          echo "Rechiamoci nella directory dove si trova lo script test-script-splitter"
+          cd test-hooks/test-guard
+          ls -a
+          echo "Proviamo ad eseguire lo script test-script-splitter"
+          node test-script-splitter.js --suites /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/TestHTML --dest /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/TestHTML/ReportSplitter/ReportSplit --num 3
+          echo "Script eseguito"
+          cd /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/TestHTML/ReportSplitter
+          echo "Vediamo se ha generato le n cartelle ReportSplit"
+          ls -a
           
           
-      - name: Step 8 - Esegui Applicazione Spring Boot tramite jar
+      - name: Step 9 - Push dei file di test splittati
+        run: |
+          echo "Vediamo quali cartelle ci sono nella directory di partenza"
+          ls -a
+          git status
+          git config --global user.email "${{ secrets.EMAIL_ACCOUNT_GITHUB }}"
+          git config --global user.name "${{ secrets.NOME_ACCOUNT_GITHUB }}"
+          git config --global user.password "${{ secrets.PASSWORD_ACCOUNT_GITHUB }}"
+          echo "Andiamo ad aggiungere la cartella dei report"
+          git add /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/TestHTML/ReportSplitter
+          echo "Cartella aggiunta!"
+          git commit -m "${{ secrets.INFO_COMMIT_TEST_SUITE }}"
+          git branch -M ${{ secrets.BRANCH_NAME }} 
+          git push -u origin ${{ secrets.BRANCH_NAME }}
+          
+          
+      - name: Step 10 - Esegui Applicazione Spring Boot tramite jar
         run:  |
             cd ${{ secrets.DIR_JAR_MAIN_PROJECT }}
             echo "Vediamo quali file jar si trovano in cartella target"
@@ -119,7 +148,7 @@ jobs:
             echo "Vediamo se si è attivato il thread che fa andare avanti"
     
           
-      - name: Step 9 - Install Chrome Headless
+      - name: Step 11 - Install Chrome Headless
         run: |
           sudo apt-get update
           sudo apt-get upgrade
@@ -131,7 +160,7 @@ jobs:
           google-chrome-stable --headless --disable-gpu 
           
           
-      - name: Step 10 - Install Chrome Driver test maven
+      - name: Step 12 - Install Chrome Driver test maven
         run:  |
             wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip
             unzip chromedriver_linux64.zip
@@ -140,7 +169,7 @@ jobs:
             sudo chmod +x /home/runner/work/WebAppTesi/WebAppTesi/chromedriver_v94_linux64/chromedriver
       
      
-      - name: Step 11 - Update pom con esecuzione dei tesst
+      - name: Step 13 - Update pom con esecuzione dei tesst
         run:  |
             sudo bash -c 'cat ${{ secrets.FILE_POM_TEST_MAIN_PROJECT }} > ${{ secrets.FILE_POM_MAIN_PROJECT }}'
             echo "Vediamo se il pom principale è stato sovrascritto"
@@ -148,13 +177,13 @@ jobs:
             
      
      
-      - name: Step 12 - Eseguire test maven
+      - name: Step 14 - Eseguire test maven
         run:  |
             cd ${{ secrets.DIR_POM_MAIN_PROJECT }}
             mvn -Dtest=${{ secrets.TEST_TO_EXECUTE }}  test site &
             sleep 3m
             
-      - name: Step 13 - Visualizzare report test
+      - name: Step 15 - Visualizzare report test
         run: |
             cd ${{ secrets.DIR_SUREFIRE_REPORTS }}
             ls -a 
@@ -162,7 +191,7 @@ jobs:
             cat *.txt
             echo "Fine visualizzazione report!!!"
             
-      - name: Step 14 - Creazione directories per report testing
+      - name: Step 16 - Creazione directories per report testing
         run: |
           ls -a
           if [ ! -d "${{ secrets.DIR_TEST_SUITE }}" ]; then
@@ -183,7 +212,7 @@ jobs:
           fi   
        
        
-      - name: Step 15 - Spostamento report in directory corretta
+      - name: Step 17 - Spostamento report in directory corretta
         run: |  
           cd ${{ secrets.DIR_JAR_MAIN_PROJECT }}
           echo "Visualizziamo se c'è la cartella surefire-reports"
@@ -194,7 +223,7 @@ jobs:
           ls -a
           sudo cp -r ${{ secrets.REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION }} ${{ secrets.DIR_TEST_SUITE_HOOKS_STORICO }}
           
-      - name: Step 16 - Push dei report
+      - name: Step 18 - Push dei report
         run: |
           echo "Vediamo quali cartelle ci sono nella directory di partenza"
           ls -a
@@ -209,7 +238,7 @@ jobs:
           git branch -M ${{ secrets.BRANCH_NAME }}
           git push -u origin ${{ secrets.BRANCH_NAME }}
           
-      - name: Step 17 - Unzip progetto "Miglioramento report test"
+      - name: Step 19 - Unzip progetto "Miglioramento report test"
         run: |
           ls 
           echo "Unzip del progetto"
@@ -219,7 +248,7 @@ jobs:
           
           
           
-      - name: Step 18 - Esecuzione progetto "Miglioramento report test"
+      - name: Step 20 - Esecuzione progetto "Miglioramento report test"
         run: |    
           echo "Andiamo nella directory dove si trova il file jar eseguibile"
           cd miglioramentoReportTest/target
@@ -232,12 +261,12 @@ jobs:
           echo "Vediamo il contenuto del file xls di report unificato!!!"
           cat ${{ secrets.NOME_REPORT_FINALE.xls }}
           
-      - name: Step 19 - Spostamento report xlsx in cartella dei report txt
+      - name: Step 21 - Spostamento report xlsx in cartella dei report txt
         run: | 
           cd miglioramentoReportTest/target
           sudo cp ${{ secrets.NOME_REPORT_FINALE }}.xls ${{ secrets.DIR_TEST_SUITE_HOOKS_STORICO }}/${{ secrets.REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION }}
           
-      - name: Step 20 - Commit del report xlsx
+      - name: Step 22 - Commit del report xlsx
         run: | 
           echo "Vediamo quali cartelle ci sono nella directory di partenza"
           ls -a
