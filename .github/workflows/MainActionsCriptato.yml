@@ -4,9 +4,9 @@ name: Github Actions Maven Build Example
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
-  push:
-    branches: [ v0_3 ]
+  release:
+    types: [published]
+
 
  
   # Allows you to run this workflow manually from the Actions tab
