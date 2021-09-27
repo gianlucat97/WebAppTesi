@@ -35,6 +35,11 @@ jobs:
         with:
           java-version: 1.8
           
+      - name: Step 2.2 - Visualizzare tag corrente
+        run: |
+          echo "Vediamo il tag corrente:"
+          echo "$GITHUB_REF"
+          
       - name: Step 3 - Have GitHub Actions Build Maven Project
         run: mvn -B package --file ${{ secrets.FILE_POM_MAIN_PROJECT }}
          
