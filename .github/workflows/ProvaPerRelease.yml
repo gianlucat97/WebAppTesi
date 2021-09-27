@@ -37,3 +37,5 @@ jobs:
       - name: Step 2.2 - Visualizzare tag corrente
         run: |
           sudo bash -c 'echo "Ciaoooooooooo" > provaHello.txt'
+          echo "Vediamo il contenuto di provaHello.txt"
+          cat provaHello.txt
