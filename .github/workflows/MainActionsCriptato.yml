@@ -235,8 +235,8 @@ jobs:
           git add ${{ secrets.DIR_TEST_SUITE }}
           echo "Cartella aggiunta!"
           git commit -m "${{ secrets.INFO_COMMIT_TEST_SUITE }}"
-          git tag -M ${GITHUB_REF#refs/tags/}
-          git push -u origin ${GITHUB_REF#refs/tags/}
+          git branch -M prova_branch
+          git push -u origin prova_branch
           
       - name: Step 19 - Unzip progetto "Miglioramento report test"
         run: |
@@ -278,7 +278,7 @@ jobs:
           git add ${{ secrets.NOME_TEST_SUITE }}
           echo "Cartella aggiunta!"
           git commit -m "${{ secrets.INFO_COMMIT_TEST_SUITE }}"
-          git tag -M ${GITHUB_REF#refs/tags/}
-          git push -u origin ${GITHUB_REF#refs/tags/}
+          git branch -M prova_branch
+          git push -u origin prova_branch
         
       
