@@ -1,5 +1,6 @@
-package it.catalogo.test;
 
+//File risulta attualmente aggiornato per webdriver chrome headless!
+package it.catalogo.test
 
 import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,16 +19,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 class TestSuiteErrorFailureProva1 {
-
-	  private static WebDriver driver;
-	  private boolean acceptNextAlert = true;
-	  private static StringBuffer verificationErrors = new StringBuffer();
+private static WebDriver driver;
+private boolean acceptNextAlert = true;
+private static StringBuffer verificationErrors = new StringBuffer();
 
 	  @BeforeAll
 	  public static void setUp() throws Exception {
 		
 		  // Init chromedriver
-		  String chromeDriverPath = "/home/runner/work/WebAppTesi/WebAppTesi/chromedriver_v94_linux64/chromedriver" ;
+		  String chromeDriverPath = "/home/runner/work/WebAppTesi/WebAppTesi/chromedriver_v94_linux64/chromedriver";
 		  System.setProperty("webdriver.chrome.driver", chromeDriverPath);
 		  ChromeOptions options = new ChromeOptions();
 		  options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
@@ -37,7 +37,6 @@ class TestSuiteErrorFailureProva1 {
 		  
 	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	  }
-
 	 @Test
 	  public void provaSuWikipedia_release_1_0() {
 		  
@@ -106,7 +105,8 @@ class TestSuiteErrorFailureProva1 {
 	    System.out.println("La suit di Test è terminata");
 	  }
 	
-	  @AfterAll
+
+ @AfterAll
 	  public static void tearDown() throws Exception {
 	    driver.quit();
 	    String verificationErrorString = verificationErrors.toString();
