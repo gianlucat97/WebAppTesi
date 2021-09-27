@@ -1,0 +1,68 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Github Actions Splitter HTML test on Push
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ v0_3 ]
+
+ 
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    environment:
+      name: envForGithubActions
+    
+      
+   # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Step 1 - Checkout main branch from GitHub
+        uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Step 2 - Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+          
+      - name: Step 3 - Esecuzione script per lo split dei test html
+        run: |
+          echo "Unzippiamo test-hooks"
+          unzip test-hooks
+          ls -a
+          echo "Rechiamoci nella directory dove si trova lo script test-script-splitter"
+          cd test-hooks/test-guard
+          ls -a
+          echo "Proviamo ad eseguire lo script test-script-splitter"
+          node test-script-splitter.js --suites /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/TestHTML --dest /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/TestHTML/ReportSplitter/ReportSplit --num 3
+          echo "Script eseguito"
+          cd /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/TestHTML/ReportSplitter
+          echo "Vediamo se ha generato le n cartelle ReportSplit"
+          ls -a
+          
+          
+      - name: Step 4 - Push dei file di test splittati
+        run: |
+          echo "Vediamo quali cartelle ci sono nella directory di partenza"
+          ls -a
+          git status
+          git config --global user.email "${{ secrets.EMAIL_ACCOUNT_GITHUB }}"
+          git config --global user.name "${{ secrets.NOME_ACCOUNT_GITHUB }}"
+          git config --global user.password "${{ secrets.PASSWORD_ACCOUNT_GITHUB }}"
+          echo "Andiamo ad aggiungere la cartella dei report"
+          git add /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/TestHTML/ReportSplitter
+          echo "Cartella aggiunta!"
+          git commit -m "${{ secrets.INFO_COMMIT_TEST_SUITE }}"
+          git branch -M ${{ secrets.BRANCH_NAME }} 
+          git push -u origin ${{ secrets.BRANCH_NAME }}
+          
+          
