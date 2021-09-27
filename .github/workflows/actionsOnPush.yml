@@ -34,7 +34,7 @@ jobs:
         with:
           java-version: 1.8
           
-      - name: Step 3 - Have GitHub Actions Build Maven Project
+      - name: Step 3 - Unzip ed esecuzione progetto correzioneFormatoTest
         run: |
           echo "Proviamo ad unzippare"
           unzip correzioneFormatoTest
@@ -43,11 +43,14 @@ jobs:
           cd correzioneFormatoTest/target
           echo "Vediamo contenuto cartella target"
           ls -a
-          
+          java -jar correzioneFormatoTest-0.0.1-jarCorrezioneFormatoTest.jar /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/test/java/it/catalogo /home/runner/work/WebAppTesi/WebAppTesi/chromedriver_v94_linux64/chromedriver it.catalogo.test
           
           
          
-      - name: Step 4 - List the current directory
+      - name: Step 4 - Verifica valori aggiornati file di test
         run: |
+          cd /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/test/java/it/catalogo
           ls -a
+          echo "Vediamo il valore dei file java corretti:"
+          cat *.java
           echo "mvn -B package --file ${{ secrets.FILE_POM_MAIN_PROJECT }}"
