@@ -1,4 +1,13 @@
 
+//File risulta attualmente aggiornato per webdriver chrome headless!
+package it.catalogo.test;
+
+import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.concurrent.TimeUnit;
+
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Alert;
@@ -96,6 +105,7 @@ private static StringBuffer verificationErrors = new StringBuffer();
 	    System.out.println("La suit di Test è terminata");
 	  }
 	
+
 
 
  @AfterAll
