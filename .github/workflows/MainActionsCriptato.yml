@@ -4,9 +4,9 @@ name: Github Actions Maven Build Example
 
 # Controls when the workflow will run
 on:
-  release:
-    types: [published]
-          
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ v0_3 ]
 
 
  
@@ -235,8 +235,8 @@ jobs:
           git add ${{ secrets.DIR_TEST_SUITE }}
           echo "Cartella aggiunta!"
           git commit -m "${{ secrets.INFO_COMMIT_TEST_SUITE }}"
-          git branch -M prova_branch
-          git push -u origin prova_branch
+          git branch -M ${{ secrets.BRANCH_NAME }}
+          git push -u origin ${{ secrets.BRANCH_NAME }}
           
       - name: Step 19 - Unzip progetto "Miglioramento report test"
         run: |
@@ -278,7 +278,7 @@ jobs:
           git add ${{ secrets.NOME_TEST_SUITE }}
           echo "Cartella aggiunta!"
           git commit -m "${{ secrets.INFO_COMMIT_TEST_SUITE }}"
-          git branch -M prova_branch
-          git push -u origin prova_branch
+          git branch -M ${{ secrets.BRANCH_NAME }}
+          git push -u origin ${{ secrets.BRANCH_NAME }}
         
       
