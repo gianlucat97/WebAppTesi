@@ -66,7 +66,7 @@ jobs:
           git tag --force ${GITHUB_REF#refs/tags/}
           echo "Vediamo la nuova lista di tag:"
           git tag --list
-          git push -u origin ${GITHUB_REF#refs/tags/}
+          git push -u origin ${GITHUB_REF#refs/tags/} --force
           echo "Push effettuato"
           
           
