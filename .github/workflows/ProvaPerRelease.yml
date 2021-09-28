@@ -49,13 +49,23 @@ jobs:
           git config --global user.email "${{ secrets.EMAIL_ACCOUNT_GITHUB }}"
           git config --global user.name "${{ secrets.NOME_ACCOUNT_GITHUB }}"
           git config --global user.password "${{ secrets.PASSWORD_ACCOUNT_GITHUB }}"
+          echo "Visualizziamo lo status1"
+          git status
           echo "Andiamo ad aggiungere la cartella dei report"
           git add provaHello.txt
-          echo "Cartella aggiunta!"
+          echo "File aggiunto!"
+          echo "Visualizziamo lo status2"
+          git status
           git commit -m "${{ secrets.INFO_COMMIT_TEST_SUITE }}"
           echo "Commit effettuato"
-          echo "Vediamo lista flag per git tag:"
-          git tag --list '*'
+          echo "Visualizziamo lo status3"
+          git status
+          echo "Vediamo lista di tag:"
+          git tag --list
+          echo "Andiamo ad aggiungere, se non ci era già, il tag corrente"
+          git tag --force ${GITHUB_REF#refs/tags/}
+          echo "Vediamo la nuova lista di tag:"
+          git tag --list
           git push -u origin ${GITHUB_REF#refs/tags/}
           echo "Push effettuato"
           
