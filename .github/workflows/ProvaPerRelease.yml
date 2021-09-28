@@ -54,7 +54,10 @@ jobs:
           echo "Cartella aggiunta!"
           echo "Vediamo valore di origin"
           echo "$origin !"
-          git push -u origin ${GITHUB_REF#refs/tags/} --force
+          git remote add origin https://github.com/gianlucat97/WebAppTesi.git
+          echo "Vediamo valore aggiornato di origin"
+          echo "$origin !"
+          git push -u origin ${GITHUB_REF#refs/tags/}
           
           
           
