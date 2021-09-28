@@ -70,7 +70,6 @@ jobs:
           sudo apt -y install curl dirmngr apt-transport-https lsb-release ca-certificates
           curl -sL https://deb.nodesource.com/setup_10.x | sudo bash
           sudo apt install nodejs
-          
           sudo npm cache clean -f
           sudo npm install -g n
           sudo n stable
