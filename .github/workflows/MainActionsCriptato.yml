@@ -42,7 +42,19 @@ jobs:
           echo "${GITHUB_REF#refs/heads/}"
           
       - name: Step 3 - Have GitHub Actions Build Maven Project
-        run: mvn -B package --file ${{ secrets.FILE_POM_MAIN_PROJECT }}
+        run: |
+          echo "Prima di fare il packaging del file pom del progetto, devo porre skiptests=true"
+          echo "unzip del progetto setSkipTest"
+          unzip setSkipTest
+          echo "unzip eseguito"
+          cd setSkipTest/target
+          echo "esecuzione jar for set true skip test"
+          java -jar setSkipTest-jarSetSplitTest.jar ${{ secrets.FILE_POM_MAIN_PROJECT }} true
+          echo "Settaggio completato, visualizziamo il nuovo valore del pom"
+          cat ${{ secrets.FILE_POM_MAIN_PROJECT }}
+          echo "Facciamo il packaging senza test dell'applicativo"
+          mvn -B package --file ${{ secrets.FILE_POM_MAIN_PROJECT }}
+          echo "Packaging senza test completato!"
          
       - name: Step 4 - List the current directory
         run: |
@@ -169,13 +181,13 @@ jobs:
             sudo chmod +x /home/runner/work/WebAppTesi/WebAppTesi/chromedriver_v94_linux64/chromedriver
       
      
-      - name: Step 13 - Update pom con esecuzione dei tesst
+      - name: Step 13 - Update pom con esecuzione dei test
         run:  |
-            sudo bash -c 'cat ${{ secrets.FILE_POM_TEST_MAIN_PROJECT }} > ${{ secrets.FILE_POM_MAIN_PROJECT }}'
-            echo "Vediamo se il pom principale è stato sovrascritto"
+            cd setSkipTest/target
+            echo "esecuzione jar for set false skip test"
+            java -jar setSkipTest-jarSetSplitTest.jar ${{ secrets.FILE_POM_MAIN_PROJECT }} false
+            echo "Settaggio completato, visualizziamo il nuovo valore del pom"
             cat ${{ secrets.FILE_POM_MAIN_PROJECT }}
-            
-     
      
       - name: Step 14 - Eseguire test maven
         run:  |
