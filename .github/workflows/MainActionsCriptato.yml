@@ -128,7 +128,23 @@ jobs:
             echo "Visualizzazione file ftl dopo l'injection!!! "
             cat ${{ secrets.DIR_FILE_FTL }}
             
-      - name: Step 8 - Esecuzione script per lo split dei test html
+                 
+      - name: Step 8 - Pulizia directory per split test html
+        run: |
+          ls -a
+          echo "Rechiamoci nella directory TestHTML"
+          cd /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/TestHTML
+          echo "se esite già, cancella la cartella ReportSplitter"
+          if [ -d "ReportSplitter" ]; then
+            echo "La cartella esiste già"
+            sudo rmdir ReportSplitter
+            echo "cartella cancellata"
+          fi
+          echo "Prova a creare cartella
+          sudo mkdir ReportSplitter
+          echo "cartella creata"
+            
+      - name: Step 9 - Esecuzione script per lo split dei test html
         run: |
           ls -a
           echo "Rechiamoci nella directory dove si trova lo script test-script-splitter"
@@ -143,14 +159,7 @@ jobs:
           echo "Vediamo cosa c'è dentro ReportSplit0"
           cd ReportSplit0
           ls -a
-          echo "Vediamo cosa c'è dentro ReportSplit1"
-          cd ..
-          cd ReportSplit1
-          ls -a
-          
         
-          
-          
       - name: Step 10 - Esegui Applicazione Spring Boot tramite jar
         run:  |
             cd ${{ secrets.DIR_JAR_MAIN_PROJECT }}
