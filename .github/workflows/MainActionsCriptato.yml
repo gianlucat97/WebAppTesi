@@ -40,6 +40,7 @@ jobs:
           echo "Vediamo il tag corrente:"
           echo "${GITHUB_REF#refs/tags/}"
           echo "${GITHUB_REF#refs/heads/}"
+          echo "$GITHUB_SHA"
           
       - name: Step 3 - Have GitHub Actions Build Maven Project
         run: |
