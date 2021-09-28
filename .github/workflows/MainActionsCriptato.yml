@@ -4,9 +4,8 @@ name: Github Actions Maven Build Example
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
-  push:
-    branches: [ v0_3 ]
+  release:
+    types: [published]
 
 
  
@@ -238,26 +237,32 @@ jobs:
           cd ${{ secrets.DIR_JAR_MAIN_PROJECT }}
           echo "Visualizziamo se c'è la cartella surefire-reports"
           ls -a 
-          echo "Rinominare la cartella surefire-reports in report_test_vx_x, dove al posto delle x va il numero della versione"
-          sudo mv surefire-reports ${{ secrets.REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION }}
+          echo "Rinominare la cartella surefire-reports in nome del tag della release creata"
+          sudo mv surefire-reports ${GITHUB_REF#refs/tags/}
           echo "Vediamo se la ha rinominata:"
           ls -a
-          sudo cp -r ${{ secrets.REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION }} ${{ secrets.DIR_TEST_SUITE_HOOKS_STORICO }}
+          sudo cp -r ${GITHUB_REF#refs/tags/} ${{ secrets.DIR_TEST_SUITE_HOOKS_STORICO }}
           
       - name: Step 18 - Push dei report
         run: |
           echo "Vediamo quali cartelle ci sono nella directory di partenza"
           ls -a
-          git status
           git config --global user.email "${{ secrets.EMAIL_ACCOUNT_GITHUB }}"
           git config --global user.name "${{ secrets.NOME_ACCOUNT_GITHUB }}"
           git config --global user.password "${{ secrets.PASSWORD_ACCOUNT_GITHUB }}"
+          git status
           echo "Andiamo ad aggiungere la cartella dei report"
           git add ${{ secrets.DIR_TEST_SUITE }}
           echo "Cartella aggiunta!"
           git commit -m "${{ secrets.INFO_COMMIT_TEST_SUITE }}"
-          git branch -M ${{ secrets.BRANCH_NAME }}
-          git push -u origin ${{ secrets.BRANCH_NAME }}
+          git tag --list
+          echo "Andiamo ad aggiungere, se non ci era già, il tag corrente"
+          git tag --force ${GITHUB_REF#refs/tags/}
+          echo "Vediamo la nuova lista di tag:"
+          git tag --list
+          git push -u origin ${GITHUB_REF#refs/tags/} --force
+          echo "Push effettuato"
+          
           
       - name: Step 19 - Unzip progetto "Miglioramento report test"
         run: |
@@ -275,7 +280,7 @@ jobs:
           cd miglioramentoReportTest/target
           ls -a
           echo "Proviamo ad eseguire il file jar, passandogli come args[0] la directory dei report da analizzare e come args[1] il nome del report complessivo xls da generare"
-          java -jar miglioramentoReportTest-0.0.1-jarReportTest.jar ${{ secrets.DIR_TEST_SUITE_HOOKS_STORICO }}/${{ secrets.REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION }} ${{ secrets.NOME_REPORT_FINALE }}
+          java -jar miglioramentoReportTest-0.0.1-jarReportTest.jar ${{ secrets.DIR_TEST_SUITE_HOOKS_STORICO }}/${GITHUB_REF#refs/tags/} ${{ secrets.NOME_REPORT_FINALE }}
           echo "File jar eseguito!!!"
           echo "Vediamo il file xls di report unificato se c'è"
           ls -a 
@@ -285,21 +290,21 @@ jobs:
       - name: Step 21 - Spostamento report xlsx in cartella dei report txt
         run: | 
           cd miglioramentoReportTest/target
-          sudo cp ${{ secrets.NOME_REPORT_FINALE }}.xls ${{ secrets.DIR_TEST_SUITE_HOOKS_STORICO }}/${{ secrets.REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION }}
+          sudo cp ${{ secrets.NOME_REPORT_FINALE }}.xls ${{ secrets.DIR_TEST_SUITE_HOOKS_STORICO }}/${GITHUB_REF#refs/tags/}
           
       - name: Step 22 - Commit del report xlsx
         run: | 
           echo "Vediamo quali cartelle ci sono nella directory di partenza"
           ls -a
-          git status
+          
           git config --global user.email "${{ secrets.EMAIL_ACCOUNT_GITHUB }}"
           git config --global user.name "${{ secrets.NOME_ACCOUNT_GITHUB }}"
           git config --global user.password "${{ secrets.PASSWORD_ACCOUNT_GITHUB }}"
+          git status
           echo "Andiamo ad aggiungere la cartella dei report"
           git add ${{ secrets.NOME_TEST_SUITE }}
           echo "Cartella aggiunta!"
           git commit -m "${{ secrets.INFO_COMMIT_TEST_SUITE }}"
-          git branch -M ${{ secrets.BRANCH_NAME }}
-          git push -u origin ${{ secrets.BRANCH_NAME }}
+          git push -u origin ${GITHUB_REF#refs/tags/} --force
         
       
