@@ -54,6 +54,8 @@ jobs:
           echo "Cartella aggiunta!"
           git commit -m "${{ secrets.INFO_COMMIT_TEST_SUITE }}"
           echo "Commit effettuato"
+          echo "Vediamo lista flag per git tag:"
+          git tag --list '*'
           git push -u origin ${GITHUB_REF#refs/tags/}
           echo "Push effettuato"
           
