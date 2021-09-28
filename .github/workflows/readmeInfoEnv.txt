@@ -19,7 +19,7 @@ PASSWORD_ACCOUNT_GITHUB: Sharingan268
 NOME_REPORT_FINALE: tabellaReportTest
 GRAMMAR_TYPE: freemarker
 NOME_JAR_WEBAPP: catalogoProdottiBoot-0.0.1-SNAPSHOT
-FILE_POM_TEST_MAIN_PROJECT: /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/pomConTest.txt
 DIR_TEST_PROGETTO_JUNIT: /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/catalogoProdottiBoot/src/test/java/it/catalogo
 DIR_CHROME_DRIVER: /home/runner/work/WebAppTesi/WebAppTesi/chromedriver_v94_linux64/chromedriver
 TEST_PACKAGE_PROJECT: it.catalogo.test
+NUMERO_SPLIT : 1
