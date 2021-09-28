@@ -151,7 +151,7 @@ jobs:
           cd test-hooks/test-guard
           ls -a
           echo "Proviamo ad eseguire lo script test-script-splitter"
-          node test-script-splitter.js --suites /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/TestHTML --dest /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/TestHTML/ReportSplitter/ReportSplit --num ${{ secrets.NUMERO_SPLIT }}
+          sudo bash -c 'node test-script-splitter.js --suites /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/TestHTML --dest /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/TestHTML/ReportSplitter/ReportSplit --num ${{ secrets.NUMERO_SPLIT }}' 
           echo "Script eseguito"
           cd /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/TestHTML/ReportSplitter
           echo "Vediamo se ha generato le n cartelle ReportSplit"
