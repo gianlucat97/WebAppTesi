@@ -137,7 +137,7 @@ jobs:
           echo "se esite già, cancella la cartella ReportSplitter"
           if [ -d "ReportSplitter" ]; then
             echo "La cartella esiste già"
-            sudo rmdir ReportSplitter
+            sudo rm -rf ReportSplitter
             echo "cartella cancellata"
           fi
           echo "Prova a creare cartella
