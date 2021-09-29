@@ -12,7 +12,6 @@ NOME_TEST_SUITE_HOOKS: TestSuiteHooks
 DIR_TEST_SUITE_HOOKS_STORICO: /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/StoricoTest
 NOME_TEST_SUITE_HOOKS_STORICO: StoricoTest
 INFO_COMMIT_TEST_SUITE: Test Suite Hooks Prova2 con Environment Variable
-REPORT_DIRECTORYNAME_WITH_PROJECT_VERSION: report_test_v1_1
 EMAIL_ACCOUNT_GITHUB: talitrogian2@gmail.com
 NOME_ACCOUNT_GITHUB: gianlucat97
 PASSWORD_ACCOUNT_GITHUB: Sharingan268
