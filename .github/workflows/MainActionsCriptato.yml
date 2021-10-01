@@ -49,11 +49,6 @@ jobs:
        
       - name: Step 3 - Installare Node versione 10 in Ubuntu
         run: |
-          echo "Vediamo se vede ancora varTemp:"
-          varTemp=$(echo "${GITHUB_REF#refs/tags/}" | tail -c 6)
-          echo "$varTemp"
-          if [ "$varTemp" == "Hooks" ]; then
-          
           sudo apt update
           sudo apt -y install curl dirmngr apt-transport-https lsb-release ca-certificates
           curl -sL https://deb.nodesource.com/setup_10.x | sudo bash
@@ -74,13 +69,8 @@ jobs:
           npm fund
           echo "vedi se ha fatto bene o no"
           
-          fi
-          
       - name: Step 4 - Unzip test-hooks ed installazione dentro test-guard di npm
         run: | 
-          varTemp=$(echo "${GITHUB_REF#refs/tags/}" | tail -c 6)
-          if [ "$varTemp" == "Hooks" ]; then
-          
           ls -a
           unzip test-hooks.zip
           cd test-hooks
@@ -99,8 +89,6 @@ jobs:
           npm install bcrypt
           npm fund
           echo "vedi se ha fatto bene o no" 
-          
-          fi
         
       - name: Step 5 - Instrumenta l'applicazione iniettando gli Hooks
         run: |
@@ -182,9 +170,6 @@ jobs:
             
       - name: Step 9 - Esecuzione script per lo split dei test html
         run: |
-          varTemp=$(echo "${GITHUB_REF#refs/tags/}" | tail -c 6)
-          if [ "$varTemp" == "Hooks" ]; then
-          
           ls -a
           echo "Rechiamoci nella directory dove si trova lo script test-script-splitter"
           cd test-hooks/test-guard
@@ -198,8 +183,6 @@ jobs:
           echo "Vediamo cosa c'è dentro ReportSplit0"
           cd ReportSplit0
           ls -a
-          
-          fi
         
       - name: Step 10 - Esegui Applicazione Spring Boot tramite jar
         run:  |
