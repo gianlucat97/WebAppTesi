@@ -22,3 +22,4 @@ DIR_TEST_PROGETTO_JUNIT: /home/runner/work/WebAppTesi/WebAppTesi/WebAppHooks/cat
 DIR_CHROME_DRIVER: /home/runner/work/WebAppTesi/WebAppTesi/chromedriver_v94_linux64/chromedriver
 TEST_PACKAGE_PROJECT: it.catalogo.test
 NUMERO_SPLIT : 1
+PATH_REPOSITORY: /home/runner/work/WebAppTesi/WebAppTesi
