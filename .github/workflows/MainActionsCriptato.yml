@@ -152,6 +152,16 @@ jobs:
             echo "Vedi se sono dentro l'if numero 1"
             sudo mkdir TestHTML
           fi
+          
+          
+          
+      - name: Step 7.2 - Creazione directory surefire-reports, nel caso non fosse già presente
+        run: |
+          cd ${{ secrets.DIR_JAR_MAIN_PROJECT }}
+          if [ ! -d "surefire-reports" ]; then
+            echo "Vedi se sono dentro l'if per creare la cartella surefire-reports"
+            sudo mkdir surefire-reports
+          fi
             
             
       - name: Step 8 - Pulizia directory per split test html
@@ -232,7 +242,7 @@ jobs:
             
       - name: Step 15 - Visualizzare report test
         run: |
-            cd ${{ secrets.DIR_SUREFIRE_REPORTS }}
+            cd ${{ secrets.DIR_JAR_MAIN_PROJECT }}/surefire-reports
             ls -a 
             echo "Visualizziamo adesso tutti i report txt ottenuti dalle nostre test suite"
             cat *.txt
