@@ -41,7 +41,7 @@ jobs:
           echo "${GITHUB_REF#refs/heads/}"
           echo "Vediamo se si potrebbe capire automaticamente che si usano gli hooks"
           echo "Stampa a video degli utlimi 5 caratteri del tag della release corrente"
-          varTemp=$(sudo bash -c 'echo "${GITHUB_REF#refs/heads/}" | tail -c 6')
+          varTemp=$(sudo bash -c 'echo "${GITHUB_REF#refs/tags/}" | tail -c 6')
           echo "$varTemp"
           echo "Vediamo qual è l'id dell'attuale commit"
           echo "$GITHUB_SHA"
@@ -102,7 +102,7 @@ jobs:
       - name: Step 7 - Instrumenta l'applicazione iniettando gli Hooks
         run: |
             echo "entra nel if solamente se si intendono utilizzare gli Hooks nel progetto"
-            varTemp=$(sudo bash -c 'echo "${GITHUB_REF#refs/heads/}" | tail -c 6')
+            varTemp=$(sudo bash -c 'echo "${GITHUB_REF#refs/tags/}" | tail -c 6')
             echo "varTemp"
             if [ "$varTemp" == "Hooks" ]; then
           
