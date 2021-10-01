@@ -45,17 +45,9 @@ jobs:
           echo "$varTemp"
           echo "Vediamo qual è l'id dell'attuale commit"
           echo "$GITHUB_SHA"
-          
-      
-         
-      - name: Step 4 - List the current directory
-        run: |
-          ls -a
-          cd chromedriver_v94_linux64
-          readlink -f chromedriver
-       # Runs a set of commands using the runners shell
        
-      - name: Step 5 - Installare Node versione 10 in Ubuntu
+       
+      - name: Step 3 - Installare Node versione 10 in Ubuntu
         run: |
           echo "Vediamo se vede ancora varTemp:"
           varTemp=$(echo "${GITHUB_REF#refs/tags/}" | tail -c 6)
@@ -84,7 +76,7 @@ jobs:
           
           fi
           
-      - name: Step 6 - Unzip test-hooks ed installazione dentro test-guard di npm
+      - name: Step 4 - Unzip test-hooks ed installazione dentro test-guard di npm
         run: | 
           varTemp=$(echo "${GITHUB_REF#refs/tags/}" | tail -c 6)
           if [ "$varTemp" == "Hooks" ]; then
@@ -110,7 +102,7 @@ jobs:
           
           fi
         
-      - name: Step 7 - Instrumenta l'applicazione iniettando gli Hooks
+      - name: Step 5 - Instrumenta l'applicazione iniettando gli Hooks
         run: |
             echo "entra nel if solamente se si intendono utilizzare gli Hooks nel progetto"
             varTemp=$(echo "${GITHUB_REF#refs/tags/}" | tail -c 6)
@@ -139,7 +131,7 @@ jobs:
             fi
             echo "Fuori dal if"
             
-      - name: Step 3 - Unzip setSkipTest, skipTests=true, packaging dopo l'eventuale iniezione degli Hooks
+      - name: Step 6 - Unzip setSkipTest, skipTests=true, packaging dopo l'eventuale iniezione degli Hooks
         run: |
           echo "Prima di fare il packaging del file pom del progetto, devo porre skiptests=true"
           echo "unzip del progetto setSkipTest"
@@ -156,7 +148,7 @@ jobs:
             
             
             
-      - name: Step 16 - Creazione directory Test Suite
+      - name: Step 7 - Creazione directory Test Suite
         run: |
           ls -a
           if [ ! -d "${{ secrets.DIR_TEST_SUITE }}" ]; then
@@ -263,7 +255,7 @@ jobs:
             echo "Fine visualizzazione report!!!"
             
        
-      - name: Step 17 - Spostamento report in directory corretta
+      - name: Step 16 - Spostamento report in directory corretta
         run: |  
           cd ${{ secrets.DIR_JAR_MAIN_PROJECT }}
           echo "Visualizziamo se c'è la cartella surefire-reports"
@@ -274,7 +266,7 @@ jobs:
           ls -a
           sudo cp -r ${GITHUB_REF#refs/tags/} ${{ secrets.DIR_TEST_SUITE }}
           
-      - name: Step 18 - Push dei report
+      - name: Step 17 - Push dei report
         run: |
           echo "Vediamo quali cartelle ci sono nella directory di partenza"
           ls -a
@@ -295,7 +287,7 @@ jobs:
           echo "Push effettuato"
           
           
-      - name: Step 19 - Unzip progetto "Miglioramento report test"
+      - name: Step 18 - Unzip progetto "Miglioramento report test"
         run: |
           ls 
           echo "Unzip del progetto"
@@ -305,7 +297,7 @@ jobs:
           
           
           
-      - name: Step 20 - Esecuzione progetto "Miglioramento report test"
+      - name: Step 19 - Esecuzione progetto "Miglioramento report test"
         run: |    
           echo "Andiamo nella directory dove si trova il file jar eseguibile"
           cd miglioramentoReportTest/target
@@ -318,12 +310,12 @@ jobs:
           echo "Vediamo il contenuto del file xls di report unificato!!!"
           cat ${{ secrets.NOME_REPORT_FINALE.xls }}
           
-      - name: Step 21 - Spostamento report xls in cartella dei report txt
+      - name: Step 20 - Spostamento report xls in cartella dei report txt
         run: | 
           cd miglioramentoReportTest/target
           sudo cp ${{ secrets.NOME_REPORT_FINALE }}.xls ${{ secrets.DIR_TEST_SUITE }}/${GITHUB_REF#refs/tags/}
           
-      - name: Step 22 - Commit del report xls
+      - name: Step 21 - Commit del report xls
         run: | 
           echo "Vediamo quali cartelle ci sono nella directory di partenza"
           ls -a
