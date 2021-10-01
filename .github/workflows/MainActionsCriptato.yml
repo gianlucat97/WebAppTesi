@@ -126,12 +126,29 @@ jobs:
             echo "Visualizzazione file ftl dopo l'injection!!! "
             cat ${{ secrets.DIR_FILE_FTL }}
             
-                 
+            
+      - name: Step 16 - Creazione directory Test Suite
+        run: |
+          ls -a
+          if [ ! -d "${{ secrets.DIR_TEST_SUITE }}" ]; then
+            echo "Vedi se sono dentro l'if numero 1"
+            sudo mkdir ${{ secrets.NOME_TEST_SUITE }}
+          fi
+          echo "Vediamo se ha creato la cartella"
+          ls -a       
+          cd ${{ secrets.NOME_TEST_SUITE }}
+          ls -a
+          if [ ! -d "TestHTML" ]; then
+            echo "Vedi se sono dentro l'if numero 1"
+            sudo mkdir TestHTML
+          fi
+            
+            
       - name: Step 8 - Pulizia directory per split test html
         run: |
           ls -a
           echo "Rechiamoci nella directory TestHTML"
-          cd /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/TestHTML
+          cd ${{ secrets.NOME_TEST_SUITE }}/TestHTML
           echo "se esite già, cancella la cartella ReportSplitter"
           if [ -d "ReportSplitter" ]; then
             echo "La cartella esiste già"
@@ -149,9 +166,9 @@ jobs:
           cd test-hooks/test-guard
           ls -a
           echo "Proviamo ad eseguire lo script test-script-splitter"
-          sudo bash -c 'node test-script-splitter.js --suites /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/TestHTML --dest /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/TestHTML/ReportSplitter/ReportSplit --num ${{ secrets.NUMERO_SPLIT }}' 
+          sudo bash -c 'node test-script-splitter.js --suites /home/runner/work/WebAppTesi/WebAppTesi/${{ secrets.NOME_TEST_SUITE }}/TestHTML --dest /home/runner/work/WebAppTesi/WebAppTesi/${{ secrets.NOME_TEST_SUITE }}/TestHTML/ReportSplitter/ReportSplit --num ${{ secrets.NUMERO_SPLIT }}' 
           echo "Script eseguito"
-          cd /home/runner/work/WebAppTesi/WebAppTesi/TestSuite/TestSuiteHooks/TestHTML/ReportSplitter
+          cd /home/runner/work/WebAppTesi/WebAppTesi/${{ secrets.NOME_TEST_SUITE }}/TestHTML/ReportSplitter
           echo "Vediamo se ha generato le n cartelle ReportSplit"
           ls -a
           echo "Vediamo cosa c'è dentro ReportSplit0"
@@ -211,26 +228,6 @@ jobs:
             cat *.txt
             echo "Fine visualizzazione report!!!"
             
-      - name: Step 16 - Creazione directories per report testing
-        run: |
-          ls -a
-          if [ ! -d "${{ secrets.DIR_TEST_SUITE }}" ]; then
-            echo "Vedi se sono dentro l'if numero 1"
-            sudo mkdir ${{ secrets.NOME_TEST_SUITE }}
-          fi
-          echo "Vediamo se ha creato la cartella"
-          ls -a
-          cd ${{ secrets.DIR_TEST_SUITE }}
-          if [ ! -d "${{ secrets.DIR_TEST_SUITE_HOOKS  }}" ]; then
-            echo "Vedi se sono dentro l'if numero 2"
-            sudo mkdir ${{ secrets.NOME_TEST_SUITE_HOOKS }}
-          fi
-          cd ${{ secrets.DIR_TEST_SUITE_HOOKS }}
-          if [ ! -d "${{ secrets.DIR_TEST_SUITE_HOOKS_STORICO }}" ]; then
-            echo "Vedi se sono dentro l'if numero 3"
-            sudo mkdir ${{ secrets.NOME_TEST_SUITE_HOOKS_STORICO }}
-          fi   
-       
        
       - name: Step 17 - Spostamento report in directory corretta
         run: |  
@@ -241,7 +238,7 @@ jobs:
           sudo mv surefire-reports ${GITHUB_REF#refs/tags/}
           echo "Vediamo se la ha rinominata:"
           ls -a
-          sudo cp -r ${GITHUB_REF#refs/tags/} ${{ secrets.DIR_TEST_SUITE_HOOKS_STORICO }}
+          sudo cp -r ${GITHUB_REF#refs/tags/} ${{ secrets.DIR_TEST_SUITE }}
           
       - name: Step 18 - Push dei report
         run: |
@@ -280,19 +277,19 @@ jobs:
           cd miglioramentoReportTest/target
           ls -a
           echo "Proviamo ad eseguire il file jar, passandogli come args[0] la directory dei report da analizzare e come args[1] il nome del report complessivo xls da generare"
-          java -jar miglioramentoReportTest-0.0.1-jarReportTest.jar ${{ secrets.DIR_TEST_SUITE_HOOKS_STORICO }}/${GITHUB_REF#refs/tags/} ${{ secrets.NOME_REPORT_FINALE }}
+          java -jar miglioramentoReportTest-0.0.1-jarReportTest.jar ${{ secrets.DIR_TEST_SUITE }}/${GITHUB_REF#refs/tags/} ${{ secrets.NOME_REPORT_FINALE }}
           echo "File jar eseguito!!!"
           echo "Vediamo il file xls di report unificato se c'è"
           ls -a 
           echo "Vediamo il contenuto del file xls di report unificato!!!"
           cat ${{ secrets.NOME_REPORT_FINALE.xls }}
           
-      - name: Step 21 - Spostamento report xlsx in cartella dei report txt
+      - name: Step 21 - Spostamento report xls in cartella dei report txt
         run: | 
           cd miglioramentoReportTest/target
-          sudo cp ${{ secrets.NOME_REPORT_FINALE }}.xls ${{ secrets.DIR_TEST_SUITE_HOOKS_STORICO }}/${GITHUB_REF#refs/tags/}
+          sudo cp ${{ secrets.NOME_REPORT_FINALE }}.xls ${{ secrets.DIR_TEST_SUITE }}/${GITHUB_REF#refs/tags/}
           
-      - name: Step 22 - Commit del report xlsx
+      - name: Step 22 - Commit del report xls
         run: | 
           echo "Vediamo quali cartelle ci sono nella directory di partenza"
           ls -a
