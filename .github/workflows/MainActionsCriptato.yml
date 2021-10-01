@@ -129,6 +129,11 @@ jobs:
           fi 
           echo "visualizziamo se ha creato la cartella surefire-reports"
           ls -a
+          cd surefire-reports
+          echo "Ignora file" > ignorami.cpp
+          echo "Verifichiamo se ha creato il file inutile"
+          ls -a
+      
       
       
       
