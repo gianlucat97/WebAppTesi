@@ -39,6 +39,10 @@ jobs:
           echo "Vediamo il tag corrente:"
           echo "${GITHUB_REF#refs/tags/}"
           echo "${GITHUB_REF#refs/heads/}"
+          echo "Vediamo se si potrebbe capire automaticamente che si usano gli hooks"
+          echo "Stampa a video degli utlimi 5 caratteri del tag della release corrente"
+          varTemp=$(sudo bash -c 'echo "${GITHUB_REF#refs/heads/}" | tail -c 6')
+          echo "varTemp"
           echo "$GITHUB_SHA"
           
       - name: Step 3 - Have GitHub Actions Build Maven Project
@@ -109,6 +113,12 @@ jobs:
         
       - name: Step 7 - Instrumenta l'applicazione iniettando gli Hooks
         run: |
+            echo "entra nel if solamente se si intendono utilizzare gli Hooks nel progetto"
+            varTemp=$(sudo bash -c 'echo "${GITHUB_REF#refs/heads/}" | tail -c 6')
+            echo "varTemp"
+            if [ "$varTemp" == "Hooks" ]; then
+          
+            echo "Sono entrato nel if"
             cd test-hooks
             cd test-guard
             ls -a
@@ -126,6 +136,9 @@ jobs:
             echo "Visualizzazione file ftl dopo l'injection!!! "
             cat ${{ secrets.DIR_FILE_FTL }}
             
+            
+            fi
+            echo "Fuori dal if"
             
       - name: Step 16 - Creazione directory Test Suite
         run: |
