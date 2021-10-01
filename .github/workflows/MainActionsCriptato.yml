@@ -58,6 +58,7 @@ jobs:
       - name: Step 5 - Installare Node versione 10 in Ubuntu
         run: |
           echo "Vediamo se vede ancora varTemp:"
+          varTemp=$(echo "${GITHUB_REF#refs/tags/}" | tail -c 6)
           echo "$varTemp"
           if [ "$varTemp" == "Hooks" ]; then
           
@@ -85,6 +86,7 @@ jobs:
           
       - name: Step 6 - Unzip test-hooks ed installazione dentro test-guard di npm
         run: | 
+          varTemp=$(echo "${GITHUB_REF#refs/tags/}" | tail -c 6)
           if [ "$varTemp" == "Hooks" ]; then
           
           ls -a
@@ -188,6 +190,7 @@ jobs:
             
       - name: Step 9 - Esecuzione script per lo split dei test html
         run: |
+          varTemp=$(echo "${GITHUB_REF#refs/tags/}" | tail -c 6)
           if [ "$varTemp" == "Hooks" ]; then
           
           ls -a
