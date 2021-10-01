@@ -92,12 +92,6 @@ jobs:
         
       - name: Step 5 - Instrumenta l'applicazione iniettando gli Hooks
         run: |
-            echo "entra nel if solamente se si intendono utilizzare gli Hooks nel progetto"
-            varTemp=$(echo "${GITHUB_REF#refs/tags/}" | tail -c 6)
-            echo "varTemp"
-            if [ "$varTemp" == "Hooks" ]; then
-          
-            echo "Sono entrato nel if"
             cd test-hooks
             cd test-guard
             ls -a
@@ -108,6 +102,13 @@ jobs:
             echo "... Cancellazione e successivo aggiornamento di node_modules ..."
             rm -rf node_modules/
             npm update
+            
+            echo "entra nel if solamente se si intendono utilizzare gli Hooks nel progetto"
+            varTemp=$(echo "${GITHUB_REF#refs/tags/}" | tail -c 6)
+            echo "varTemp"
+            if [ "$varTemp" == "Hooks" ]; then
+            
+            echo "Sono entrato nel if"
             echo "INJECTION adesso..."
             echo "Visualizza versione di node"
             node -v
