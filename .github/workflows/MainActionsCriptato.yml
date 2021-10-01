@@ -166,9 +166,9 @@ jobs:
           cd test-hooks/test-guard
           ls -a
           echo "Proviamo ad eseguire lo script test-script-splitter"
-          sudo bash -c 'node test-script-splitter.js --suites /home/runner/work/WebAppTesi/WebAppTesi/${{ secrets.NOME_TEST_SUITE }}/TestHTML --dest /home/runner/work/WebAppTesi/WebAppTesi/${{ secrets.NOME_TEST_SUITE }}/TestHTML/ReportSplitter/ReportSplit --num ${{ secrets.NUMERO_SPLIT }}' 
+          sudo bash -c 'node test-script-splitter.js --suites ${{ secrets.PATH_REPOSITORY }}/${{ secrets.NOME_TEST_SUITE }}/TestHTML --dest ${{ secrets.PATH_REPOSITORY }}/${{ secrets.NOME_TEST_SUITE }}/TestHTML/ReportSplitter/ReportSplit --num ${{ secrets.NUMERO_SPLIT }}' 
           echo "Script eseguito"
-          cd /home/runner/work/WebAppTesi/WebAppTesi/${{ secrets.NOME_TEST_SUITE }}/TestHTML/ReportSplitter
+          cd ${{ secrets.PATH_REPOSITORY }}/${{ secrets.NOME_TEST_SUITE }}/TestHTML/ReportSplitter
           echo "Vediamo se ha generato le n cartelle ReportSplit"
           ls -a
           echo "Vediamo cosa c'è dentro ReportSplit0"
@@ -201,9 +201,9 @@ jobs:
         run:  |
             wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip
             unzip chromedriver_linux64.zip
-            sudo mv chromedriver /home/runner/work/WebAppTesi/WebAppTesi/chromedriver_v94_linux64/chromedriver
-            sudo chown root:root /home/runner/work/WebAppTesi/WebAppTesi/chromedriver_v94_linux64/chromedriver
-            sudo chmod +x /home/runner/work/WebAppTesi/WebAppTesi/chromedriver_v94_linux64/chromedriver
+            sudo mv chromedriver ${{ secrets.PATH_REPOSITORY }}/chromedriver_v94_linux64/chromedriver
+            sudo chown root:root ${{ secrets.PATH_REPOSITORY }}/chromedriver_v94_linux64/chromedriver
+            sudo chmod +x ${{ secrets.PATH_REPOSITORY }}/chromedriver_v94_linux64/chromedriver
       
      
       - name: Step 13 - Update pom con esecuzione dei test
