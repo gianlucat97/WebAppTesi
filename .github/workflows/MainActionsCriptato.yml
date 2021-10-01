@@ -46,20 +46,7 @@ jobs:
           echo "Vediamo qual è l'id dell'attuale commit"
           echo "$GITHUB_SHA"
           
-      - name: Step 3 - Have GitHub Actions Build Maven Project
-        run: |
-          echo "Prima di fare il packaging del file pom del progetto, devo porre skiptests=true"
-          echo "unzip del progetto setSkipTest"
-          unzip setSkipTest
-          echo "unzip eseguito"
-          cd setSkipTest/target
-          echo "esecuzione jar for set true skip test"
-          java -jar setSkipTest-jarSetSplitTest.jar ${{ secrets.FILE_POM_MAIN_PROJECT }} true
-          echo "Settaggio completato, visualizziamo il nuovo valore del pom"
-          cat ${{ secrets.FILE_POM_MAIN_PROJECT }}
-          echo "Facciamo il packaging senza test dell'applicativo"
-          mvn -B package --file ${{ secrets.FILE_POM_MAIN_PROJECT }}
-          echo "Packaging senza test completato!"
+      
          
       - name: Step 4 - List the current directory
         run: |
@@ -140,6 +127,23 @@ jobs:
             
             fi
             echo "Fuori dal if"
+            
+      - name: Step 3 - Unzip setSkipTest, skipTests=true, packaging dopo l'eventuale iniezione degli Hooks
+        run: |
+          echo "Prima di fare il packaging del file pom del progetto, devo porre skiptests=true"
+          echo "unzip del progetto setSkipTest"
+          unzip setSkipTest
+          echo "unzip eseguito"
+          cd setSkipTest/target
+          echo "esecuzione jar for set true skip test"
+          java -jar setSkipTest-jarSetSplitTest.jar ${{ secrets.FILE_POM_MAIN_PROJECT }} true
+          echo "Settaggio completato, visualizziamo il nuovo valore del pom"
+          cat ${{ secrets.FILE_POM_MAIN_PROJECT }}
+          echo "Facciamo il packaging senza test dell'applicativo"
+          mvn -B package --file ${{ secrets.FILE_POM_MAIN_PROJECT }}
+          echo "Packaging senza test completato!"       
+            
+            
             
       - name: Step 16 - Creazione directory Test Suite
         run: |
