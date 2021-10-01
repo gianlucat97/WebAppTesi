@@ -119,7 +119,19 @@ jobs:
             
             fi
             echo "Fuori dal if"
-            
+      
+      - name: Step 5.2 - Creazione directory surefire-reports, nel caso non fosse già presente
+        run: |
+          cd ${{ secrets.DIR_JAR_MAIN_PROJECT }}
+          if [ ! -d "${{ secrets.DIR_JAR_MAIN_PROJECT }}/surefire-reports" ]; then
+            echo "Vedi se sono dentro l'if per creare la cartella surefire-reports"
+            sudo mkdir surefire-reports
+          fi 
+          echo "visualizziamo se ha creato la cartella surefire-reports"
+          ls -a
+      
+      
+      
       - name: Step 6 - Unzip setSkipTest, skipTests=true, packaging dopo l'eventuale iniezione degli Hooks
         run: |
           echo "Prima di fare il packaging del file pom del progetto, devo porre skiptests=true"
@@ -153,17 +165,6 @@ jobs:
             sudo mkdir TestHTML
           fi
           
-          
-          
-      - name: Step 7.2 - Creazione directory surefire-reports, nel caso non fosse già presente
-        run: |
-          cd ${{ secrets.DIR_JAR_MAIN_PROJECT }}
-          if [ ! -d "${{ secrets.DIR_JAR_MAIN_PROJECT }}/surefire-reports" ]; then
-            echo "Vedi se sono dentro l'if per creare la cartella surefire-reports"
-            sudo mkdir surefire-reports
-          fi
-            
-            
       - name: Step 8 - Pulizia directory per split test html
         run: |
           ls -a
