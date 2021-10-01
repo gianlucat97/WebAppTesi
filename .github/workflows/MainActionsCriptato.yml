@@ -148,8 +148,8 @@ jobs:
           ls -a       
           cd ${{ secrets.NOME_TEST_SUITE }}
           ls -a
-          if [ ! -d "TestHTML" ]; then
-            echo "Vedi se sono dentro l'if numero 1"
+          if [ ! -d "${{ secrets.DIR_TEST_SUITE }}/TestHTML" ]; then
+            echo "Vedi se sono dentro l'if numero 2"
             sudo mkdir TestHTML
           fi
           
@@ -158,7 +158,7 @@ jobs:
       - name: Step 7.2 - Creazione directory surefire-reports, nel caso non fosse già presente
         run: |
           cd ${{ secrets.DIR_JAR_MAIN_PROJECT }}
-          if [ ! -d "surefire-reports" ]; then
+          if [ ! -d "${{ secrets.DIR_JAR_MAIN_PROJECT }}/surefire-reports" ]; then
             echo "Vedi se sono dentro l'if per creare la cartella surefire-reports"
             sudo mkdir surefire-reports
           fi
