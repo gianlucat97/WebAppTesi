@@ -42,7 +42,8 @@ jobs:
           echo "Vediamo se si potrebbe capire automaticamente che si usano gli hooks"
           echo "Stampa a video degli utlimi 5 caratteri del tag della release corrente"
           varTemp=$(sudo bash -c 'echo "${GITHUB_REF#refs/heads/}" | tail -c 6')
-          echo "varTemp"
+          echo "$varTemp"
+          echo "Vediamo qual è l'id dell'attuale commit"
           echo "$GITHUB_SHA"
           
       - name: Step 3 - Have GitHub Actions Build Maven Project
