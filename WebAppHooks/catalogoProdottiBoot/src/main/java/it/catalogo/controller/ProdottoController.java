@@ -48,7 +48,7 @@ public class ProdottoController {
 			
 			Iterable<Prodotto> prods = repo.findAll();
 			
-			return new ModelAndView("indexProdotti", "listaProdotti", prods);
+			return new ModelAndView("indexProdottiOriginaleNoHooks", "listaProdotti", prods);
 		}
 		
 		@PostMapping("/add")
