@@ -36,7 +36,8 @@ jobs:
           
       - name: Step 2.2 - Rinomina Tag
         run: |
-          git tag -a :refs/tags/nuovoNome-Hooks :refs/tags/v1_9_3-Hooks
+          git status
+          git tag -a nuovoNome-Hooks v1_9_3-Hooks
           git tag -d v1_9_3-Hooks
           git push origin :refs/tags/v1_9_3-Hooks
           git push --tags          
