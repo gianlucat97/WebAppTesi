@@ -120,20 +120,6 @@ jobs:
             fi
             echo "Fuori dal if"
       
-      - name: Step 5.2 - Creazione directory surefire-reports, nel caso non fosse già presente
-        run: |
-          cd ${{ secrets.DIR_JAR_MAIN_PROJECT }}
-          if [ ! -d "${{ secrets.DIR_JAR_MAIN_PROJECT }}/surefire-reports" ]; then
-            echo "Vedi se sono dentro l'if per creare la cartella surefire-reports"
-            sudo mkdir surefire-reports
-          fi 
-          echo "visualizziamo se ha creato la cartella surefire-reports"
-          ls -a
-          cd surefire-reports
-          sudo bash -c 'echo "Ignora file" > ignorami.cpp'
-          echo "Verifichiamo se ha creato il file inutile"
-          ls -a
-      
       
       
       
