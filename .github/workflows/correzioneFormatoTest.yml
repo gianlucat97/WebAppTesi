@@ -42,18 +42,64 @@ jobs:
           git status
           git tag --list
           echo "Andiamo ad aggiungere, se non ci era già, il tag corrente"
-          git tag --force v1.0-Tradizionale
-          git tag --force v1_0
-          git tag --force v1_1
-          git tag --force v1_2
-          git tag --force v1_3
+          git tag --force v1_3_2
+          git tag --force v1_3_3
+          git tag --force v1_3_4
+          git tag --force v1_3_5
+          git tag --force v1_3_6
+          git tag --force v1_3_7
+          git tag --force v1_4
+          git tag --force v1_4_2
+          git tag --force v1_5
+          git tag --force v1_5_1
+          git tag --force v1_6
+          git tag --force v1_6_1
+          git tag --force v1_6_2
+          git tag --force v1_6_3
+          git tag --force v1_6_4
+          git tag --force v1_6_5
+          git tag --force v1_6_6
+          git tag --force v1_6_7
+          git tag --force v1_6_8
+          git tag --force v1_6_9
+          git tag --force v1_7_0
+          git tag --force v1_7_1
+          git tag --force v1_7_2
+          git tag --force v1_7_3
+          git tag --force v1_7_4
+          git tag --force v1_7_5
           echo "Vediamo la nuova lista di tag:"
           git tag --list
-          git push --delete origin v1.0-Tradizionale
-          git push --delete origin v1_0
-          git push --delete origin v1_1
-          git push --delete origin v1_2
-          git push --delete origin v1_3
+          git push --delete origin v1_3_2
+          git push --delete origin v1_3_3
+          git push --delete origin v1_3_4
+          git push --delete origin v1_3_5
+          git push --delete origin v1_3_6
+          git push --delete origin v1_3_7
+          git push --delete origin v1_4
+          git push --delete origin v1_4_2
+          git push --delete origin v1_5
+          git push --delete origin v1_5_1
+          git push --delete origin v1_6
+          git push --delete origin v1_6_1
+          git push --delete origin v1_6_2
+          git push --delete origin v1_6_3
+          git push --delete origin v1_6_4
+          git push --delete origin v1_6_5
+          git push --delete origin v1_6_6
+          git push --delete origin v1_6_7
+          git push --delete origin v1_6_8
+          git push --delete origin v1_6_9
+          git push --delete origin v1_7_0
+          git push --delete origin v1_7_1
+          git push --delete origin v1_7_2
+          git push --delete origin v1_7_3
+          git push --delete origin v1_7_4
+          git push --delete origin v1_7_5
+          
+          
+          
+          
           
       - name: Step 3 - Unzip ed esecuzione progetto correzioneFormatoTest
         run: |
