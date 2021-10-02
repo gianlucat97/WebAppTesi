@@ -1,3 +1,13 @@
+
+//File risulta attualmente aggiornato per webdriver chrome headless!
+package it.catalogo.test;
+
+import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.concurrent.TimeUnit;
+
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Alert;
@@ -20,7 +30,7 @@ private static StringBuffer verificationErrors = new StringBuffer();
 		  String chromeDriverPath = "/home/runner/work/WebAppTesi/WebAppTesi/chromedriver_v94_linux64/chromedriver";
 		  System.setProperty("webdriver.chrome.driver", chromeDriverPath);
 		  ChromeOptions options = new ChromeOptions();
-		  options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
+		  options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--no-sandbox","--ignore-certificate-errors");
 		  driver = new ChromeDriver(options);  
 		  
 		  
@@ -59,6 +69,7 @@ private static StringBuffer verificationErrors = new StringBuffer();
     driver.findElement(By.xpath("//*[@x-test-tpl-35]//*[@x-test-hook-44][11]//*[@x-test-hook-49]")).click();
     driver.findElement(By.xpath("//*[@x-test-tpl-35]//*[@x-test-hook-44][10]//*[@x-test-hook-49]")).click();
   }
+
 
 
  @AfterAll
