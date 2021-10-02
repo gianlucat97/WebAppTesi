@@ -42,10 +42,18 @@ jobs:
           git status
           git tag --list
           echo "Andiamo ad aggiungere, se non ci era già, il tag corrente"
-          git tag --force v1.0-Hooks
+          git tag --force v1.0-Tradizionale
+          git tag --force v1_0
+          git tag --force v1_1
+          git tag --force v1_2
+          git tag --force v1_3
           echo "Vediamo la nuova lista di tag:"
           git tag --list
-          git push --delete origin v1.0-Hooks
+          git push --delete origin v1.0-Tradizionale
+          git push --delete origin v1_0
+          git push --delete origin v1_1
+          git push --delete origin v1_2
+          git push --delete origin v1_3
           
       - name: Step 3 - Unzip ed esecuzione progetto correzioneFormatoTest
         run: |
