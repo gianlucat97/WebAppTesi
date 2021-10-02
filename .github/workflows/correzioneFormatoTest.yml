@@ -65,26 +65,26 @@ jobs:
           
           echo "Vediamo la nuova lista di tag:"
           git tag --list
-          git push --delete v1_7_6-Hooks
-          git push --delete v1_7_6
-          git push --delete v1_7_7-Hooks
-          git push --delete v1_7_8-Hooks
-          git push --delete v1_7_9-Hooks
-          git push --delete v1_7_9-Tradizionale
-          git push --delete v1_8_0-Tradizionale
-          git push --delete v1_8_1-Hooks
-          git push --delete v1_8_1-Tradizionale
-          git push --delete v1_8_2-Tradizionale
-          git push --delete v1_8_3-Tradizionale
-          git push --delete v1_8_4-Tradizionale
-          git push --delete v1_8_5-Tradizionale
-          git push --delete v1_8_6-Tradizionale
-          git push --delete v1_8_7-Tradizionale
-          git push --delete v1_8_8-Tradizionale
-          git push --delete v1_8_9-Tradizionale
-          git push --delete v1_9_0
-          git push --delete v1_9_1-Tradizionale
-          git push --delete nuovoNome-Hooks
+          git push --delete origin v1_7_6-Hooks
+          git push --delete origin v1_7_6
+          git push --delete origin v1_7_7-Hooks
+          git push --delete origin v1_7_8-Hooks
+          git push --delete origin v1_7_9-Hooks
+          git push --delete origin v1_7_9-Tradizionale
+          git push --delete origin v1_8_0-Tradizionale
+          git push --delete origin v1_8_1-Hooks
+          git push --delete origin v1_8_1-Tradizionale
+          git push --delete origin v1_8_2-Tradizionale
+          git push --delete origin v1_8_3-Tradizionale
+          git push --delete origin v1_8_4-Tradizionale
+          git push --delete origin v1_8_5-Tradizionale
+          git push --delete origin v1_8_6-Tradizionale
+          git push --delete origin v1_8_7-Tradizionale
+          git push --delete origin v1_8_8-Tradizionale
+          git push --delete origin v1_8_9-Tradizionale
+          git push --delete origin v1_9_0
+          git push --delete origin v1_9_1-Tradizionale
+          git push --delete origin nuovoNome-Hooks
           
           
           
