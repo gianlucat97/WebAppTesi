@@ -36,8 +36,16 @@ jobs:
           
       - name: Step 2.2 - Rinomina Tag
         run: |
+          git config --global user.email "${{ secrets.EMAIL_ACCOUNT_GITHUB }}"
+          git config --global user.name "${{ secrets.NOME_ACCOUNT_GITHUB }}"
+          git config --global user.password "${{ secrets.PASSWORD_ACCOUNT_GITHUB }}"
           git status
-          git tag -a nuovoNome-Hooks v1_9_3-Hooks
+          git tag --list
+          echo "Andiamo ad aggiungere, se non ci era già, il tag corrente"
+          git tag --force v1_9_3-Hooks
+          echo "Vediamo la nuova lista di tag:"
+          git tag --list
+          git tag nuovoNome-Hooks v1_9_3-Hooks
           git tag -d v1_9_3-Hooks
           git push origin :refs/tags/v1_9_3-Hooks
           git push --tags          
