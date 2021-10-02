@@ -43,14 +43,12 @@ jobs:
           git tag --list
           echo "Andiamo ad aggiungere, se non ci era già, il tag corrente"
          
-          git tag --force v1_9_2-Tradizionale
-          git tag --force v1_9_3-Hooks
+          git tag --force v1.1-Hooks
           
           echo "Vediamo la nuova lista di tag:"
           git tag --list
           
-          git push --delete origin v1_9_2-Tradizionale
-          git push --delete origin v1_9_3-Hooks
+          git push --delete origin v1.1-Hooks
           
           
           
