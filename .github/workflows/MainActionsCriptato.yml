@@ -243,7 +243,7 @@ jobs:
       - name: Step 14 - Eseguire test maven
         run:  |
             cd ${{ secrets.DIR_POM_MAIN_PROJECT }}
-            mvn -Dtest=${{ secrets.TEST_TO_EXECUTE }}  test site &
+            sudo bash -c 'mvn -Dtest=${{ secrets.TEST_TO_EXECUTE }}  test site &'
             sleep 3m
             
       - name: Step 15 - Visualizzare report test
