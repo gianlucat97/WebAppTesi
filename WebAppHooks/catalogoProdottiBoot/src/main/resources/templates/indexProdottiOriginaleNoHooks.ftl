@@ -81,8 +81,8 @@
 						<td>${prodotto.descrizione}</td>
 						<td>${prodotto.prezzo}</td>
 						<td>
-							<a href="delete?id=${prodotto.id}">Elimina</a>
-							<a href="prodotti?id=${prodotto.id}">Modifica</a>
+							<a href="delete?id=${prodotto.id}">Cancella</a>
+							<a href="prodotti?id=${prodotto.id}">Rettifica</a>
 						</td>
 					</tr>
 					</#list>
