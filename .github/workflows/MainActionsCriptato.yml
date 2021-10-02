@@ -237,7 +237,14 @@ jobs:
             java -jar setSkipTest-jarSetSplitTest.jar ${{ secrets.FILE_POM_MAIN_PROJECT }} false
             echo "Settaggio completato, visualizziamo il nuovo valore del pom"
             cat ${{ secrets.FILE_POM_MAIN_PROJECT }}
-     
+            
+          
+      - name: Step 13.2 - Packaging pom con esecuzione dei test
+        run:  |    
+          mvn -B package --file ${{ secrets.FILE_POM_MAIN_PROJECT }}
+          echo "Packaging effettuato!"
+          
+          
       - name: Step 14 - Eseguire test maven
         run:  |
             cd ${{ secrets.DIR_POM_MAIN_PROJECT }}
