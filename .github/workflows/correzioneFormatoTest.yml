@@ -43,14 +43,12 @@ jobs:
           git tag --list
           echo "Andiamo ad aggiungere, se non ci era già, il tag corrente"
           git tag --force v1_0-Hooks
-          git tag --force v1_0-Tradizionale
           echo "Vediamo la nuova lista di tag:"
           git tag --list
+          git tag nuovoNome-Hooks v1_0-Hooks
           git tag -d v1_0-Hooks
-          git tag -d v1_0-Tradizionale
           git push origin :refs/tags/v1_0-Hooks
-          git push origin :refs/tags/v1_0-Tradizionale
-          git push --tags          
+          git push --tags  
           
       - name: Step 3 - Unzip ed esecuzione progetto correzioneFormatoTest
         run: |
