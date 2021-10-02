@@ -222,8 +222,11 @@ jobs:
             sudo chown root:root ${{ secrets.PATH_REPOSITORY }}/chromedriver_v94_linux64/chromedriver
             sudo chmod +x ${{ secrets.PATH_REPOSITORY }}/chromedriver_v94_linux64/chromedriver
             
+            echo "Vediamo il nome della cartella unzippata"
+            ls -a
+            
             echo "Vediamo se ha scaricato il driver"
-            cd chromedriver_linux64
+            cd chromedriver
             echo "Contenuto della cartella chromedriver_linux64"
             ls -a
      
