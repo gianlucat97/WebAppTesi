@@ -226,8 +226,8 @@ jobs:
             ls -a
             
             echo "Vediamo se ha scaricato il driver"
-            cd chromedriver
-            echo "Contenuto della cartella chromedriver_linux64"
+            cd chromedriver_v94_linux64
+            echo "Contenuto della cartella chromedriver_v94_linux64"
             ls -a
      
       - name: Step 13 - Update pom con esecuzione dei test
