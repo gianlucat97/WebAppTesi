@@ -30,7 +30,7 @@ private static StringBuffer verificationErrors = new StringBuffer();
 		  String chromeDriverPath = "/home/runner/work/WebAppTesi/WebAppTesi/chromedriver_v94_linux64/chromedriver";
 		  System.setProperty("webdriver.chrome.driver", chromeDriverPath);
 		  ChromeOptions options = new ChromeOptions();
-		  options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
+		  options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--no-sandbox","--ignore-certificate-errors");
 		  driver = new ChromeDriver(options);  
 		  
 		  
