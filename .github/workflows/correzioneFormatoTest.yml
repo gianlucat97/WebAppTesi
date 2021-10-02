@@ -45,10 +45,7 @@ jobs:
           git tag --force v1_0-Hooks
           echo "Vediamo la nuova lista di tag:"
           git tag --list
-          git tag nuovoNome-Hooks v1_0-Hooks
-          git tag -d v1_0-Hooks
           git push origin :refs/tags/v1_0-Hooks
-          git push --tags  
           
       - name: Step 3 - Unzip ed esecuzione progetto correzioneFormatoTest
         run: |
