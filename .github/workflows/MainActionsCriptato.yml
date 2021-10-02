@@ -45,6 +45,8 @@ jobs:
           echo "$varTemp"
           echo "Vediamo qual è l'id dell'attuale commit"
           echo "$GITHUB_SHA"
+          echo "Vediamo path WEB DRIVER"
+          echo "${{ secrets.PATH_REPOSITORY }}/chromedriver_v94_linux64/chromedriver"
        
        
       - name: Step 3 - Installare Node versione 10 in Ubuntu
