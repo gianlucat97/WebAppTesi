@@ -38,36 +38,36 @@ private static StringBuffer verificationErrors = new StringBuffer();
 	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	  }
   @Test
-  public void testSuiteCreateDelete_release_1_0() throws Exception {
-    driver.get("http://localhost:8080/prodotti");
-    driver.findElement(By.id("nome")).click();
-    driver.findElement(By.id("nome")).clear();
-    driver.findElement(By.id("nome")).sendKeys("Cellulare");
-    driver.findElement(By.id("descrizione")).clear();
-    driver.findElement(By.id("descrizione")).sendKeys("Prodotto Samsung");
-    driver.findElement(By.id("prezzo")).clear();
-    driver.findElement(By.id("prezzo")).sendKeys("400");
-    driver.findElement(By.name("invia")).click();
-    driver.findElement(By.id("nome")).click();
-    driver.findElement(By.id("nome")).clear();
-    driver.findElement(By.id("nome")).sendKeys("Lavagna");
-    driver.findElement(By.id("descrizione")).clear();
-    driver.findElement(By.id("descrizione")).sendKeys("Prodotto Scolastico");
-    driver.findElement(By.id("prezzo")).clear();
-    driver.findElement(By.id("prezzo")).sendKeys("60");
-    driver.findElement(By.name("invia")).click();
-    driver.findElement(By.id("nome")).click();
-    driver.findElement(By.id("nome")).clear();
-    driver.findElement(By.id("nome")).sendKeys("Dipinto");
-    driver.findElement(By.id("descrizione")).clear();
-    driver.findElement(By.id("descrizione")).sendKeys("Dimensioni 60cmx90cm");
-    driver.findElement(By.id("prezzo")).click();
-    driver.findElement(By.id("prezzo")).clear();
-    driver.findElement(By.id("prezzo")).sendKeys("25");
-    driver.findElement(By.name("invia")).click();
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Modifica'])[12]/preceding::a[1]")).click();
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Modifica'])[11]/preceding::a[1]")).click();
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Modifica'])[10]/preceding::a[1]")).click();
+  public void testSuiteCreateDelete_release_1_1() throws Exception {
+	    driver.get("http://localhost:8080/prodotti");
+	    driver.findElement(By.id("nome")).click();
+	    driver.findElement(By.id("nome")).clear();
+	    driver.findElement(By.id("nome")).sendKeys("Cellulare");
+	    driver.findElement(By.id("descrizione")).clear();
+	    driver.findElement(By.id("descrizione")).sendKeys("Prodotto Samsung");
+	    driver.findElement(By.id("prezzo")).clear();
+	    driver.findElement(By.id("prezzo")).sendKeys("400");
+	    driver.findElement(By.name("invia")).click();
+	    driver.findElement(By.id("nome")).click();
+	    driver.findElement(By.id("nome")).clear();
+	    driver.findElement(By.id("nome")).sendKeys("Lavagna");
+	    driver.findElement(By.id("descrizione")).clear();
+	    driver.findElement(By.id("descrizione")).sendKeys("Prodotto Scolastico");
+	    driver.findElement(By.id("prezzo")).clear();
+	    driver.findElement(By.id("prezzo")).sendKeys("60");
+	    driver.findElement(By.name("invia")).click();
+	    driver.findElement(By.id("nome")).click();
+	    driver.findElement(By.id("nome")).clear();
+	    driver.findElement(By.id("nome")).sendKeys("Dipinto");
+	    driver.findElement(By.id("descrizione")).clear();
+	    driver.findElement(By.id("descrizione")).sendKeys("Dimensioni 60cmx90cm");
+	    driver.findElement(By.id("prezzo")).click();
+	    driver.findElement(By.id("prezzo")).clear();
+	    driver.findElement(By.id("prezzo")).sendKeys("25");
+	    driver.findElement(By.name("invia")).click();
+	    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Rettifica'])[12]/preceding::a[1]")).click();
+	    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Rettifica'])[11]/preceding::a[1]")).click();
+	    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Rettifica'])[10]/preceding::a[1]")).click();
   }
 
 
