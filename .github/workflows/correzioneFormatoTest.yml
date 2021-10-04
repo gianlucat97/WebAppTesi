@@ -43,19 +43,17 @@ jobs:
           git tag --list
           echo "Andiamo ad aggiungere, se non ci era già, il tag corrente"
           
-          git tag --force v2.0-Tradizionale
-          git tag --force newProva3-Hooks
-          git tag --force newProva-Tradizionale
-          git tag --force newProva-Hooks
+          git tag --force nowProva3-Hooks
+          git tag --force nowProva-Tradizionale
+          git tag --force nowProva-Hooks
           git tag --force newProva3-Tradizionale
           git tag --force newProva2-Hooks
           echo "Vediamo la nuova lista di tag:"
           git tag --list
           
-          git push --delete origin v2.0-Tradizionale
-          git push --delete origin newProva3-Hooks
-          git push --delete origin newProva-Tradizionale
-          git push --delete origin newProva-Hooks
+          git push --delete origin nowProva3-Hooks
+          git push --delete origin nowProva-Tradizionale
+          git push --delete origin nowProva-Hooks
           git push --delete origin newProva3-Tradizionale
           git push --delete origin newProva2-Hooks
       - name: Step 3 - Unzip ed esecuzione progetto correzioneFormatoTest
