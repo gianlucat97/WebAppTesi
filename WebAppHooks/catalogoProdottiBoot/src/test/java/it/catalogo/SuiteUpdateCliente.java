@@ -1,8 +1,4 @@
-
-//File risulta attualmente aggiornato per webdriver chrome headless!
-package it.catalogo.test;
-
-import static org.junit.Assert.fail;
+ org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.concurrent.TimeUnit;
