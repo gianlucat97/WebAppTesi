@@ -54,7 +54,7 @@ private static StringBuffer verificationErrors = new StringBuffer();
 	assertEquals("Libro", driver.findElement(By.id("descrizione")).getAttribute("value"));
 	assertEquals("10", driver.findElement(By.id("prezzo")).getAttribute("value"));
 	driver.findElement(By.name("invia")).click();
-    driver.findElement(By.xpath("//a[contains(@href, 'delete?id=371')]")).click();
+    driver.findElement(By.xpath("//tr[10]/td[4]/a")).click();
   }
 
 
