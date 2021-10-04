@@ -1,4 +1,8 @@
- org.junit.Assert.fail;
+
+//File risulta attualmente aggiornato per webdriver chrome headless!
+package it.catalogo.test;
+
+import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.concurrent.TimeUnit;
@@ -25,6 +29,7 @@ private static StringBuffer verificationErrors = new StringBuffer();
 		  // Init chromedriver
 		  String chromeDriverPath = "/home/runner/work/WebAppTesi/WebAppTesi/chromedriver_v94_linux64/chromedriver";
 		  System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+		  System.setProperty("webdriver.chrome.whitelistedIps", "");
 		  ChromeOptions options = new ChromeOptions();
 		  options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--no-sandbox","--ignore-certificate-errors");
 		  driver = new ChromeDriver(options);  
@@ -47,6 +52,7 @@ private static StringBuffer verificationErrors = new StringBuffer();
     driver.findElement(By.id("storicospesa")).sendKeys("170");
     driver.findElement(By.name("invia")).click();
   }
+
 
 
  @AfterAll
