@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import it.catalogo.repository.*;
@@ -22,9 +23,11 @@ public class ProdottoController {
 	@Autowired
 	private ProdottoRepository repo;
 	
+	
 	//serve localhost:8080/lista
+	@ResponseBody
 	@GetMapping("/lista")
-	public String list() {
+	public Iterable<Prodotto> list() {
 		
 		Iterable<Prodotto> prods = repo.findAll();
 		
@@ -33,7 +36,7 @@ public class ProdottoController {
 			System.out.println(p.getNome());
 		});
 		
-		return "index";
+		return prods;
 	}
 	
 		//serve localhost:8080/prodotti
@@ -48,8 +51,12 @@ public class ProdottoController {
 			
 			Iterable<Prodotto> prods = repo.findAll();
 			
-			return new ModelAndView("indexProdottiOriginaleNoHooks", "listaProdotti", prods);
+			return new ModelAndView("indexProdotti", "listaProdotti", prods);
 		}
+		
+		
+		
+		
 		
 		@PostMapping("/add")
 		public String add(@ModelAttribute("datiProdotto") Prodotto p) {
