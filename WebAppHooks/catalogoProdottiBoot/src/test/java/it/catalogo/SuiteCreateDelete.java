@@ -66,9 +66,9 @@ private static StringBuffer verificationErrors = new StringBuffer();
 	    driver.findElement(By.id("prezzo")).clear();
 	    driver.findElement(By.id("prezzo")).sendKeys("25");
 	    driver.findElement(By.name("invia")).click();
-	    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Rettifica'])[12]/preceding::a[1]")).click();
-	    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Rettifica'])[11]/preceding::a[1]")).click();
-	    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Rettifica'])[10]/preceding::a[1]")).click();
+	    driver.findElement(By.xpath("//tr[12]/td[4]/a")).click();
+    	    driver.findElement(By.xpath("//tr[11]/td[4]/a")).click();
+            driver.findElement(By.xpath("//tr[10]/td[4]/a")).click();
   }
 
 
