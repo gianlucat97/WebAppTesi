@@ -33,7 +33,7 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      
+       
       - name: Step 3 - Unzip ed esecuzione progetto correzioneFormatoTest
         run: |
           echo "Proviamo ad unzippare"
