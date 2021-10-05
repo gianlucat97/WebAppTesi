@@ -39,7 +39,7 @@ private static StringBuffer verificationErrors = new StringBuffer();
 	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	  }
   @Test
-  public void testSuiteCreateAndUpdateHooks() throws Exception {
+  public void testSuiteCreateAndUpdateHooks_loc_Hooks_release_2_1() throws Exception {
     driver.get("http://localhost:8080/prodotti");
     driver.findElement(By.xpath("//*[@x-test-tpl-20]//*[@x-test-hook-24]")).click();
     driver.findElement(By.xpath("//*[@x-test-tpl-20]//*[@x-test-hook-24]")).clear();
