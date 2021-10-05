@@ -41,8 +41,8 @@ public class ClienteController {
 	
 		
 		
-		//serve localhost:8080/clienti/main
-		@GetMapping("/main")
+		//serve localhost:8080/clienti/catalogoclienti
+		@GetMapping("/catalogoclienti")
 		public ModelAndView indexClienti(@RequestParam(required = false) String id, ModelMap mm) {
 					
 					if(id != null) {
@@ -61,14 +61,14 @@ public class ClienteController {
 		@PostMapping("/add")
 		public String add(@ModelAttribute("datiCliente") Cliente c) {
 			repoC.save(c);
-			return "redirect:/clienti/main";
+			return "redirect:/clienti/catalogoclienti";
 		}
 		
 		
 		@PostMapping("/update")
 		public String update(@ModelAttribute("datiCliente") Cliente c) {
 			repoC.save(c);
-			return "redirect:/clienti/main";
+			return "redirect:/clienti/catalogoclienti";
 		}
 		
 		
@@ -77,7 +77,7 @@ public class ClienteController {
 			if(idCliente != null)
 				repoC.deleteById(Integer.parseInt(idCliente));
 			
-			return "redirect:/clienti/main";
+			return "redirect:/clienti/catalogoclienti";
 		}
 	
 	
