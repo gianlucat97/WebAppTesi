@@ -40,21 +40,21 @@ private static StringBuffer verificationErrors = new StringBuffer();
 	  }
   @Test
   public void testSuiteCreateAndAssert_release_1_1() throws Exception {
-    driver.get("http://localhost:8080/prodotti");
-    driver.findElement(By.id("nome")).click();
-    driver.findElement(By.id("nome")).clear();
-    driver.findElement(By.id("nome")).sendKeys("Il ritratto di Dorian Gray");
-    driver.findElement(By.id("descrizione")).click();
-    driver.findElement(By.id("descrizione")).clear();
-    driver.findElement(By.id("descrizione")).sendKeys("Libro");
-    driver.findElement(By.id("prezzo")).click();
-    driver.findElement(By.id("prezzo")).clear();
-    driver.findElement(By.id("prezzo")).sendKeys("10");
-    assertEquals("Il ritratto di Dorian Gray", driver.findElement(By.id("nome")).getAttribute("value"));
-	assertEquals("Libro", driver.findElement(By.id("descrizione")).getAttribute("value"));
-	assertEquals("10", driver.findElement(By.id("prezzo")).getAttribute("value"));
-	driver.findElement(By.name("invia")).click();
-    driver.findElement(By.xpath("//tr[10]/td[4]/a")).click();
+	    driver.get("http://localhost:8080/prodotti");
+	    driver.findElement(By.id("nome")).click();
+	    driver.findElement(By.id("nome")).clear();
+	    driver.findElement(By.id("nome")).sendKeys("Il ritratto di Dorian Gray");
+	    driver.findElement(By.id("descrizione")).click();
+	    driver.findElement(By.id("descrizione")).clear();
+	    driver.findElement(By.id("descrizione")).sendKeys("Libro");
+	    driver.findElement(By.id("prezzo")).click();
+	    driver.findElement(By.id("prezzo")).clear();
+	    driver.findElement(By.id("prezzo")).sendKeys("10");
+	    assertEquals("Il ritratto di Dorian Gray", driver.findElement(By.id("nome")).getAttribute("value"));
+	    assertEquals("Libro", driver.findElement(By.id("descrizione")).getAttribute("value"));
+	    assertEquals("10", driver.findElement(By.id("prezzo")).getAttribute("value"));
+	    driver.findElement(By.name("invia")).click();
+	    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Rettifica'])[10]/preceding::a[1]")).click();
   }
 
 
