@@ -39,7 +39,7 @@ private static StringBuffer verificationErrors = new StringBuffer();
 	  }
   @Test
   public void testSuiteCreateClienteHooks_loc_Hooks_release_2_0() throws Exception {
-    driver.get("http://localhost:8080/clienti/main");
+    driver.get("http://localhost:8080/clienti/catalogoclienti");
     driver.findElement(By.xpath("//*[@x-test-tpl-20]//*[@x-test-hook-24]")).click();
     driver.findElement(By.xpath("//*[@x-test-tpl-20]//*[@x-test-hook-24]")).clear();
     driver.findElement(By.xpath("//*[@x-test-tpl-20]//*[@x-test-hook-24]")).sendKeys("Sergio");
