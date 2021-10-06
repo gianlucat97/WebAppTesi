@@ -39,7 +39,7 @@ private static StringBuffer verificationErrors = new StringBuffer();
 	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	  }
   @Test
-  public void testSuiteCreateAndAssert_release_1_1() throws Exception {
+  public void testSuiteCreateAndAssert_release_2_1() throws Exception {
 	    driver.get("http://localhost:8080/prodotti");
 	    driver.findElement(By.id("nome")).click();
 	    driver.findElement(By.id("nome")).clear();
@@ -53,7 +53,7 @@ private static StringBuffer verificationErrors = new StringBuffer();
 	    assertEquals("Il ritratto di Dorian Gray", driver.findElement(By.id("nome")).getAttribute("value"));
 	    assertEquals("Libro", driver.findElement(By.id("descrizione")).getAttribute("value"));
 	    assertEquals("10", driver.findElement(By.id("prezzo")).getAttribute("value"));
-	    driver.findElement(By.name("invia")).click();
+	    driver.findElement(By.name("inviodatiprodotto")).click();
 	    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Rettifica'])[10]/preceding::a[1]")).click();
   }
 
