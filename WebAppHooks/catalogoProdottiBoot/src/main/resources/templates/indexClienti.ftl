@@ -81,8 +81,8 @@
 						<td>${cliente.cognome}</td>
 						<td>${cliente.storicospesa}</td>
 						<td>
-							<a href="delete?id=${cliente.id}">Cancella</a>
-							<a href="main?id=${cliente.id}">Rettifica</a>
+							<a href="delete?id=${cliente.id}">Rimuovi dati cliente</a>
+							<a href="catalogoclienti?id=${cliente.id}">Aggiorna dati cliente</a>
 						</td>
 					</tr>
 					</#list>
