@@ -59,8 +59,8 @@ private static StringBuffer verificationErrors = new StringBuffer();
     driver.findElement(By.id("storicospesa")).clear();
     driver.findElement(By.id("storicospesa")).sendKeys("50");
     driver.findElement(By.name("invia")).click();
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Rettifica'])[11]/preceding::a[1]")).click();
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Rettifica'])[10]/preceding::a[1]")).click();
+    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Aggiorna dati cliente'])[11]/preceding::a[1]")).click();
+    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Aggiorna dati cliente'])[10]/preceding::a[1]")).click();
   }
 
 
