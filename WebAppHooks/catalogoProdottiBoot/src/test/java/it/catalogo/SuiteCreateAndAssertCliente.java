@@ -40,7 +40,7 @@ private static StringBuffer verificationErrors = new StringBuffer();
 	  }
   @Test
   public void testSuiteCreateAndAssertCliente_release_2_0() throws Exception {
-    driver.get("http://localhost:8080/clienti/main");
+    driver.get("http://localhost:8080/clienti/catalogoclienti");
     driver.findElement(By.id("nome")).click();
     driver.findElement(By.id("nome")).clear();
     driver.findElement(By.id("nome")).sendKeys("Aurelio");
