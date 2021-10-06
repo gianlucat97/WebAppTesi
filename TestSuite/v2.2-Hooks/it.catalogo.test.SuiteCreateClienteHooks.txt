@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: it.catalogo.test.SuiteCreateClienteHooks
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.577 s - in it.catalogo.test.SuiteCreateClienteHooks
