@@ -39,7 +39,7 @@ private static StringBuffer verificationErrors = new StringBuffer();
 	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	  }
   @Test
-  public void testSuiteCreateDelete_release_1_1() throws Exception {
+  public void testSuiteCreateDelete_release_2_1() throws Exception {
 	    driver.get("http://localhost:8080/prodotti");
 	    driver.findElement(By.id("nome")).click();
 	    driver.findElement(By.id("nome")).clear();
@@ -48,7 +48,7 @@ private static StringBuffer verificationErrors = new StringBuffer();
 	    driver.findElement(By.id("descrizione")).sendKeys("Prodotto Samsung");
 	    driver.findElement(By.id("prezzo")).clear();
 	    driver.findElement(By.id("prezzo")).sendKeys("400");
-	    driver.findElement(By.name("invia")).click();
+	    driver.findElement(By.name("inviodatiprodotto")).click();
 	    driver.findElement(By.id("nome")).click();
 	    driver.findElement(By.id("nome")).clear();
 	    driver.findElement(By.id("nome")).sendKeys("Lavagna");
@@ -56,7 +56,7 @@ private static StringBuffer verificationErrors = new StringBuffer();
 	    driver.findElement(By.id("descrizione")).sendKeys("Prodotto Scolastico");
 	    driver.findElement(By.id("prezzo")).clear();
 	    driver.findElement(By.id("prezzo")).sendKeys("60");
-	    driver.findElement(By.name("invia")).click();
+	    driver.findElement(By.name("inviodatiprodotto")).click();
 	    driver.findElement(By.id("nome")).click();
 	    driver.findElement(By.id("nome")).clear();
 	    driver.findElement(By.id("nome")).sendKeys("Dipinto");
@@ -65,7 +65,7 @@ private static StringBuffer verificationErrors = new StringBuffer();
 	    driver.findElement(By.id("prezzo")).click();
 	    driver.findElement(By.id("prezzo")).clear();
 	    driver.findElement(By.id("prezzo")).sendKeys("25");
-	    driver.findElement(By.name("invia")).click();
+	    driver.findElement(By.name("inviodatiprodotto")).click();
 	    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Rettifica'])[12]/preceding::a[1]")).click();
 	    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Rettifica'])[11]/preceding::a[1]")).click();
 	    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Rettifica'])[10]/preceding::a[1]")).click();
