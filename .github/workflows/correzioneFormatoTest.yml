@@ -34,30 +34,7 @@ jobs:
         with:
           java-version: 1.8
      
-      - name: Step 2.2 - Cancella Tag
-        run: |
-          git config --global user.email "${{ secrets.EMAIL_ACCOUNT_GITHUB }}"
-          git config --global user.name "${{ secrets.NOME_ACCOUNT_GITHUB }}"
-          git config --global user.password "${{ secrets.PASSWORD_ACCOUNT_GITHUB }}"
-          git status
-          git tag --list
-          echo "Andiamo ad aggiungere, se non ci era già, il tag corrente"
-          
-          git tag --force v2.2-Hooks
-          git tag --force prova4-Tradizionale
-          git tag --force prova3-Tradizionale
-          git tag --force prova2-Tradizionale
-          git tag --force prova-Tradizionale
-          git tag --force prova
-          echo "Vediamo la nuova lista di tag:"
-          git tag --list
-          
-          git push --delete origin v2.2-Hooks
-          git push --delete origin prova4-Tradizionale
-          git push --delete origin prova3-Tradizionale
-          git push --delete origin prova2-Tradizionale
-          git push --delete origin prova-Tradizionale
-          git push --delete origin prova   
+      
       - name: Step 3 - Unzip ed esecuzione progetto correzioneFormatoTest
         run: |
           echo "Proviamo ad unzippare"
