@@ -39,8 +39,8 @@ private static StringBuffer verificationErrors = new StringBuffer();
 	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	  }
   @Test
-  public void testSuiteCreateCliente_release_2_0() throws Exception {
-    driver.get("http://localhost:8080/clienti/main");
+  public void testSuiteCreateCliente_release_2_1() throws Exception {
+    driver.get("http://localhost:8080/clienti/catalogoclienti");
     driver.findElement(By.id("nome")).click();
     driver.findElement(By.id("nome")).clear();
     driver.findElement(By.id("nome")).sendKeys("Sergio");
