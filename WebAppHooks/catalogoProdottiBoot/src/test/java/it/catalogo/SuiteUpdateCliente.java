@@ -41,12 +41,12 @@ private static StringBuffer verificationErrors = new StringBuffer();
   @Test
   public void testSuiteUpdateCliente_release_2_1() throws Exception {
     driver.get("http://localhost:8080/clienti/catalogoclienti");
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Cancella'])[9]/following::a[1]")).click();
+    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Rimuovi dati cliente'])[9]/following::a[1]")).click();
     driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Cognome'])[1]/following::div[1]")).click();
     driver.findElement(By.id("storicospesa")).clear();
     driver.findElement(By.id("storicospesa")).sendKeys("280");
     driver.findElement(By.name("invia")).click();
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Cancella'])[9]/following::a[1]")).click();
+    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Rimuovi dati cliente'])[9]/following::a[1]")).click();
     driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Cognome'])[1]/following::div[1]")).click();
     driver.findElement(By.id("storicospesa")).clear();
     driver.findElement(By.id("storicospesa")).sendKeys("170");
