@@ -54,7 +54,7 @@ private static StringBuffer verificationErrors = new StringBuffer();
 	assertEquals("Rossi", driver.findElement(By.id("cognome")).getAttribute("value"));
 	assertEquals("500", driver.findElement(By.id("storicospesa")).getAttribute("value"));
     driver.findElement(By.name("invia")).click();
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Rettifica'])[10]/preceding::a[1]")).click();
+    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Aggiorna dati cliente'])[10]/preceding::a[1]")).click();
   }
 
 
