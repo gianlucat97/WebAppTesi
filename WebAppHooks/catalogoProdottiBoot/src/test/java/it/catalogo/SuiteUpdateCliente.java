@@ -39,8 +39,8 @@ private static StringBuffer verificationErrors = new StringBuffer();
 	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	  }
   @Test
-  public void testSuiteUpdateCliente_release_2_0() throws Exception {
-    driver.get("http://localhost:8080/clienti/main");
+  public void testSuiteUpdateCliente_release_2_1() throws Exception {
+    driver.get("http://localhost:8080/clienti/catalogoclienti");
     driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Cancella'])[9]/following::a[1]")).click();
     driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Cognome'])[1]/following::div[1]")).click();
     driver.findElement(By.id("storicospesa")).clear();
