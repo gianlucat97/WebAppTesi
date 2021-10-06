@@ -39,7 +39,7 @@ private static StringBuffer verificationErrors = new StringBuffer();
 	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	  }
   @Test
-  public void testSuiteUpdate_release_1_1() throws Exception {
+  public void testSuiteUpdate_release_2_1() throws Exception {
 	    driver.get("http://localhost:8080/prodotti");
 	    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Cancella'])[2]/preceding::a[1]")).click();
 	    driver.findElement(By.id("descrizione")).click();
@@ -50,7 +50,7 @@ private static StringBuffer verificationErrors = new StringBuffer();
 	    driver.findElement(By.id("prezzo")).click();
 	    driver.findElement(By.id("prezzo")).clear();
 	    driver.findElement(By.id("prezzo")).sendKeys("95");
-	    driver.findElement(By.name("invia")).click();
+	    driver.findElement(By.name("inviodatiprodotto")).click();
 	    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Cancella'])[2]/following::a[1]")).click();
 	    driver.findElement(By.id("descrizione")).click();
 	    driver.findElement(By.id("descrizione")).clear();
@@ -58,7 +58,7 @@ private static StringBuffer verificationErrors = new StringBuffer();
 	    driver.findElement(By.id("prezzo")).click();
 	    driver.findElement(By.id("prezzo")).clear();
 	    driver.findElement(By.id("prezzo")).sendKeys("380");
-	    driver.findElement(By.name("invia")).click();
+	    driver.findElement(By.name("inviodatiprodotto")).click();
 	    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Cancella'])[3]/following::a[1]")).click();
 	    driver.findElement(By.id("nome")).click();
 	    driver.findElement(By.id("nome")).clear();
@@ -74,7 +74,7 @@ private static StringBuffer verificationErrors = new StringBuffer();
 	    driver.findElement(By.id("prezzo")).click();
 	    driver.findElement(By.id("prezzo")).clear();
 	    driver.findElement(By.id("prezzo")).sendKeys("800");
-	    driver.findElement(By.name("invia")).click();
+	    driver.findElement(By.name("inviodatiprodotto")).click();
 	    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Cancella'])[2]/following::a[1]")).click();
 	    driver.findElement(By.id("descrizione")).click();
 	    driver.findElement(By.id("descrizione")).clear();
@@ -82,14 +82,14 @@ private static StringBuffer verificationErrors = new StringBuffer();
 	    driver.findElement(By.id("prezzo")).click();
 	    driver.findElement(By.id("prezzo")).clear();
 	    driver.findElement(By.id("prezzo")).sendKeys("770");
-	    driver.findElement(By.name("invia")).click();
+	    driver.findElement(By.name("inviodatiprodotto")).click();
 	    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Cancella'])[1]/following::a[1]")).click();
 	    driver.findElement(By.id("descrizione")).click();
 	    driver.findElement(By.id("descrizione")).clear();
 	    driver.findElement(By.id("descrizione")).sendKeys("Marca Adidas");
 	    driver.findElement(By.id("prezzo")).clear();
 	    driver.findElement(By.id("prezzo")).sendKeys("100");
-	    driver.findElement(By.name("invia")).click();
+	    driver.findElement(By.name("inviodatiprodotto")).click();
   }
 
 
