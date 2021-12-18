@@ -22,7 +22,7 @@ jobs:
       name: envForGithubActions
     
       
-   # Steps represent a sequence of tasks that will be executed as part of the job
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Step 1 - Checkout main branch from GitHub
@@ -33,8 +33,8 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-          
-           
+               
+       
       - name: Step 3 - Installare Node versione 10 in Ubuntu
         run: |
           sudo apt update
@@ -84,20 +84,19 @@ jobs:
             cd test-guard
             ls -a
             echo "Visualizzazione file ftl prima dell injection! "
-            cat ${{ secrets.DIR_FILE_FTL }}
+            cat ${{ secrets.DIR_FILE_FE }}
             echo "Visualizza versione di node"
             node -v
             echo "... Cancellazione e successivo aggiornamento di node_modules ..."
             rm -rf node_modules/
             npm update
-            
-            echo "Sono entrato nel if"
             echo "INJECTION adesso..."
             echo "Visualizza versione di node"
             node -v
-            node main.js inject-hooks ${{ secrets.DIR_FILE_FTL }} --grammar ${{ secrets.GRAMMAR_TYPE }}
+            node main.js inject-hooks ${{ secrets.DIR_FILE_FE }} --grammar ${{ secrets.GRAMMAR_TYPE }}
             echo "Visualizzazione file ftl dopo l'injection!!! "
-            cat ${{ secrets.DIR_FILE_FTL }}
+            cat ${{ secrets.DIR_FILE_FE }}
+         
       
       
       
@@ -110,13 +109,13 @@ jobs:
           echo "unzip eseguito"
           cd setSkipTest/target
           echo "esecuzione jar for set true skip test"
-          java -jar setSkipTest-jarSetSplitTest.jar ${{ secrets.FILE_POM_MAIN_PROJECT }} true
+          java -jar setSkipTest-jarSetSplitTest.jar ${{ secrets.BASE_PATH }}/pom.xml true
           echo "Settaggio completato, visualizziamo il nuovo valore del pom"
-          cat ${{ secrets.FILE_POM_MAIN_PROJECT }}
+          cat ${{ secrets.BASE_PATH }}/pom.xml
           echo "Prima di fare il packaging, verifichiamo il contenuto del file ftl"
-          cat ${{ secrets.DIR_FILE_FTL }}
+          cat ${{ secrets.DIR_FILE_FE }}
           echo "Facciamo il packaging senza test dell'applicativo"
-          mvn -B package --file ${{ secrets.FILE_POM_MAIN_PROJECT }}
+          mvn -B package --file ${{ secrets.BASE_PATH }}/pom.xml
           echo "Packaging senza test completato!"       
             
             
@@ -124,15 +123,15 @@ jobs:
       - name: Step 7 - Creazione directory Test Suite
         run: |
           ls -a
-          if [ ! -d "${{ secrets.DIR_TEST_SUITE }}" ]; then
+          if [ ! -d "${{ secrets.PATH_REPOSITORY }}/TestSuite" ]; then
             echo "Vedi se sono dentro l'if numero 1"
-            sudo mkdir ${{ secrets.NOME_TEST_SUITE }}
+            sudo mkdir TestSuite
           fi
           echo "Vediamo se ha creato la cartella"
           ls -a       
-          cd ${{ secrets.NOME_TEST_SUITE }}
+          cd TestSuite
           ls -a
-          if [ ! -d "${{ secrets.DIR_TEST_SUITE }}/TestHTML" ]; then
+          if [ ! -d "${{ secrets.PATH_REPOSITORY }}/TestSuite/TestHTML" ]; then
             echo "Vedi se sono dentro l'if numero 2"
             sudo mkdir TestHTML
           fi
@@ -141,7 +140,7 @@ jobs:
         run: |
           ls -a
           echo "Rechiamoci nella directory TestHTML"
-          cd ${{ secrets.NOME_TEST_SUITE }}/TestHTML
+          cd TestSuite/TestHTML
           echo "se esite già, cancella la cartella ReportSplitter"
           if [ -d "ReportSplitter" ]; then
             echo "La cartella esiste già"
@@ -159,23 +158,34 @@ jobs:
           cd test-hooks/test-guard
           ls -a
           echo "Proviamo ad eseguire lo script test-script-splitter"
-          sudo bash -c 'node test-script-splitter.js --suites ${{ secrets.PATH_REPOSITORY }}/${{ secrets.NOME_TEST_SUITE }}/TestHTML --dest ${{ secrets.PATH_REPOSITORY }}/${{ secrets.NOME_TEST_SUITE }}/TestHTML/ReportSplitter/ReportSplit --num ${{ secrets.NUMERO_SPLIT }}' 
+          sudo bash -c 'node test-script-splitter.js --suites ${{ secrets.PATH_REPOSITORY }}/TestSuite/TestHTML --dest ${{ secrets.PATH_REPOSITORY }}/TestSuite/TestHTML/ReportSplitter/ReportSplit --num ${{ secrets.NUMERO_SPLIT }}' 
           echo "Script eseguito"
-          cd ${{ secrets.PATH_REPOSITORY }}/${{ secrets.NOME_TEST_SUITE }}/TestHTML/ReportSplitter
+          cd ${{ secrets.PATH_REPOSITORY }}/TestSuite/TestHTML/ReportSplitter
           echo "Vediamo se ha generato le n cartelle ReportSplit"
           ls -a
           echo "Vediamo cosa c'è dentro ReportSplit0"
           cd ReportSplit0
           ls -a
         
-      - name: Step 10 - Esegui Applicazione Spring Boot tramite jar
+            
+      - name: Step 10.1 - Esegui Applicazione FE tramite nmp
         run:  |
-            cd ${{ secrets.DIR_JAR_MAIN_PROJECT }}
+            cd ${{ secrets.DIR_PROJECT_FE }}
+            echo "Siamo nella directory FE, proviamo a lanciarlo in esecuzione"
+            sudo npm cache clean -f
+            npm install
+            echo "Installazione npm effettuata, prossimo comando: npm start"
+            npm start &
+            sleep 2m
+            
+      - name: Step 10.2 - Esegui Applicazione BE Spring Boot tramite jar
+        run:  |
+            cd ${{ secrets.BASE_PATH }}/target
             echo "Vediamo quali file jar si trovano in cartella target"
             ls -a
             echo "Proviamo ad eseguire ${{ secrets.NOME_JAR_WEBAPP }}.jar"
             java -jar ${{ secrets.NOME_JAR_WEBAPP }}.jar &
-            echo "Vediamo se si è attivato il thread che fa andare avanti"
+            echo "Vediamo se si è attivato il thread che fa andare avanti"      
     
           
       - name: Step 11 - Install Chrome Headless
@@ -213,22 +223,22 @@ jobs:
         run:  |
             cd setSkipTest/target
             echo "esecuzione jar for set false skip test"
-            java -jar setSkipTest-jarSetSplitTest.jar ${{ secrets.FILE_POM_MAIN_PROJECT }} false
+            java -jar setSkipTest-jarSetSplitTest.jar ${{ secrets.BASE_PATH }}/pom.xml false
             echo "Settaggio completato, visualizziamo il nuovo valore del pom"
-            cat ${{ secrets.FILE_POM_MAIN_PROJECT }}
+            cat ${{ secrets.BASE_PATH }}/pom.xml
             
           
           
       - name: Step 14 - Eseguire test maven
         run:  |
-            cd ${{ secrets.DIR_POM_MAIN_PROJECT }}
-            sudo bash -c 'mvn -Dtest=${{ secrets.TEST_TO_EXECUTE }}  test site'
+            cd ${{ secrets.BASE_PATH }}
+            sudo bash -c 'mvn -Dtest=${{ secrets.TEST_TO_EXECUTE }}  test site &'
+            sleep 5m
             
       - name: Step 15 - Visualizzare report test
         run: |
-            cd ${{ secrets.DIR_JAR_MAIN_PROJECT }}/surefire-reports
+            cd ${{ secrets.BASE_PATH }}/target/surefire-reports
             ls -a 
             echo "Visualizziamo adesso tutti i report txt ottenuti dalle nostre test suite"
             cat *.txt
             echo "Fine visualizzazione report!!!"
-            
