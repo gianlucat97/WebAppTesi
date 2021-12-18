@@ -22,7 +22,7 @@ jobs:
       name: envForGithubActions
     
        
-   # Steps represent a sequence of tasks that will be executed as part of the job
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Step 1 - Checkout main branch from GitHub
@@ -34,7 +34,7 @@ jobs:
         with:
           java-version: 1.8
      
-                
+             
       - name: Step 3 - Unzip ed esecuzione progetto correzioneFormatoTest
         run: |
           echo "Proviamo ad unzippare"
@@ -44,7 +44,7 @@ jobs:
           cd correzioneFormatoTest/target
           echo "Vediamo contenuto cartella target"
           ls -a
-          java -jar correzioneFormatoTest-0.0.1-jarCorrezioneFormatoTest.jar ${{ secrets.DIR_TEST_PROGETTO_JUNIT }} ${{ secrets.DIR_CHROME_DRIVER }} ${{ secrets.TEST_PACKAGE_PROJECT }}
+          java -jar correzioneFormatoTest-0.0.1-jarCorrezioneFormatoTest.jar ${{ secrets.DIR_TEST_PROGETTO_JUNIT }} ${{ secrets.PATH_REPOSITORY }}/chromedriver_v94_linux64/chromedriver ${{ secrets.TEST_PACKAGE_PROJECT }}
           
           
          
@@ -66,7 +66,7 @@ jobs:
           echo "Andiamo ad aggiungere la cartella dei report"
           git add ${{ secrets.DIR_TEST_PROGETTO_JUNIT }}
           echo "Cartella aggiunta!"
-          git commit -m "${{ secrets.INFO_COMMIT_TEST_SUITE }}"
+          git commit -m "commit da correzioneFormatoTest.yml"
           git branch -M ${{ secrets.BRANCH_NAME }} 
           git push -u origin ${{ secrets.BRANCH_NAME }}
           
