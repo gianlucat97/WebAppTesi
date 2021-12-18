@@ -98,7 +98,7 @@ jobs:
             cd test-guard
             ls -a
             echo "Visualizzazione file ftl prima dell injection! "
-            cat ${{ secrets.DIR_FILE_FTL }}
+            cat ${{ secrets.DIR_FILE_FE }}
             echo "Visualizza versione di node"
             node -v
             echo "... Cancellazione e successivo aggiornamento di node_modules ..."
@@ -114,9 +114,9 @@ jobs:
             echo "INJECTION adesso..."
             echo "Visualizza versione di node"
             node -v
-            node main.js inject-hooks ${{ secrets.DIR_FILE_FTL }} --grammar ${{ secrets.GRAMMAR_TYPE }}
+            node main.js inject-hooks ${{ secrets.DIR_FILE_FE }} --grammar ${{ secrets.GRAMMAR_TYPE }}
             echo "Visualizzazione file ftl dopo l'injection!!! "
-            cat ${{ secrets.DIR_FILE_FTL }}
+            cat ${{ secrets.DIR_FILE_FE }}
             
             
             fi
@@ -133,13 +133,13 @@ jobs:
           echo "unzip eseguito"
           cd setSkipTest/target
           echo "esecuzione jar for set true skip test"
-          java -jar setSkipTest-jarSetSplitTest.jar ${{ secrets.FILE_POM_MAIN_PROJECT }} true
+          java -jar setSkipTest-jarSetSplitTest.jar ${{ secrets.BASE_PATH }}/pom.xml true
           echo "Settaggio completato, visualizziamo il nuovo valore del pom"
-          cat ${{ secrets.FILE_POM_MAIN_PROJECT }}
+          cat ${{ secrets.BASE_PATH }}/pom.xml
           echo "Prima di fare il packaging, verifichiamo il contenuto del file ftl"
-          cat ${{ secrets.DIR_FILE_FTL }}
+          cat ${{ secrets.DIR_FILE_FE }}
           echo "Facciamo il packaging senza test dell'applicativo"
-          mvn -B package --file ${{ secrets.FILE_POM_MAIN_PROJECT }}
+          mvn -B package --file ${{ secrets.BASE_PATH }}/pom.xml
           echo "Packaging senza test completato!"       
             
             
@@ -147,15 +147,15 @@ jobs:
       - name: Step 7 - Creazione directory Test Suite
         run: |
           ls -a
-          if [ ! -d "${{ secrets.DIR_TEST_SUITE }}" ]; then
+          if [ ! -d "${{ secrets.PATH_REPOSITORY }}/TestSuite" ]; then
             echo "Vedi se sono dentro l'if numero 1"
-            sudo mkdir ${{ secrets.NOME_TEST_SUITE }}
+            sudo mkdir TestSuite
           fi
           echo "Vediamo se ha creato la cartella"
           ls -a       
-          cd ${{ secrets.NOME_TEST_SUITE }}
+          cd TestSuite
           ls -a
-          if [ ! -d "${{ secrets.DIR_TEST_SUITE }}/TestHTML" ]; then
+          if [ ! -d "${{ secrets.PATH_REPOSITORY }}/TestSuite/TestHTML" ]; then
             echo "Vedi se sono dentro l'if numero 2"
             sudo mkdir TestHTML
           fi
@@ -164,7 +164,7 @@ jobs:
         run: |
           ls -a
           echo "Rechiamoci nella directory TestHTML"
-          cd ${{ secrets.NOME_TEST_SUITE }}/TestHTML
+          cd TestSuite/TestHTML
           echo "se esite già, cancella la cartella ReportSplitter"
           if [ -d "ReportSplitter" ]; then
             echo "La cartella esiste già"
@@ -182,9 +182,9 @@ jobs:
           cd test-hooks/test-guard
           ls -a
           echo "Proviamo ad eseguire lo script test-script-splitter"
-          sudo bash -c 'node test-script-splitter.js --suites ${{ secrets.PATH_REPOSITORY }}/${{ secrets.NOME_TEST_SUITE }}/TestHTML --dest ${{ secrets.PATH_REPOSITORY }}/${{ secrets.NOME_TEST_SUITE }}/TestHTML/ReportSplitter/ReportSplit --num ${{ secrets.NUMERO_SPLIT }}' 
+          sudo bash -c 'node test-script-splitter.js --suites ${{ secrets.PATH_REPOSITORY }}/TestSuite/TestHTML --dest ${{ secrets.PATH_REPOSITORY }}/TestSuite/TestHTML/ReportSplitter/ReportSplit --num ${{ secrets.NUMERO_SPLIT }}' 
           echo "Script eseguito"
-          cd ${{ secrets.PATH_REPOSITORY }}/${{ secrets.NOME_TEST_SUITE }}/TestHTML/ReportSplitter
+          cd ${{ secrets.PATH_REPOSITORY }}/TestSuite/TestHTML/ReportSplitter
           echo "Vediamo se ha generato le n cartelle ReportSplit"
           ls -a
           echo "Vediamo cosa c'è dentro ReportSplit0"
@@ -193,14 +193,13 @@ jobs:
         
       - name: Step 10 - Esegui Applicazione Spring Boot tramite jar
         run:  |
-            cd ${{ secrets.DIR_JAR_MAIN_PROJECT }}
+            cd ${{ secrets.BASE_PATH }}/target
             echo "Vediamo quali file jar si trovano in cartella target"
             ls -a
             echo "Proviamo ad eseguire ${{ secrets.NOME_JAR_WEBAPP }}.jar"
             java -jar ${{ secrets.NOME_JAR_WEBAPP }}.jar &
             echo "Vediamo se si è attivato il thread che fa andare avanti"
-    
-          
+                    
       - name: Step 11 - Install Chrome Headless
         run: |
           sudo apt-get update
@@ -236,21 +235,21 @@ jobs:
         run:  |
             cd setSkipTest/target
             echo "esecuzione jar for set false skip test"
-            java -jar setSkipTest-jarSetSplitTest.jar ${{ secrets.FILE_POM_MAIN_PROJECT }} false
+            java -jar setSkipTest-jarSetSplitTest.jar ${{ secrets.BASE_PATH }}/pom.xml false
             echo "Settaggio completato, visualizziamo il nuovo valore del pom"
-            cat ${{ secrets.FILE_POM_MAIN_PROJECT }}
+            cat ${{ secrets.BASE_PATH }}/pom.xml
             
           
           
       - name: Step 14 - Eseguire test maven
         run:  |
-            cd ${{ secrets.DIR_POM_MAIN_PROJECT }}
+            cd ${{ secrets.BASE_PATH }}
             sudo bash -c 'mvn -Dtest=${{ secrets.TEST_TO_EXECUTE }}  test site &'
-            sleep 5m
+            sleep ${{ secrets.MIN_EXE_TEST }}m
             
       - name: Step 15 - Visualizzare report test
         run: |
-            cd ${{ secrets.DIR_JAR_MAIN_PROJECT }}/surefire-reports
+            cd ${{ secrets.BASE_PATH }}/target/surefire-reports
             ls -a 
             echo "Visualizziamo adesso tutti i report txt ottenuti dalle nostre test suite"
             cat *.txt
@@ -259,14 +258,14 @@ jobs:
        
       - name: Step 16 - Spostamento report in directory corretta
         run: |  
-          cd ${{ secrets.DIR_JAR_MAIN_PROJECT }}
+          cd ${{ secrets.BASE_PATH }}/target
           echo "Visualizziamo se c'è la cartella surefire-reports"
           ls -a 
           echo "Rinominare la cartella surefire-reports in nome del tag della release creata"
           sudo mv surefire-reports ${GITHUB_REF#refs/tags/}
           echo "Vediamo se la ha rinominata:"
           ls -a
-          sudo cp -r ${GITHUB_REF#refs/tags/} ${{ secrets.DIR_TEST_SUITE }}
+          sudo cp -r ${GITHUB_REF#refs/tags/} ${{ secrets.PATH_REPOSITORY }}/TestSuite
           
       - name: Step 17 - Push dei report
         run: |
@@ -277,9 +276,9 @@ jobs:
           git config --global user.password "${{ secrets.PASSWORD_ACCOUNT_GITHUB }}"
           git status
           echo "Andiamo ad aggiungere la cartella dei report"
-          git add ${{ secrets.DIR_TEST_SUITE }}
+          git add ${{ secrets.PATH_REPOSITORY }}/TestSuite
           echo "Cartella aggiunta!"
-          git commit -m "${{ secrets.INFO_COMMIT_TEST_SUITE }}"
+          git commit -m "Eseguendo un primo commit dal file yml"
           git tag --list
           echo "Andiamo ad aggiungere, se non ci era già, il tag corrente"
           git tag --force ${GITHUB_REF#refs/tags/}
@@ -305,17 +304,17 @@ jobs:
           cd miglioramentoReportTest/target
           ls -a
           echo "Proviamo ad eseguire il file jar, passandogli come args[0] la directory dei report da analizzare e come args[1] il nome del report complessivo xls da generare"
-          java -jar miglioramentoReportTest-0.0.1-jarReportTest.jar ${{ secrets.DIR_TEST_SUITE }}/${GITHUB_REF#refs/tags/} ${{ secrets.NOME_REPORT_FINALE }}
+          java -jar miglioramentoReportTest-0.0.1-jarReportTest.jar ${{ secrets.PATH_REPOSITORY }}/TestSuite/${GITHUB_REF#refs/tags/} tabellaReportTest
           echo "File jar eseguito!!!"
           echo "Vediamo il file xls di report unificato se c'è"
           ls -a 
           echo "Vediamo il contenuto del file xls di report unificato!!!"
-          cat ${{ secrets.NOME_REPORT_FINALE.xls }}
+          cat tabellaReportTest.xls
           
       - name: Step 20 - Spostamento report xls in cartella dei report txt
         run: | 
           cd miglioramentoReportTest/target
-          sudo cp ${{ secrets.NOME_REPORT_FINALE }}.xls ${{ secrets.DIR_TEST_SUITE }}/${GITHUB_REF#refs/tags/}
+          sudo cp tabellaReportTest.xls ${{ secrets.PATH_REPOSITORY }}/TestSuite/${GITHUB_REF#refs/tags/}
           
       - name: Step 21 - Commit del report xls
         run: | 
@@ -327,9 +326,9 @@ jobs:
           git config --global user.password "${{ secrets.PASSWORD_ACCOUNT_GITHUB }}"
           git status
           echo "Andiamo ad aggiungere la cartella dei report"
-          git add ${{ secrets.DIR_TEST_SUITE }}
+          git add ${{ secrets.PATH_REPOSITORY }}/TestSuite
           echo "Cartella aggiunta!"
-          git commit -m "${{ secrets.INFO_COMMIT_TEST_SUITE }}"
+          git commit -m "Eseguendo un secondo commit dal file yml"
           git tag --list
           echo "Andiamo ad aggiungere, se non ci era già, il tag corrente"
           git tag --force ${GITHUB_REF#refs/tags/}
